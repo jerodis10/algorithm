@@ -1,0 +1,7 @@
+[백기선 온라인 자바 스터디]
+https://velog.io/@dion?tag=Java
+
+[exception]
+https://cheese10yun.github.io/checked-exception/
+
+* 가급적이면 생성자에서 값을 세팅하고 setter의 사용을 최소화 하는게 유지보수에 좋다.

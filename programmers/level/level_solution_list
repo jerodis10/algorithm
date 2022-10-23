@@ -1,0 +1,142 @@
+------------------------------------------------
+level1
+------------------------------------------------
+[p.1]
+1.report_results -> X *
+2.lotto -> O *
+3.newId -> X *
+4.number_str -> O *
+5.keypad -> O *
+6.crane -> O *
+7.null_number_add -> O *
+8.YinYang -> O *
+9.inner -> O *
+10.make_prime -> O *
+	(참고 - https://st-lab.tistory.com/81)
+11.phoneketmon -> O *
+12.failure_rate -> X *
+13.number_of_factors -> O *
+
+[p.2]
+14.ternary_reverse -> X *
+	(진법 - https://hongjw1938.tistory.com/43)
+	(진법 - https://choichumji.tistory.com/171)
+15.budget -> O *
+16.take two and add -> O *
+17.year_2016 -> O *
+18.minimum Rectangle -> O *
+19.find_one_number -> O *
+20.calculate_shortfall -> X *
+21.secret_map -> O *
+22.get_middle_letter -> O *
+23.dart_game -> X *
+24.no_same_number -> O *
+25.divisible_array_of_numbers -> O *
+26.sum_between_two_integers -> O *
+
+[p.3]
+27.string_sort -> O *
+28.string_p_y_num -> O *
+29.string_descending -> O *
+30.string_handle_basic -> O *
+31.find_at_seoul -> O *
+32.find_primeNumber -> O *
+33.clap -> O *
+34.replace_string_to_number -> O *
+35.caesar_password -> X *
+36.sum_of_measure -> O *
+37.make_weird_string -> X *
+38.number of digits -> X *
+39.flip_over_number -> X *
+40.number_descending -> X *
+41.integer_square_root -> O *
+42.remove_minimal_number -> O *
+43.even_odd_number -> O *
+44.greatestCommonFactor_leastCommonMultiple -> X *
+45.colatz_guessing -> O *
+46.calculate_average -> O *
+
+[p.4]
+47.number_of_Hasshad -> O *
+48.hide_phone_number -> O *
+49.addition_of_matrices -> O *
+50.n_numbers -> X *
+51.rectangle_star -> O *
+
+------------------------------------------------
+level2
+------------------------------------------------
+[p.5]
+1.archery_competition -> X *
+2.n_leastCommonMultiples -> O *
+3.n_queen -> X *
+4.JadenCase_string -> O *
+5.matrix_multiplication -> O *
+6.tower_of_hanoi -> X *
+7.Fibonacci_number -> O *
+
+[p.4]
+8.make_minimal_number -> O *
+9.maximalNumber_minimalNumber -> O *
+10.parking_fee_calculation -> O *
+11.how_to_line_up -> X *
+12.representation_of_numbers -> O *
+13.number_block -> X *
+14.find_primeNumber -> X *
+15.long_jump -> X *
+16.eat_the_ground -> X *
+17.next_big_number -> O *
+18.correct_parenthesis -> X *
+19.sort_file_names -> X *
+20.compression -> X *
+21.find_the_largest_rectangle -> X *
+22.just_that_song -> X *
+23.length_of_visit -> X *
+24.skill_tree -> X *
+25.quad_compression -> X *
+26.cut_array -> X *
+
+[p.3]
+28. tiling_3n X 
+29. jump_teleportation -> X *
+30. Repeat_Binary_Transformation -> O *
+31. cash -> X *
+32. vowel dictionary -> X *
+33. Split the power grid in two -> X *
+34. make a star at the vertex -> X *
+35. ending in english -> X *
+36. triangular snail -> O *
+37. two_or_less_different_bits -> X
+38. Friends 4 Block -> X *
+39. fatigue -> X *
+
+[p.2]
+40. tiling_2n -> X
+41. delivery -> X *
+42. Rotate parentheses -> O *
+43. candidate key -> X *
+44. Rank Search -> X *
+45. Expected draw -> O *
+46. shortest distance on the game map -> X *
+47. joystick -> X *
+48. light path cycle -> X *
+49. tuple -> X *
+
+[p.1]
+50. group photo -> X *
+51. Kakao Coloring Book -> X *
+52. string compression -> X *
+53. plain square -> X *
+54. check the distance -> O *
+55. make the sum of two queue equal -> X *
+56. Rotate Matrix Borders -> O *
+57. Maximize Formulas -> X
+58. parenthesis conversion -> X *
+59. menu renewal -> X *
+60. 124 number of countries -> X *
+61. open chat room -> O *
+62. News clustering -> X *
+63. remove by pair -> X *
+64. discount offer -> O *
+65. master of playing alone -> X
+
