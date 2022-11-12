@@ -1,93 +1,41 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-public class ex {
-	
-	int result;
-    boolean[] visited;
-    
-    public int solution(String begin, String target, String[] words) {
-		result = Integer.MAX_VALUE;
-		visited = new boolean[words.length];
-		
-		bfs(begin, target, words);
-		
-		if(result == Integer.MAX_VALUE) return 0;
-		
-		return result;
-	}
-    
-    public void bfs(String begin, String target, String[] words) {
-    	Queue<Word> q = new LinkedList<>();
-    	String cur = begin;
-    	Word word = new Word();
-    	word.setWord(cur);
-    	word.setCount(0);
-    	q.add(word);
-    	
-    	while(!q.isEmpty()) {
-    		word = q.poll();
-    		
-    		if(word.getWord().equals(target)) {
-    			result = Math.min(result, word.getCount());
-    			return;
-    		}
-    		
-    		
-    		for(int i=0; i<words.length; i++) {
-    			if(!visited[i] && check(word.getWord(), words[i])) {
-    				visited[i] = true;
-    				Word next = new Word();
-    				next.setWord(words[i]);
-    				next.setCount(word.getCount()+1);
-    				q.add(next);
-    			}
-    		}
-    	}
-    }
-    
-    public class Word {
-    	private String word;
-    	private int count;
-		public String getWord() {
-			return word;
-		}
-		public void setWord(String word) {
-			this.word = word;
-		}
-		public int getCount() {
-			return count;
-		}
-		public void setCount(int count) {
-			this.count = count;
-		}
-    	
-    }
-	
-	public boolean check(String begin, String target) {
-		int count = 0;
-		
-		for(int i=0; i<begin.length(); i++) {
-			if(begin.charAt(i) == target.charAt(i)) {
-				count++;
-			}
-		}
-		
-		if(count == begin.length() - 1) {
-			return true;
-		}
-		return false;
-	}
-
-
+//import java.util.LinkedList;
+//import java.util.Queue;
+//
+//import org.junit.Assert;
+//import org.junit.Test;
+//
+//public class ex {
+//
+//	int result;
+//    boolean[] visited;
+//
+//	public String solution(String s1, String s2) {
+//		String answer = "";
+//
+//		char[] charArr1 = s1.toCharArray();
+//		char[] charArr2 = s2.toCharArray();
+//
+//		int index = 0;
+//		for(int i = charArr1.length; i >= 0; i--) {
+//			if(charArr1[i] == charArr2[index]) {
+//				index++;
+//			} else {
+//				index--;
+//				break;
+//			}
+//		}
+//
+//		answer += s1.subString(0, index);
+//		answer += s2.subString(index, s2.length());
+//
+//		return answer;
+//	}
+//
 //	@Test
 //	public void testCase() {
-//		Assert.assertEquals(2, solution(new int[][] {{1,0,1,1,1}, {1,0,1,0,1}, {0,0,1}}));
-//		Assert.assertEquals(1, solution(new int[][] {{1,1,0}, {1,1,1}, {0,1,1}}));
+//		Assert.assertEquals("ABCxyZA", solution("xyZA", "ABCxy"));
+////		Assert.assertEquals(1, solution(new int[][] {{1,1,0}, {1,1,1}, {0,1,1}}));
 //	}
-	
-
-}
+//
+//
+//}
