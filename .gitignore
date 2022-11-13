@@ -1,0 +1,9 @@
+# Project exclude paths
+/out/
+/bin/
+/.classpath
+/.project
+/.idea
+
+/input.txt
+
