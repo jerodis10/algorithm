@@ -1,6 +1,4 @@
 
-O
-Baekjoon/baekjoon_solution_list,9\0\90fa34d9e3a07d23bae1eba9de94e30d23394c39
 7
 ex.java,4\8\48582deec6445d1b4ab569802d470145d68084c7
 m
