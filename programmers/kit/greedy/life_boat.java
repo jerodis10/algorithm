@@ -25,7 +25,7 @@ public class life_boat {
 	}
 	
 	@Test
-	  public void 정답() {
+	  public void test() {
 	    Assert.assertEquals(1, solution(new int[]{50}, 50));
 	    Assert.assertEquals(2, solution(new int[]{20, 50, 50, 80}, 100));
 	    Assert.assertEquals(3, solution(new int[]{70, 50, 80, 50}, 100));

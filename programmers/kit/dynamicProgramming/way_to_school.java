@@ -45,7 +45,7 @@ public class way_to_school {
 	}
 	
 	@Test
-	public void 정답() {
+	public void test() {
 		Assert.assertEquals(4, solution(4, 3, new int[][]{{2,2}}));
 		Assert.assertEquals(7, solution(4, 4, new int[][]{{3,2}, {2,4}}));
 	    Assert.assertEquals(7, solution(5, 3, new int[][]{{4,2}}));
