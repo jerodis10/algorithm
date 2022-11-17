@@ -12,54 +12,49 @@ import java.util.StringTokenizer;
 
 
 public class BJ_1956_shortest_path7 {
-	
-	static int[][] dist;
-	static final int INF = 400 * 10_000;
-	static int n;
-	
-	public static void main(String[] args) throws IOException {
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/input.txt")));
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	static int MAX = Integer.MAX_VALUE;
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-		dist = new int[n+1][n+1];
-		int ret = INF;
-		
-		for(int i=1;i<=n;i++) {
-			Arrays.fill(dist[i], INF);
+
+		int V = Integer.parseInt(st.nextToken());
+		int E = Integer.parseInt(st.nextToken());
+
+		long[][] dist = new long[V+1][V+1];
+
+		for(int i=1;i<=V;i++) {
+			Arrays.fill(dist[i], MAX);
 		}
-		
-		for(int i=0;i<m;i++) {
-			st= new StringTokenizer(br.readLine());
-			
-			int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            int value = Integer.parseInt(st.nextToken());
-            
-            dist[start][end] = Math.min(dist[start][end], value);    
+
+		int s,e,d;
+		for(int i=0;i<E;i++) {
+			st = new StringTokenizer(br.readLine());
+			s = Integer.parseInt(st.nextToken());
+			e = Integer.parseInt(st.nextToken());
+			d = Integer.parseInt(st.nextToken());
+
+			dist[s][e] = Math.min(dist[s][e], d);
 		}
-		
-		floydWarshall();
-		
-		for(int i=1;i<=n;i++) {
-			ret = Math.min(dist[i][i], ret);
-		}
-		
-		if(ret == INF) System.out.println(-1);
-		else System.out.println(ret);
-	}
-	
-	public static void floydWarshall() {
-		for(int k=1;k<=n;k++) {
-			for(int i=1;i<=n;i++) {
-				for(int j=1;j<=n;j++) {
-					dist[i][j] = Math.min(dist[i][k] + dist[k][j], dist[i][j]);
+
+		//플로이드 워셜
+		// k = 경유지
+		for(int i=1;i<=V;i++) {
+			for(int j=1;j<=V;j++) {
+				for(int k=1;k<=V;k++) {
+					dist[i][j] = Math.min(dist[i][j], dist[i][k]+dist[k][j]);
 				}
 			}
 		}
+
+		long result = MAX;
+		for(int a=1;a<=V;a++) {
+			result = Math.min(result, dist[a][a]);
+		}
+
+		if(result == MAX) System.out.print(-1);
+		else System.out.print(result);
 	}
 		
 }
