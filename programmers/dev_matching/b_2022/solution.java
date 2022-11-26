@@ -1,7 +1,9 @@
+package programmers.dev_matching.b_2022;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-public class ex {
+public class solution {
 
 	char[][] map;
 	int minN;

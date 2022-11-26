@@ -1,4 +1,4 @@
-package programmers.dev_matching_2022;
+package programmers.dev_matching.a_2022;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
