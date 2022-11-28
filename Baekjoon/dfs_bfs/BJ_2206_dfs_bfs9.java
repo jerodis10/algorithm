@@ -61,7 +61,7 @@ public class BJ_2206_dfs_bfs9 {
 			for(int i=0;i<4;i++) {
 				int nextY = curY + dir[i][0];
 				int nextX = curX + dir[i][1];
-				if(nextY < 0 || nextY >= N | nextX < 0 || nextX >= M) continue;
+				if(nextY < 0 || nextY >= N || nextX < 0 || nextX >= M) continue;
 				if(visited[nextY][nextX] <= cur_break) continue;
 				if(map[nextY][nextX] == 0) {
 					visited[nextY][nextX] = cur_break;
