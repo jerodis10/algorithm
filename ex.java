@@ -1,88 +1,63 @@
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import java.util.*;
+
 public class ex {
 
-	char[][] map;
-	int minN;
-	int result;
-	int highN;
-	int lowN;
-	public int solution(int low, int high, String[] img) {
-		int answer = 0;
-
-		map = new char[img.length][img[0].length()];
-		minN = Math.min(img.length, img[0].length());
-		result = 0;
-		highN = high;
-		lowN = low;
-
-		for(int i=0; i<img.length;i++){
-			map[i] = img[i].toCharArray();
-		}
-
-		for(int i=0;i<map.length;i++) {
-			for(int j=0;j<map[i].length;j++){
-				for(int k=3;k<=minN;k++){
-					if(i+k <= map.length && j+k <= map[0].length)
-						solve(i, j, k);
-				}
-			}
-		}
-
-		return result;
+	public String solution(String s, String t, int k) {
+		return dfs(s, t, k, 0);
 	}
 
-	public void solve(int y, int x, int size) {
-		if(!check(y, x, size)) return;
+	public String dfs(String s, String t, int k, int depth) {
+		if (depth == k) {
+			if(s.equals(t)) return "Yes";
+//			else return "No";
+		}
+		if (depth > k) {
+			return "No";
+		}
+		if(depth < k && s.equals(k)) return "No";
 
-		int count = 0;
-		for(int i=y+1;i<y+size-1;i++) {
-			for (int j = x+1; j < x + size-1; j++) {
-				if(map[i][j] == '#') count++;
-			}
+		if (!s.isEmpty()) {
+			dfs(s.substring(0, s.length() - 1), t, k, depth + 1);
+		}
+		for (char ch : t.toCharArray()) {
+			dfs(s + String.valueOf(ch), t, k, depth + 1);
 		}
 
-		double num = 0;
-		num = (count / Math.pow(size-2, 2));
-		num *= 100;
-		if(num >= lowN && num < highN) {
-			result++;
-		}
+		return "No";
 	}
 
-	public boolean check(int y, int x, int size) {
-		for(int i=y;i<y+size;i++){
-			for(int j=x;j<x+size;j++){
-				if(i == y || i == y+size-1 || j == x || j == x+size-1){
-					if(map[i][j] == '.') return false;
-				}
-			}
-		}
-		return true;
-	}
-	
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				25, 51
-				, new String[]{".########......", ".####...#......", ".#.####.#.#####", ".#.#..#.#.#..##", ".#.##.#.#.#...#", ".#.####.#.#...#", ".#....###.#####", ".########......"}
-		)).isEqualTo(2);
+				"abc"
+				,"def"
+				,6
+		)).isEqualTo("Yes");
 	}
 
-	@Test
-	public void testCase2() {
-		Assertions.assertThat(solution(
-				25, 50, new String[]{".########......", ".####...#......", ".#.####.#.#####", ".#.#..#.#.#..##", ".#.##.#.#.#...#", ".#.####.#.#...#", ".#....###.#####", ".########......"}
-		)).isEqualTo(1);
-	}
+//	@Test
+//	public void testCase2() {
+//		Assertions.assertThat(solution(
+//				"12:40:22AM"
+//		)).isEqualTo("00:40:22");
+//	}
 
-	@Test
-	public void testCase3() {
-		Assertions.assertThat(solution(
-				0, 30, new String[]{"#######....###..###.", "#.....#....#.#..#.#.", "#.....#....###..###.", "#.....#.............", "#..#########........", "#..#..#....#.....##.", "#######....#.....##.", "...#.......#........", "...#.......#........", "...#..##############", "...#..#....#.......#", "...#..#....#.......#", "...#########.......#", "......#............#", "......##############"}
-		)).isEqualTo(4);
-	}
+//	@Test
+//	public void testCase2() {
+//		Assertions.assertThat(solution(
+//				25, 50, new String[]{".########......", ".####...#......", ".#.####.#.#####", ".#.#..#.#.#..##", ".#.##.#.#.#...#", ".#.####.#.#...#", ".#....###.#####", ".########......"}
+//		)).isEqualTo(1);
+//	}
+//
+//	@Test
+//	public void testCase3() {
+//		Assertions.assertThat(solution(
+//				0, 30, new String[]{"#######....###..###.", "#.....#....#.#..#.#.", "#.....#....###..###.", "#.....#.............", "#..#########........", "#..#..#....#.....##.", "#######....#.....##.", "...#.......#........", "...#.......#........", "...#..##############", "...#..#....#.......#", "...#..#....#.......#", "...#########.......#", "......#............#", "......##############"}
+//		)).isEqualTo(4);
+//	}
 
 
 
