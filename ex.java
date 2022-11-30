@@ -5,37 +5,29 @@ import java.util.*;
 
 public class ex {
 
-	public String solution(String s, String t, int k) {
-		return dfs(s, t, k, 0);
-	}
-
-	public String dfs(String s, String t, int k, int depth) {
-		if (depth == k) {
-			if(s.equals(t)) return "Yes";
-//			else return "No";
-		}
-		if (depth > k) {
-			return "No";
-		}
-		if(depth < k && s.equals(k)) return "No";
-
-		if (!s.isEmpty()) {
-			dfs(s.substring(0, s.length() - 1), t, k, depth + 1);
-		}
-		for (char ch : t.toCharArray()) {
-			dfs(s + String.valueOf(ch), t, k, depth + 1);
+	public static int nonDivisibleSubset(int k, List<Integer> s) {
+		int[] arr = new int[k+1];
+		for(int i : s) {
+			arr[i % k]++;
 		}
 
-		return "No";
+		int ret = 0;
+		for(int i=0; i<Math.floor(k/2)+1; i++){
+			if(i == 0 || k == i * 2)
+				ret += (arr[i] != 0) ? 1 : 0;
+			else
+				ret += Math.max(arr[i], arr[k - i]);
+		}
+
+		return ret;
 	}
 
 	@Test
 	public void testCase() {
-		Assertions.assertThat(solution(
-				"abc"
-				,"def"
-				,6
-		)).isEqualTo("Yes");
+		Assertions.assertThat(nonDivisibleSubset(
+				3
+				,List.of(1,7,2,4)
+		)).isEqualTo(3);
 	}
 
 //	@Test
