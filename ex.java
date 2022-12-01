@@ -5,29 +5,65 @@ import java.util.*;
 
 public class ex {
 
-	public static int nonDivisibleSubset(int k, List<Integer> s) {
-		int[] arr = new int[k+1];
-		for(int i : s) {
-			arr[i % k]++;
+	static int ret;
+
+	public static int equal(List<Integer> arr) {
+		int[] arr2 = arr.stream()
+				.mapToInt(i -> i)
+				.toArray();
+
+		ret = Integer.MAX_VALUE;
+
+		for (int i = 0; i < arr.size(); i++) {
+			dfs(i, arr2, 0);
 		}
 
-		int ret = 0;
-		for(int i=0; i<Math.floor(k/2)+1; i++){
-			if(i == 0 || k == i * 2)
-				ret += (arr[i] != 0) ? 1 : 0;
-			else
-				ret += Math.max(arr[i], arr[k - i]);
+		return 0;
+	}
+
+	public static void dfs(int index, int[] arr, int depth) {
+		int count = 0;
+		for (int i = 0; i < arr.length - 1; i++) {
+			if (arr[i] != arr[i + 1]) break;
+			if (arr[i] == arr[i + 1]) {
+				count++;
+			}
+		}
+		if (count == arr.length) {
+			ret = Math.min(ret, count);
+			return;
 		}
 
-		return ret;
+		int num = diff(arr);
+		for (int i = 0; i < arr.length; i++) {
+			if(i == index) continue;
+			arr[i] += num;
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			dfs(i, arr, depth + 1);
+		}
+	}
+
+	public static int diff(int[] arr) {
+		int min = Integer.MAX_VALUE;
+		int nextMin = Integer.MAX_VALUE;
+		for (int num : arr) {
+			min = Math.min(min, num);
+		}
+		for (int num : arr) {
+			if(num == min) continue;
+			nextMin = Math.min(nextMin, num);
+		}
+
+		return nextMin - min;
 	}
 
 	@Test
 	public void testCase() {
-		Assertions.assertThat(nonDivisibleSubset(
-				3
-				,List.of(1,7,2,4)
-		)).isEqualTo(3);
+		Assertions.assertThat(equal(
+				List.of(2,2,3,7)
+		)).isEqualTo(2);
 	}
 
 //	@Test
