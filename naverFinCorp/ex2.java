@@ -1,7 +1,6 @@
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+package naverFinCorp;
 
-import java.util.*;
+import java.util.List;
 
 public class ex2 {
 
