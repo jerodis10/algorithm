@@ -14,25 +14,23 @@ public class BJ_2225_dynamicProgramming {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
-		Integer[] coin = new Integer[n];
-		for(int i=0;i<n;i++)
-			coin[i] = Integer.parseInt(br.readLine());
 
-		System.out.println(solution(n, k, coin));
+		System.out.println(solution(n, k));
 	}
 
-	public static int solution(int n, int k, Integer[] coin) {
-		int[] dp = new int[k + 1];
-		Arrays.fill(dp, 100_001);
-		dp[0] = 0;
+	public static int solution(int n, int k) {
+		int[][] dp = new int[201][201];
+		for (int i = 1; i <= k; i++) {
+			dp[i][0] = 1;
+		}
 
-		for (int i = 0; i < n; i++) {
-			for (int j = coin[i]; j <= k; j++) {
-				dp[j] = Math.min(dp[j], dp[j - coin[i]] + 1);
+		for (int i = 1; i <= k; i++) {
+			for (int j = 1; j <= n; j++) {
+				dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % 1_000_000_000;
 			}
 		}
 
-		return dp[k] == 100_001 ? -1 : dp[k];
+		return dp[k][n];
 	}
 	
 }
