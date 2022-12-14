@@ -9,17 +9,17 @@ public class BJ_1937_dynamicProgramming {
 
 	static int n;
 	static int[][] map;
-	static boolean[][] visited;
+	static int[][] dp;
 	static int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 	static int max;
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		n = Integer.parseInt(st.nextToken());
+		StringTokenizer st;
+		n = Integer.parseInt(br.readLine());
 		map = new int[n][n];
-		visited = new boolean[n][n];
+		dp = new int[n][n];
 
 		for (int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -35,29 +35,31 @@ public class BJ_1937_dynamicProgramming {
 		max = Integer.MIN_VALUE;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				dfs(i, j, 1);
+				max = Math.max(max, dfs(i, j));
 			}
 		}
 
 		return max;
 	}
 
-	public static void dfs(int y, int x, int depth) {
+	public static int dfs(int y, int x) {
+		if (dp[y][x] != 0) {
+			return dp[y][x];
+		}
+
+		dp[y][x] = 1;
+
 		for (int i = 0; i < 4; i++) {
 			int ny = y + dir[i][0];
 			int nx = x + dir[i][1];
-			if (ny >= 0 && ny < n - 1 && nx >= 0 && nx < n - 1) {
-				if (!visited[ny][nx]) {
-					if(map[y][x] < map[ny][nx]) {
-						visited[ny][nx] = true;
-						dfs(ny, nx, depth + 1);
-						visited[ny][nx] = false;
-					}
+			if (ny >= 0 && ny <= n - 1 && nx >= 0 && nx <= n - 1) {
+				if(map[y][x] < map[ny][nx]) {
+					dp[y][x] = Math.max(dp[y][x], dfs(ny, nx) + 1);
 				}
 			}
 		}
 
-		max = Math.max(max, depth);
+		return dp[y][x];
 	}
 	
 }
