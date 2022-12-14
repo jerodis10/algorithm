@@ -3,53 +3,68 @@ package Baekjoon.dynamicProgramming;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BJ_1005_dynamicProgramming {
 	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
-		int[] building = new int[n + 1];
-		ArrayList<int[]> graph = new ArrayList<>();
-		int w;
-		st = new StringTokenizer(br.readLine());
-		for (int i = 1; i <= n; i++) {
-			building[i] = Integer.parseInt(st.nextToken());
-		}
-//		for (int i = 0; i <= n; i++) {
-//			graph[i] = new ArrayList<>();
-//		}
-		for (int i = 0; i < k; i++) {
+		int tc = Integer.parseInt(br.readLine());
+		while(tc-- > 0) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken());
+			int k = Integer.parseInt(st.nextToken());
+			int[] building = new int[n + 1];
+			int[] indegree = new int[n + 1];
+			List<List<Integer>> graph = new ArrayList<>();
+			int w;
+			for (int i = 0; i <= n; i++) {
+				graph.add(new ArrayList<>());
+			}
 			st = new StringTokenizer(br.readLine());
-			int start = Integer.parseInt(st.nextToken());
-			int end = Integer.parseInt(st.nextToken());
-			graph.add(new int[]{start, end});
-		}
-		w = Integer.parseInt(br.readLine());
+			for (int i = 1; i <= n; i++) {
+				building[i] = Integer.parseInt(st.nextToken());
+			}
+			for (int i = 0; i < k; i++) {
+				st = new StringTokenizer(br.readLine());
+				int start = Integer.parseInt(st.nextToken());
+				int end = Integer.parseInt(st.nextToken());
+				graph.get(start).add(end);
+				indegree[end]++;
+			}
+			w = Integer.parseInt(br.readLine());
 
-		System.out.println(solution(n, k, building, graph, w));
+			System.out.println(solution(n, k, building, graph, w, indegree));
+		}
 	}
 
-	public static int solution(int n, int k, int[] building, ArrayList<int[]> graph, int w) {
-		int[] dp = new int[n + 1];
-		for (int i = 1; i <= n; i++) {
-			dp[i] = building[i];
-		}
-		for (int[] node : graph) {
-			dp[node[1]] = Math.max(dp[node[1]], dp[node[0]] + building[node[1]]);
-		}
-//		for (int start = 1; start <= n; start++) {
-//			for (int end : graph[start]) {
-//				dp[end] = Math.max(dp[end], dp[start] + building[end]);
-//			}
-//		}
+	public static int solution(int n, int k, int[] building, List<List<Integer>> graph, int w, int[] indegree) {
+		Queue<Integer> q = new LinkedList<>();
+		int[] result = new int[n + 1];
 
-		return dp[w];
+		for (int i = 1; i <= n; i++) {
+			result[i] = building[i];
+
+			if (indegree[i] == 0) {
+				q.offer(i);
+			}
+		}
+
+		while (!q.isEmpty()) {
+			int start = q.poll();
+
+			for (Integer end : graph.get(start)) {
+				result[end] = Math.max(result[end], result[start] + building[end]);
+				indegree[end]--;
+
+				if (indegree[end] == 0) {
+					q.offer(end);
+				}
+			}
+		}
+
+		return result[w];
 	}
 
 }
