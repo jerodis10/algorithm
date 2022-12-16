@@ -20,46 +20,26 @@ public class BJ_1339_greedy {
 	}
 
 	public static int solution(int n, String[] strArr) {
-		int sum = 0;
-		Map<String, Integer> map = new HashMap<>();
-		Map<String, Integer> strPos = new HashMap<>();
-		boolean[] visited = new boolean[10];
+		int[] alpha = new int[26];
 
-		for (String str : strArr) {
-			strPos.put(str, 0);
+		for (int i = 0; i < n; i++) {
+			int temp = (int) Math.pow(10, strArr[i].length() - 1);
+			for (int j = 0; j < strArr[i].length(); j++) {
+				alpha[(int) strArr[i].charAt(j) - 65] += temp;
+				temp /= 10;
+			}
 		}
-		int count = 0;
-		while(count < n) {
-			String str = null;
-			int curPos = -1;
-			int len = -1;
-			for (String key : strPos.keySet()) {
-				if (key.substring(strPos.get(key)).length() > len) {
-					curPos = strPos.get(key);
-					str = key;
-					len = key.substring(strPos.get(key)).length();
-				}
-			}
-			if (str.length() == curPos) {
-				count++;
-				continue;
+
+		Arrays.sort(alpha);
+		int index = 9;
+		int sum = 0;
+		for (int i = alpha.length - 1; i >= 0; i--) {
+			if (alpha[i] == 0) {
+				break;
 			}
 
-			String s1 = str.substring(curPos, curPos + 1);
-			if (!map.containsKey(s1)) {
-				for (int i = 9; i >= 0; i--) {
-					if (!visited[i]) {
-						map.put(s1, i);
-						visited[i] = true;
-						sum += i * Math.pow(10, str.length() - curPos - 1);
-						strPos.put(str, curPos + 1);
-						break;
-					}
-				}
-			} else {
-				sum += map.get(s1) * Math.pow(10, str.length() - curPos - 1);
-				strPos.put(str, curPos + 1);
-			}
+			sum += alpha[i] * index;
+			index--;
 		}
 
 		return sum;
