@@ -18,6 +18,9 @@ public class BJ_1744_greedy {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		int[] num = new int[n];
+		for (int i = 0; i < n; i++) {
+			num[i] = Integer.parseInt(br.readLine());
+		}
 
 		System.out.println(solution(n, num));
 	}
@@ -36,7 +39,7 @@ public class BJ_1744_greedy {
 		}
 
 		while (plusQue.size() > 1) {
-			ret += (plusQue.poll()* plusQue.poll());
+			ret += (plusQue.poll() * plusQue.poll());
 		}
 		if (!plusQue.isEmpty()) {
 			ret += plusQue.poll();
