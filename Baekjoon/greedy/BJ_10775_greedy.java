@@ -6,16 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class BJ_10775_greedy {
+
+	static int[] parent;
 	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int g = Integer.parseInt(br.readLine());
 		int p = Integer.parseInt(br.readLine());
-		Integer[] plane = new Integer[p];
+		int[] plane = new int[p];
 		for (int i = 0; i < p; i++) {
 			plane[i] = Integer.parseInt(br.readLine());
 		}
@@ -23,23 +24,42 @@ public class BJ_10775_greedy {
 		System.out.println(solution(g, p, plane));
 	}
 
-	public static int solution(int g, int p, Integer[] plane) {
-		boolean[] visited = new boolean[g + 1];
-		Arrays.sort(plane, ((o1, o2) -> o2 - o1));
-		int ret = 0;
-		int index = 0;
-		int num = plane[0];
-		while (ret < p && num >= 1) {
-			if (!visited[num]) {
-				visited[num] = true;
-				ret++;
-				if(num < plane[index + 1]) break;
-				num = plane[++index];
-			} else {
-				num--;
-			}
+	public static int solution(int g, int p, int[] plane) {
+		parent = new int[g + 1];
+		for (int i = 1; i <= g; i++) {
+			parent[i] = i;
 		}
+		int ret = 0;
+
+		for (int i = 0; i < p; i++) {
+			int gate = find(plane[i]);
+
+			if (gate == 0) {
+				break;
+			}
+
+			ret++;
+			union(gate, gate - 1);
+		}
+
 		return ret;
+	}
+
+	public static int find(int x) {
+		if (x == parent[x]) {
+			return x;
+		}
+
+		return parent[x] = find(parent[x]);
+	}
+
+	public static void union(int x, int y) {
+		x = find(x);
+		y = find(y);
+
+		if (x != y) {
+			parent[x] = y;
+		}
 	}
 
 	@Test
@@ -47,7 +67,7 @@ public class BJ_10775_greedy {
 		Assertions.assertThat(solution(
 				4
 				,3
-				,new Integer[]{4,1,1}
+				,new int[]{4,1,1}
 		)).isEqualTo(
 				2
 		);
@@ -58,7 +78,7 @@ public class BJ_10775_greedy {
 		Assertions.assertThat(solution(
 				4
 				,6
-				,new Integer[]{2,2,3,3,4,4}
+				,new int[]{2,2,3,3,4,4}
 		)).isEqualTo(
 				3
 		);
