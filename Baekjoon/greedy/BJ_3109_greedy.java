@@ -8,17 +8,19 @@ import java.util.StringTokenizer;
 
 public class BJ_3109_greedy {
 
-	static int[][] dir = {{0, 1}, {-1, 1}, {1, 1}};
-	static int[][] dp;
+	static int[][] dir = {{-1, 1}, {0, 1}, {1, 1}};
 	static int ret;
-	
+	static char[][] map;
+	static int r;
+	static int c;
+
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int r = Integer.parseInt(st.nextToken());
-		int c = Integer.parseInt(st.nextToken());
-		char[][] map = new char[r][c];
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
+		map = new char[r][c];
 		for (int i = 0; i < r; i++) {
 			String str = br.readLine();
 			for (int j = 0; j < c; j++) {
@@ -31,31 +33,33 @@ public class BJ_3109_greedy {
 
 	public static int solution(int r, int c, char[][] map) {
 		ret = 0;
-		dp = new int[r][c];
 
-		for (int i = 0; i < c; i++) {
-			dfs(i, 0, r, c, map);
+		for (int i = 0; i < r; i++) {
+			if(dfs(i, 0))
+				ret++;
 		}
 
 		return ret;
 	}
 
-	public static void dfs(int y, int x, int r, int c, char[][] map) {
+	public static boolean dfs(int y, int x) {
+		map[y][x] = '-';
 		if (x == c - 1) {
-			dp[y][x] = 1;
-			ret++;
-			return;
+			return true;
 		}
-		dp[y][x] = 1;
+
 		for (int i = 0; i < 3; i++) {
 			int ny = y + dir[i][0];
 			int nx = x + dir[i][1];
 			if (ny >= 0 && nx >= 0 && ny < r && nx < c) {
-				if(map[ny][nx] == '.' && dp[ny][nx] == 0) {
-					dfs(ny, nx, r, c, map);
+				if(map[ny][nx] == '.') {
+					if(dfs(ny, nx))
+						return true;
 				}
 			}
 		}
+
+		return false;
 	}
 
 }
