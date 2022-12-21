@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BJ_2812_greedy {
 	
@@ -17,36 +16,36 @@ public class BJ_2812_greedy {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
-		String numStr = br.readLine();
+		String num = br.readLine();
 
-		System.out.println(solution(n, k, numStr));
+		System.out.println(solution(n, k, num));
 	}
 
-	public static String solution(int n, int k, String numStr) {
-		String[] numArr = numStr.split("");
+	public static String solution(int n, int k, String num) {
 		StringBuilder sb = new StringBuilder();
+		Stack<Character> stack = new Stack<>();
+		int len = n - k;
+		for (int i = 0; i < num.length(); i++) {
+			while (!stack.empty() && k > 0 && stack.peek() < num.charAt(i)) {
+				stack.pop();
+				k--;
+			}
 
-		int first = 0;
-		int end = n - k - 1;
-		int count = 0;
-		while (count < n - k) {
-			int max = 0;
-			int index = -1;
-			for (int i = first; i <= end; i++) {
-				if (max < Integer.parseInt(numArr[i])) {
-					max = Integer.parseInt(numArr[i]);
-					index = i;
-				}
-			}
-			if (index > 0) {
-				sb.append(Integer.toString(max));
-				count++;
-				first = index + 1;
-				end = (n - 1) - (n - k - count - 1);
-			}
+			stack.push(num.charAt(i));
 		}
 
-		return sb.toString();
+		while (true) {
+			if (stack.size() == len) {
+				break;
+			}
+			stack.pop();
+		}
+
+		while (!stack.isEmpty()) {
+			sb.append(stack.pop());
+		}
+
+		return sb.reverse().toString();
 	}
 
 	@Test
