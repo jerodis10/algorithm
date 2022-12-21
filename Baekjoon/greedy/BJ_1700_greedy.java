@@ -26,44 +26,38 @@ public class BJ_1700_greedy {
 	}
 
 	public static int solution(int n, int k, int[] numArr) {
-		Map<Integer, Integer> map = new HashMap<>();
-		for (int i = 0; i < k; i++) {
-			map.put(numArr[i], map.getOrDefault(numArr[i], 0) + 1);
-		}
-
-		Set<Integer> set = new HashSet<>();
+		boolean[] use = new boolean[101];
 		int count = 0;
 		int ret = 0;
 		for (int i = 0; i < k; i++) {
-			if (i == 0) {
-				set.add(numArr[i]);
-				map.put(numArr[i], map.get(numArr[i]) - 1);
-				count++;
-			} else {
-				if(!set.contains(numArr[i])) {
-					if (count < n) {
-						set.add(numArr[i]);
-						map.put(numArr[i], map.get(numArr[i]) - 1);
-						count++;
-					} else {
-						int minKey = 0;
-						int min = Integer.MAX_VALUE;
-						for (Integer key : set) {
-							if (min > map.get(key)) {
-								min = map.get(key);
-								minKey = key;
+			int order = numArr[i];
+
+			if (!use[order]) {
+				if (count < n) {
+					use[order] = true;
+					count++;
+				} else {
+					List<Integer> list = new ArrayList<>();
+					for (int j = i; j < k; j++) {
+						if (use[numArr[j]] && !list.contains(numArr[j])) {
+							list.add(numArr[j]);
+						}
+					}
+
+					if (list.size() != n) {
+						for (int j = 0; j < use.length; j++) {
+							if (use[j] && !list.contains(j)) {
+								use[j] = false;
+								break;
 							}
 						}
-						set.remove(minKey);
-						map.put(minKey, map.get(minKey) - 1);
-						set.add(numArr[i]);
-						map.put(numArr[i], map.get(numArr[i]) - 1);
-						count++;
-						ret++;
+					} else {
+						int remove = list.get(list.size() - 1);
+						use[remove] = false;
 					}
-				} else {
-					map.put(numArr[i], map.get(numArr[i]) - 1);
-					count++;
+
+					use[order] = true;
+					ret++;
 				}
 			}
 		}
