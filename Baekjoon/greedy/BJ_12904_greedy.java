@@ -11,28 +11,27 @@ public class BJ_12904_greedy {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int[] nums = new int[n];
-		for (int i = 0; i < n; i++) {
-			nums[i] = Integer.parseInt(st.nextToken());
-		}
+		StringBuilder s = new StringBuilder(br.readLine());
+		StringBuilder t = new StringBuilder(br.readLine());
 
-		System.out.println(solution(n, nums));
+		System.out.println(solution(s, t));
 	}
 
-	public static int solution(int n, int[] nums) {
-		int sum = 0;
-		Arrays.sort(nums);
-		for (int num : nums) {
-			if (sum + 1 < num) {
-				break;
+	public static int solution(StringBuilder s, StringBuilder t) {
+		while (s.length() < t.length()) {
+			if (t.charAt(t.length() - 1) == 'A') {
+				t.deleteCharAt(t.length() - 1);
+			} else if (t.charAt(t.length() - 1) == 'B') {
+				t.deleteCharAt(t.length() - 1);
+				t.reverse();
 			}
-
-			sum += num;
 		}
 
-		return sum + 1;
+		if (s.toString().equals(t.toString())) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 //	@Test
