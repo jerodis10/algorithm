@@ -24,15 +24,21 @@ public class BJ_18310_greedy {
 	}
 
 	public static int solution(int n, int[] num) {
+		if(n == 1) return num[0];
 		Arrays.sort(num);
 		PriorityQueue<Integer> minQueue = new PriorityQueue<>();
 		PriorityQueue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder());
 
 		for (int i = 0; i < n; i++) {
-			if (i % 2 == 1) {
-				minQueue.add(num[i]);
-			} else {
-				maxQueue.add(num[i]);
+			if(minQueue.size() == maxQueue.size()) maxQueue.add(num[i]);
+			else minQueue.add(num[i]);
+
+			if (!minQueue.isEmpty() && !maxQueue.isEmpty()) {
+				if (minQueue.peek() < maxQueue.peek()) {
+					int t = minQueue.poll();
+					minQueue.add(maxQueue.poll());
+					maxQueue.add(t);
+				}
 			}
 		}
 
@@ -42,8 +48,18 @@ public class BJ_18310_greedy {
 		for (int i = 0; i < n; i++) {
 			sum1 += Math.abs(temp - num[i]);
 		}
+		int temp2 = maxQueue.peek();
+		for (int i = 0; i < n; i++) {
+			sum2 += Math.abs(temp2 - num[i]);
+		}
 
-		return 0;
+		if(sum1 < sum2) {
+			return temp;
+		} else if(sum1 > sum2){
+			return temp2;
+		} else {
+			return Math.min(temp, temp2);
+		}
 	}
 
 //	@Test
