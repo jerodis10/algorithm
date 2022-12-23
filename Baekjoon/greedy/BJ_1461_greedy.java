@@ -45,23 +45,45 @@ public class BJ_1461_greedy {
 		int sum = 0;
 		while (!maxQueue.isEmpty()) {
 			if (maxQueue.size() < m) {
-				sum += maxQueue.poll();
+				if (max == Math.abs(maxQueue.peek())) {
+					sum += Math.abs(maxQueue.poll());
+					break;
+				}
+				sum += Math.abs(maxQueue.poll() * 2);
 				break;
 			}
 			for (int i = 0; i < m; i++) {
-				if(i == 0) sum += (maxQueue.poll() * 2);
-				else maxQueue.poll();
+				if(i == 0) {
+					if (max == Math.abs(maxQueue.peek())) {
+						sum += Math.abs(maxQueue.poll());
+					} else {
+						sum += (maxQueue.poll() * 2);
+					}
+				} else {
+					maxQueue.poll();
+				}
 			}
 		}
 
 		while (!minQueue.isEmpty()) {
 			if (minQueue.size() < m) {
-				sum += Math.abs(minQueue.poll());
+				if (max == Math.abs(minQueue.peek())) {
+					sum += Math.abs(minQueue.poll());
+					break;
+				}
+				sum += Math.abs(minQueue.poll() * 2);
 				break;
 			}
 			for (int i = 0; i < m; i++) {
-				if(i == 0) sum += (Math.abs(minQueue.poll()) * 2);
-				else minQueue.poll();
+				if(i == 0) {
+					if (max == Math.abs(minQueue.peek())) {
+						sum += Math.abs(minQueue.poll());
+					} else {
+						sum += Math.abs(minQueue.poll() * 2);
+					}
+				} else {
+					minQueue.poll();
+				}
 			}
 		}
 
@@ -78,17 +100,38 @@ public class BJ_1461_greedy {
 				131
 		);
 	}
-//
-//	@Test
-//	public void testCase2() {
-//		Assertions.assertThat(solution(
-//				3
-//				,2
-//				,new int[][]{{1,65}, {5,23}, {2,99}}
-//				,new Integer[]{10,2}
-//		)).isEqualTo(
-//				164
-//		);
-//	}
-	
+
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				8
+				,3
+				,new int[]{-18,-9,4,50,22,-26,40,-45}
+		)).isEqualTo(
+				158
+		);
+	}
+
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				6
+				,2
+				,new int[]{3,4,5,6,11,-1}
+		)).isEqualTo(
+				29
+		);
+	}
+
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				1
+				,50
+				,new int[]{1}
+		)).isEqualTo(
+				1
+		);
+	}
+
 }
