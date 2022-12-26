@@ -20,8 +20,8 @@ public class BJ_1461_greedy {
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
 		int[] num = new int[n];
+		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
 			num[i] = Integer.parseInt(st.nextToken());
 		}
 
@@ -44,21 +44,9 @@ public class BJ_1461_greedy {
 
 		int sum = 0;
 		while (!maxQueue.isEmpty()) {
-//			if (maxQueue.size() <= m) {
-//				if (max == Math.abs(maxQueue.peek())) {
-//					sum += Math.abs(maxQueue.poll());
-//					break;
-//				}
-//				sum += Math.abs(maxQueue.poll() * 2);
-//				break;
-//			}
 			for (int i = 0; i < m; i++) {
 				if(i == 0) {
-					if (max == Math.abs(maxQueue.peek())) {
-						sum += Math.abs(maxQueue.poll());
-					} else {
-						sum += (maxQueue.poll() * 2);
-					}
+					sum += (maxQueue.poll() * 2);
 				} else {
 					maxQueue.poll();
 				}
@@ -68,21 +56,9 @@ public class BJ_1461_greedy {
 		}
 
 		while (!minQueue.isEmpty()) {
-//			if (minQueue.size() <= m) {
-//				if (max == Math.abs(minQueue.peek())) {
-//					sum += Math.abs(minQueue.poll());
-//					break;
-//				}
-//				sum += Math.abs(minQueue.poll() * 2);
-//				break;
-//			}
 			for (int i = 0; i < m; i++) {
 				if(i == 0) {
-					if (max == Math.abs(minQueue.peek())) {
-						sum += Math.abs(minQueue.poll());
-					} else {
-						sum += Math.abs(minQueue.poll() * 2);
-					}
+					sum += Math.abs(minQueue.poll() * 2);
 				} else {
 					minQueue.poll();
 				}
@@ -91,7 +67,7 @@ public class BJ_1461_greedy {
 			}
 		}
 
-		return sum;
+		return sum - max;
 	}
 
 	@Test
@@ -135,6 +111,28 @@ public class BJ_1461_greedy {
 				,new int[]{1}
 		)).isEqualTo(
 				1
+		);
+	}
+
+	@Test
+	public void testCase5() {
+		Assertions.assertThat(solution(
+				3
+				,2
+				,new int[]{1,8, 15}
+		)).isEqualTo(
+				17
+		);
+	}
+
+	@Test
+	public void testCase6() {
+		Assertions.assertThat(solution(
+				10
+				,2
+				,new int[]{0,1,2,3,4,5,6,7,8,9}
+		)).isEqualTo(
+				41
 		);
 	}
 
