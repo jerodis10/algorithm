@@ -37,11 +37,11 @@ public class BJ_2109_greedy {
 		}));
 
 		int sum = 0;
-		int day = 0;
+		int day = 1;
 		for (int i = 0; i < n; i++) {
-			if (day < nums[i][1]) {
+			if (day <= nums[i][1]) {
 				sum += nums[i][0];
-				day = nums[i][1];
+				day++;
 			}
 		}
 
@@ -55,6 +55,36 @@ public class BJ_2109_greedy {
 				,new int[][]{{20,1},{2,1},{10,3},{100,2},{8,2},{5,20},{50,10}}
 		)).isEqualTo(
 				185
+		);
+	}
+
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				3
+				,new int[][]{{100,2},{50,2},{30,1}}
+		)).isEqualTo(
+				130
+		);
+	}
+
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				3
+				,new int[][]{{1,1},{2,20},{2,20}}
+		)).isEqualTo(
+				5
+		);
+	}
+
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				3
+				,new int[][]{{1,1},{2,4},{1,4},{10,4}}
+		)).isEqualTo(
+				13
 		);
 	}
 
