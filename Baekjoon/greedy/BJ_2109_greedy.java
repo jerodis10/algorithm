@@ -28,24 +28,22 @@ public class BJ_2109_greedy {
 		System.out.println(solution(n, num));
 	}
 
-	public static int solution(int n, int[][] nums) {
-		Arrays.sort(nums, ((o1, o2) -> {
-			if (o1[1] == o2[1]) {
-				return o2[0] - o1[0];
-			}
-			return o1[1] - o2[1];
-		}));
+	public static int solution(int n, int[][] num) {
+		Arrays.sort(num, ((o1, o2) -> (o1[0] == o2[0]) ? o2[1] - o1[1] : o2[0] - o1[0]));
 
-		int sum = 0;
-		int day = 1;
+		int ret = 0;
+		boolean[] visited = new boolean[10001];
 		for (int i = 0; i < n; i++) {
-			if (day <= nums[i][1]) {
-				sum += nums[i][0];
-				day++;
+			for (int j = num[i][1]; j >= 1; j--) {
+				if (!visited[j]) {
+					visited[j] = true;
+					ret += num[i][0];
+					break;
+				}
 			}
 		}
 
-		return sum;
+		return ret;
 	}
 
 	@Test

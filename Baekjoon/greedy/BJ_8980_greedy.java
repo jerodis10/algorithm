@@ -1,15 +1,12 @@
 package Baekjoon.greedy;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BJ_2437_greedy {
+public class BJ_8980_greedy {
 	
 	public static void main(String[] args) throws IOException {
 
