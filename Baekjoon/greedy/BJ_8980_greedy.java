@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class BJ_8980_greedy {
@@ -11,28 +13,51 @@ public class BJ_8980_greedy {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int[] num = new int[n];
-		for (int i = 0; i < n; i++) {
-			num[i] = Integer.parseInt(st.nextToken());
+		int n = Integer.parseInt(st.nextToken());
+		int c = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(br.readLine());
+		int[][] bus = new int[m][3];
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			bus[i][0] = Integer.parseInt(st.nextToken());
+			bus[i][1] = Integer.parseInt(st.nextToken());
+			bus[i][2] = Integer.parseInt(st.nextToken());
 		}
 
-		System.out.println(solution(n, num));
+		System.out.println(solution(n, c, m, bus));
 	}
 
-	public static int solution(int n, int[] num) {
-		int sum = 0;
-		Arrays.sort(num);
-		for (int i : num) {
-			if (sum + 1 < i) {
-				break;
-			}
+	public static int solution(int n, int c, int m, int[][] bus) {
+		Arrays.sort(bus, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o1[0] - o2[0]);
+		Map<Integer, int[]> map = new HashMap<>();
+		int weight = 0;
+		int busStop = 1;
+		int ret = 0;
+		while (busStop <= n) {
+			for (int i = 0; i < m; i++) {
+				int max = Integer.MIN_VALUE;
+				int maxBusStop = Integer.MAX_VALUE;
+				for (int key : map.keySet()) {
+					if(busStop == map.get(key)[0]) {
+						ret += map.get(key)[1];
+						weight -= map.get(key)[1];
+					}
+				}
 
-			sum += i;
+				if (bus[i][0] == busStop) {
+					if (weight + bus[i][2] <= c) {
+						map.put(busStop, new int[]{bus[i][1], bus[i][2]});
+					} else if(c - weight > 0){
+						map.put(busStop, new int[]{bus[i][1], c - weight});
+					}
+					if(weight == c) break;
+				}
+			}
+			busStop++;
 		}
 
-		return sum + 1;
+		return 0;
 	}
 
 //	@Test
