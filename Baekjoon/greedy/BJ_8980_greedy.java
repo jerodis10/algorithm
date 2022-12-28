@@ -29,59 +29,39 @@ public class BJ_8980_greedy {
 	}
 
 	public static int solution(int n, int c, int m, int[][] bus) {
-		Arrays.sort(bus, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o1[0] - o2[0]);
-		Map<Integer, int[]> map = new HashMap<>();
-		int weight = 0;
-		int busStop = 1;
+		Arrays.sort(bus, (o1, o2) -> o1[1] == o2[1] ? o1[0] - o2[0] : o1[1] - o2[1]);
 		int ret = 0;
-		while (busStop <= n) {
-			for (int i = 0; i < m; i++) {
-				int max = Integer.MIN_VALUE;
-				int maxBusStop = Integer.MAX_VALUE;
-				for (int key : map.keySet()) {
-					if(busStop == map.get(key)[0]) {
-						ret += map.get(key)[1];
-						weight -= map.get(key)[1];
-					}
-				}
+		int[] boxs = new int[n + 1];
 
-				if (bus[i][0] == busStop) {
-					if (weight + bus[i][2] <= c) {
-						map.put(busStop, new int[]{bus[i][1], bus[i][2]});
-					} else if(c - weight > 0){
-						map.put(busStop, new int[]{bus[i][1], c - weight});
-					}
-					if(weight == c) break;
+		for (int[] busStop : bus) {
+			int start = busStop[0];
+			int end = busStop[1];
+			int box = busStop[2];
+			int max = 0;
+			boolean isLoad = true;
+
+			for (int i = start; i < end; i++) {
+				if (boxs[i] >= c) {
+					isLoad = false;
+					break;
+				}
+				max = Math.max(max, boxs[i]);
+			}
+
+			if (isLoad) {
+				int unLoad = c - max;
+				if (unLoad > box) {
+					unLoad = box;
+				}
+				ret += unLoad;
+
+				for (int i = start; i < end; i++) {
+					boxs[i] += unLoad;
 				}
 			}
-			busStop++;
 		}
 
-		return 0;
+		return ret;
 	}
 
-//	@Test
-//	public void testCase() {
-//		Assertions.assertThat(solution(
-//				2
-//				,1
-//				,new int[][]{{5,10}, {100,100}}
-//				,new Integer[]{11}
-//		)).isEqualTo(
-//				10
-//		);
-//	}
-//
-//	@Test
-//	public void testCase2() {
-//		Assertions.assertThat(solution(
-//				3
-//				,2
-//				,new int[][]{{1,65}, {5,23}, {2,99}}
-//				,new Integer[]{10,2}
-//		)).isEqualTo(
-//				164
-//		);
-//	}
-	
 }
