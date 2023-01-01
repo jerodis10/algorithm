@@ -26,38 +26,33 @@ public class if_marriage_greedy {
 	}
 
 	public static int solution(int n, int[][] person) {
-		Queue<int[]> q = new LinkedList<>();
-		Arrays.sort(person, (o1, o2) -> o1[1] == o2[1] ? o1[0] - o2[0] : o1[1] - o2[1]);
+		int ret = 0;
+		int[] start = new int[n];
+		int[] end = new int[n];
 		for (int i = 0; i < n; i++) {
-			person[i][1]--;
+			start[i] = person[i][0];
+			end[i] = person[i][1];
 		}
-		q.add(person[0]);
-		int index = 1;
-		int max = 0;
-		while (!q.isEmpty() && index < n) {
-			int[] cur = q.peek();
-			if (cur[1] >= person[index][0]) {
-				q.add(person[index]);
-				index++;
+
+		Arrays.sort(start);
+		Arrays.sort(end);
+
+		int startIndex = 0;
+		int endIndex = 0;
+		int count = 0;
+		while (startIndex < start.length && endIndex < end.length) {
+			if (start[startIndex] < end[endIndex]) {
+				count += 1;
+				startIndex += 1;
 			} else {
-				q.poll();
-				q.add(person[index]);
-				index++;
+				count -= 1;
+				endIndex += 1;
 			}
 
-			max = Math.max(max, q.size());
-			if(index == n) break;
-			int[] temp = person[index];
-			while (!q.isEmpty()) {
-				if (temp[0] > q.peek()[1]) {
-					q.poll();
-				} else {
-					break;
-				}
-			}
+			ret = Math.max(ret, count);
 		}
 
-		return max;
+		return ret;
 	}
 
 	@Test
@@ -67,6 +62,16 @@ public class if_marriage_greedy {
 				,new int[][]{{14,18},{12,15},{15,20},{20,30},{5,14}}
 		)).isEqualTo(
 				2
+		);
+	}
+
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				10
+				,new int[][]{{17,28},{6,30},{1,27},{19,38},{4,46},{23,60},{35,43},{26,45},{21,31},{11,44}}
+		)).isEqualTo(
+				9
 		);
 	}
 
