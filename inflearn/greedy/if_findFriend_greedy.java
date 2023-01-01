@@ -1,5 +1,8 @@
 package inflearn.greedy;
 
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,8 +47,7 @@ public class if_findFriend_greedy {
 
 			union(fr, friend[i][1]);
 		}
-
-		return find(q) == a ? "YES" : "NO";
+		return union(q, a) ? "YES" : "NO";
 	}
 
 	public static int find(int x) {
@@ -56,13 +58,29 @@ public class if_findFriend_greedy {
 		return parent[x] = find(parent[x]);
 	}
 
-	public static void union(int x, int y) {
+	public static boolean union(int x, int y) {
 		x = find(x);
 		y = find(y);
 
 		if (x != y) {
 			parent[x] = y;
+			return false;
 		}
+
+		return true;
+	}
+
+	@Test
+	public void testCase() {
+		Assertions.assertThat(solution(
+				9
+				,7
+				,new int[][]{{1,2},{2,3},{3,4},{1,5},{6,7},{7,8},{8,9}}
+				,3
+				,8
+		)).isEqualTo(
+				"NO"
+		);
 	}
 
 }
