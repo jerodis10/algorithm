@@ -19,7 +19,7 @@ public class if_land_greedy {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int v = Integer.parseInt(st.nextToken());
 		int e = Integer.parseInt(st.nextToken());
-		int[][] costs = new int[e][2];
+		int[][] costs = new int[e][3];
 		for (int i = 0; i < e; i++) {
 			st = new StringTokenizer(br.readLine());
 			costs[i][0] = Integer.parseInt(st.nextToken());
@@ -61,11 +61,11 @@ public class if_land_greedy {
 	}
 
 	public static void union(int x, int y) {
-		x = findParent(x);
-		y = findParent(y);
+		int px = findParent(x);
+		int py = findParent(y);
 
-		if (x != y) {
-			parent[x] = y;
+		if (px != py) {
+			parent[px] = py;
 		}
 	}
 
@@ -78,6 +78,18 @@ public class if_land_greedy {
 						{3,7,55},{4,5,44},{5,6,60},{5,7,38},{7,8,35},{8,9,15}}
 		)).isEqualTo(
 				196
+		);
+	}
+
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				9
+				,12
+				,new int[][]{{1,2,12},{1,9,25},{2,3,10},{2,8,40},{2,9,8},{3,4,18},
+						{3,7,55},{4,5,44},{5,6,60},{5,7,38},{7,8,35},{8,9,35}}
+		)).isEqualTo(
+				216
 		);
 	}
 
