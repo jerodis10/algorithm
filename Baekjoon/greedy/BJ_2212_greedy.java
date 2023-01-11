@@ -32,10 +32,10 @@ public class BJ_2212_greedy {
 		for (int i = 0; i < n - 1 ; i++) {
 			diff[i] = center[i + 1] - center[i];
 		}
-		Arrays.sort(diff, Collections.reverseOrder());
+		Arrays.sort(diff);
 
 		int sum = 0;
-		for (int i = k - 1; i < n - 1; i++) {
+		for (int i = 0; i < n - k; i++) {
 			sum += diff[i];
 		}
 
