@@ -1,0 +1,75 @@
+package Baekjoon.greedy;
+
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class BJ_2138_greedy {
+
+	static int n;
+	static int ret;
+	
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		n = Integer.parseInt(br.readLine());
+		char[] init = br.readLine().toCharArray();
+		char[] target = br.readLine().toCharArray();
+
+		System.out.println(solution(n, init, target));
+	}
+
+	public static int solution(int n2, char[] init, char[] target) {
+		ret = Integer.MAX_VALUE;
+		n = n2;
+		char[] temp = init.clone();
+		dfs(1, 0, init, target);
+		init = temp;
+		dfs(1, 1, switchOn(0, init), target);
+
+		return ret == Integer.MAX_VALUE ? -1 : ret;
+	}
+
+	static void dfs(int depth, int count, char[] arr, char[] target) {
+		if (depth == n - 1) {
+			if (arr[depth] == target[depth]) {
+				ret = Math.min(ret, count);
+			}
+			return;
+		}
+
+		if (arr[depth] != target[depth]) {
+			dfs(depth + 1, count + 1, switchOn(depth, arr), target);
+		} else {
+			dfs(depth + 1, count, arr, target);
+		}
+	}
+
+	static char[] switchOn(int depth, char[] arr) {
+		for (int i = depth - 1; i <= depth + 1; i++) {
+			if (i >= 0 && i < n) {
+				arr[i] = arr[i] == '0' ? '1' : '0';
+			}
+		}
+		return arr;
+	}
+
+	@Test
+	public void testCase() {
+		Assertions.assertThat(solution(
+				3
+				,new char[]{'0','0','0'}
+				,new char[]{'0','1','0'}
+		)).isEqualTo(
+				3
+		);
+	}
+
+
+}
