@@ -28,9 +28,7 @@ public class BJ_2138_greedy {
 	public static int solution(int n2, char[] init, char[] target) {
 		ret = Integer.MAX_VALUE;
 		n = n2;
-		char[] temp = init.clone();
 		dfs(1, 0, init, target);
-		init = temp;
 		dfs(1, 1, switchOn(0, init), target);
 
 		return ret == Integer.MAX_VALUE ? -1 : ret;
