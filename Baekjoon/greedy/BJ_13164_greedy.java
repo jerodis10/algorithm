@@ -35,7 +35,7 @@ public class BJ_13164_greedy {
 			pq.add(person[i + 1] - person[i]);
 		}
 
-		for (int i = 0; i < n - k; i++) {
+		for (int i = 0; i < k - 1; i++) {
 			pq.poll();
 		}
 
@@ -65,7 +65,7 @@ public class BJ_13164_greedy {
 				,3
 				,new int[]{1,3,5,6,10,15,16}
 		)).isEqualTo(
-				2
+				6
 		);
 	}
 
