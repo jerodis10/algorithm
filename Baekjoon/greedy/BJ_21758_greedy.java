@@ -15,56 +15,18 @@ public class BJ_21758_greedy {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int[] num = new int[n];
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
-		int[] numArr = new int[k];
-		st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < k; i++) {
-			numArr[i] = Integer.parseInt(st.nextToken());
+		for (int i = 0; i < n; i++) {
+			num[i] = Integer.parseInt(st.nextToken());
 		}
 
-		System.out.println(solution(n, k, numArr));
+		System.out.println(solution(n, num));
 	}
 
-	public static int solution(int n, int k, int[] numArr) {
-		boolean[] use = new boolean[101];
-		int count = 0;
-		int ret = 0;
-		for (int i = 0; i < k; i++) {
-			int order = numArr[i];
-
-			if (!use[order]) {
-				if (count < n) {
-					use[order] = true;
-					count++;
-				} else {
-					List<Integer> list = new ArrayList<>();
-					for (int j = i; j < k; j++) {
-						if (use[numArr[j]] && !list.contains(numArr[j])) {
-							list.add(numArr[j]);
-						}
-					}
-
-					if (list.size() != n) {
-						for (int j = 0; j < use.length; j++) {
-							if (use[j] && !list.contains(j)) {
-								use[j] = false;
-								break;
-							}
-						}
-					} else {
-						int remove = list.get(list.size() - 1);
-						use[remove] = false;
-					}
-
-					use[order] = true;
-					ret++;
-				}
-			}
-		}
-
-		return ret;
+	public static int solution(int n, int[] num) {
+		return 1;
 	}
 
 	@Test
