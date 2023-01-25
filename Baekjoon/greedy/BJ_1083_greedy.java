@@ -27,26 +27,42 @@ public class BJ_1083_greedy {
 		System.out.println(solution(n, num, s));
 	}
 
-	public static int[] solution(int n, int[] num, int s) {
-		int[] arr = num.clone();
-		Arrays.sort(arr, (o1, o2) -> );
-		int max = n * n;
-		int index = 0;
-
-		while (index < s && index < max) {
-			for (int i = 0; i < n - 1; i++) {
-				if (num[i] < num[i + 1]) {
-					int temp = num[i];
-					num[i] = num[i + 1];
-					num[i + 1] = temp;
-					index++;
-					if(index == s) break;
-				}
-			}
+	public static String solution(int n, int[] num, int s) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			arr.add(num[i]);
 		}
 
-		return num;
+		int moveCnt = 0, changeIdx = 0;
+		while (moveCnt < s && changeIdx < n - 1) {
+			int maxNum = arr.get(changeIdx), maxIdx = -1;
+
+			int idx = changeIdx + 1, count = 1;
+			while (moveCnt + count <= s && idx < n) {
+				int number = arr.get(idx);
+				if (number > maxNum) {
+					maxNum = number;
+					maxIdx = idx;
+				}
+				count++;
+				idx++;
+			}
+
+			if (maxIdx != -1) {
+				arr.remove(maxIdx);
+				arr.add(changeIdx, maxNum);
+				moveCnt += maxIdx - changeIdx;
+			}
+			changeIdx++;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (int i : arr) {
+			sb.append(i).append(' ');
+		}
+		return sb.toString();
 	}
+
 
 	@Test
 	public void testCase() {
@@ -89,6 +105,17 @@ public class BJ_1083_greedy {
 				,1000000
 		)).isEqualTo(
 				new int[]{1000000,999999}
+		);
+	}
+
+	@Test
+	public void testCase5() {
+		Assertions.assertThat(solution(
+				10
+				, new int[]{1,2,3,4,5,6,7,8,9,10}
+				,17
+		)).isEqualTo(
+				new int[]{10,9,1,2,3,4,5,6,7,8}
 		);
 	}
 
