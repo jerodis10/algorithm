@@ -38,7 +38,22 @@ public class BJ_2011_dynamicProgramming {
 				if (str.charAt(i - 1) == '0') {
 					dp[i] = dp[i - 1];
 				} else if (i + 1 < len && str.charAt(i + 1) == '0') {
-
+					int k = Integer.parseInt(str.substring(i, i + 2));
+					if (k <= 26) {
+						dp[i] = dp[i - 1] % 1000000;
+					} else {
+						return 0;
+					}
+				} else {
+					int k = Integer.parseInt(str.substring(i - 1, i + 1));
+					if (k <= 26) {
+						if (i - 2 >= 0)
+							dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000;
+						else
+							dp[i] = (dp[i - 1] + 1) % 1000000;
+					} else {
+						dp[i] = dp[i - 1] % 1000000;
+					}
 				}
 			}
 		}
