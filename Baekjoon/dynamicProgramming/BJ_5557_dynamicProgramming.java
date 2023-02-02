@@ -12,12 +12,14 @@ public class BJ_5557_dynamicProgramming {
 
 	static long ret = 0;
 	static int n;
+	static long[][] dp;
+	static int[] num;
 	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
-		int[] num = new int[n];
+		num = new int[n];
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
 			num[i] = Integer.parseInt(st.nextToken());
@@ -26,24 +28,31 @@ public class BJ_5557_dynamicProgramming {
 		System.out.println(solution(n, num));
 	}
 
-	public static long solution(int number, int[] num) {
+	public static long solution(int number, int[] arr) {
 		n = number;
-		dfs(0, num[0], num);
-
-		return ret;
-	}
-
-	public static void dfs(int index, int sum, int[] num) {
-		if(sum > 20) return;
-		if (index >= n - 2) {
-			if (sum == num[n - 1]) {
-				ret++;
-			}
-			return;
+		num = arr;
+		dp = new long[21][100];
+		for (int i = 0; i < 21; i++) {
+			Arrays.fill(dp[i], -1);
 		}
 
-		dfs(index + 1, sum + num[index + 1], num);
-		if(sum - num[index+1] >= 0) dfs(index + 1, sum - num[index + 1], num);
+
+		return dfs(0, num[0]);
+	}
+
+	public static long dfs(int index, int sum) {
+		if(sum > 20 || sum < 0) return 0;
+		if (index >= n - 2) {
+			return (sum == num[n - 1]) ? 1 : 0;
+		}
+
+		if (dp[sum][index] != -1) {
+			return dp[sum][index];
+		}
+
+		dp[sum][index] = 0;
+
+		return dp[sum][index] += dfs(index + 1, sum + num[index + 1]) + dfs(index + 1, sum - num[index + 1]);
 	}
 
 	@Test
