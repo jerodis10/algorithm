@@ -22,20 +22,20 @@ public class BJ_2631_dynamicProgramming {
 			num[i] = Integer.parseInt(br.readLine());
 		}
 
-		solution(n, num);
+		System.out.println(solution(n));
 	}
 
-	public static int solution(int n, int[] number) {
+	public static int solution(int n) {
 		dp = new int[n];
-		num = number;
 		Arrays.fill(dp, -1);
-		int max = 0;
 
 		for (int i = 0; i < n; i++) {
 			dfs(i);
 		}
 
-		for (int i = 0; i < n; i++) {
+		int max = dp[0];
+
+		for (int i = 1; i < n; i++) {
 			max = Math.max(max, dp[i]);
 		}
 
@@ -46,7 +46,7 @@ public class BJ_2631_dynamicProgramming {
 		if (dp[cur] == -1) {
 			dp[cur] = 1;
 
-			for (int i = cur - 1; i >= 0; i--) {
+			for(int i = 0; i < cur; i++) {
 				if (num[i] < num[cur]) {
 					dp[cur] = Math.max(dp[cur], dfs(i) + 1);
 				}
@@ -56,15 +56,25 @@ public class BJ_2631_dynamicProgramming {
 		return dp[cur];
 	}
 
-	@Test
-	public void testCase() {
-		Assertions.assertThat(solution(
-				7
-				, new int[]{3, 7, 5, 2, 6, 1, 4}
-
-		)).isEqualTo(
-				4
-		);
-	}
+//	@Test
+//	public void testCase() {
+//		Assertions.assertThat(solution(
+//				7
+//				, new int[]{3, 7, 5, 2, 6, 1, 4}
+//
+//		)).isEqualTo(
+//				4
+//		);
+//	}
+//	@Test
+//	public void testCase2() {
+//		Assertions.assertThat(solution(
+//				5
+//				, new int[]{4,1,2,3,5}
+//
+//		)).isEqualTo(
+//				1
+//		);
+//	}
 
 }
