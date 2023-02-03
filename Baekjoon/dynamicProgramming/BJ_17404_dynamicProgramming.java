@@ -60,7 +60,7 @@ public class BJ_17404_dynamicProgramming {
 			if (color == RED) {
 				dp[index][RED] = Math.min(dfs(GREEN, index - 1, lastColor), dfs(BLUE, index - 1, lastColor)) + map[index][RED];
 			} else if (color == GREEN) {
-				dp[index][GREEN] = Math.min(dfs(RED, index - 1, lastColor), dfs(BLUE, index - 1, lastColor)) + map[index][GREEN];
+				dp[index][GREEN] = Math.min(dfs(BLUE, index - 1, lastColor), dfs(RED, index - 1, lastColor)) + map[index][GREEN];
 			} else {
 				dp[index][BLUE] = Math.min(dfs(GREEN, index - 1, lastColor), dfs(RED, index - 1, lastColor)) + map[index][BLUE];
 			}
