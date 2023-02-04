@@ -36,15 +36,14 @@ public class BJ_17404_dynamicProgramming {
 
 	public static int solution(int number, int[][] arr) {
 		n = number;
-		dp = new int[n][3];
 		map = arr;
 		int ret = MAX;
 
-		dp[0][RED] = map[0][RED];
-		dp[0][GREEN] = map[0][GREEN];
-		dp[0][BLUE] = map[0][BLUE];
-
 		for (int i = 0; i < 3; i++) {
+			dp = new int[n][3];
+			dp[0][RED] = map[0][RED];
+			dp[0][GREEN] = map[0][GREEN];
+			dp[0][BLUE] = map[0][BLUE];
 			ret = Math.min(ret, dfs(i, n - 1, i));
 		}
 

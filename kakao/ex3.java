@@ -88,6 +88,13 @@ public class ex3 {
 		)).isEqualTo(8);
 	}
 
+	@Test
+	public void testCase5() {
+		Assertions.assertThat(solution(
+				Arrays.asList(3,5,110,7)
+		)).isEqualTo(40);
+	}
+
 
 
 }
