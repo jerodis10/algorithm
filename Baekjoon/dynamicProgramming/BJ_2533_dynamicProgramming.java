@@ -58,5 +58,14 @@ public class BJ_2533_dynamicProgramming {
 				3
 		);
 	}
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				9
+				, new int[][]{{1,2},{1,3},{1,4},{2,5},{2,6},{4,7},{4,8},{3,9},{3,10}}
+		)).isEqualTo(
+				3
+		);
+	}
 
 }
