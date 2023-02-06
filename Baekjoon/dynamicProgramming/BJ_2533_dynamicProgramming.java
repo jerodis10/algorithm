@@ -69,3 +69,4 @@ public class BJ_2533_dynamicProgramming {
 	}
 
 }
+
