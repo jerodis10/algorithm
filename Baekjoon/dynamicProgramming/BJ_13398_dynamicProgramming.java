@@ -11,9 +11,6 @@ import java.util.*;
 
 public class BJ_13398_dynamicProgramming {
 
-	static Integer[] dp;
-	static int ret;
-
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,30 +20,35 @@ public class BJ_13398_dynamicProgramming {
 		for (int i = 0; i < n; i++) {
 			num[i] = Integer.parseInt(st.nextToken());
 		}
+
+		System.out.println(solution(n, num));
 	}
 
 	public static int solution(int n, int[] num) {
-		if(n == 1) return num[0];
-		ret = Integer.MIN_VALUE;
+		int[] dp1 = new int[n];
+		dp1[0] = num[0];
+		int ans = dp1[0];
 
-		for (int i = 0; i < n - 1; i++) {
-			dp = new Integer[n + 1];
-			dp[0] = num[0];
-			dfs(n - 1, i, num);
+		for (int i = 1; i < n; i++) {
+			dp1[i] = Math.max(dp1[i - 1] + num[i], num[i]);
+
+			ans = Math.max(ans, dp1[i]);
 		}
 
-		return ret;
-	}
+		int[] dp2 = new int[n];
+		dp2[n - 1] = num[n - 1];
 
-	public static int dfs(int n, int except, int[] num) {
-		if (dp[n] == null) {
-			int cur = num[n];
-			if(n == except) dp[n] = dfs(n - 1, except, num);
-			else dp[n] = Math.max(dfs(n - 1, except, num) + cur, cur);
-			ret = Math.max(dp[n], ret);
+		for (int i = n - 2; i >= 0; i--) {
+			dp2[i] = Math.max(dp2[i + 1] + num[i], num[i]);
 		}
 
-		return dp[n];
+		for (int i = 1; i < n - 1; i++) {
+			int temp = dp1[i - 1] + dp2[i + 1];
+
+			ans = Math.max(ans, temp);
+		}
+
+		return ans;
 	}
 
 	@Test
