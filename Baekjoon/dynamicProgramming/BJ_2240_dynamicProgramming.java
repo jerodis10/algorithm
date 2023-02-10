@@ -10,7 +10,8 @@ import java.util.*;
 
 public class BJ_2240_dynamicProgramming {
 
-	static int[][] dp;
+//	static int[][][] dp;
+static int[][] dp;
 	
 	public static void main(String[] args) throws IOException {
 
@@ -27,35 +28,53 @@ public class BJ_2240_dynamicProgramming {
 	}
 
 	public static int solution(int t, int w, int[] num) {
-		dp = new int[t + 1][w + 1];
-
-		dfs(t, w, num, 1, 0, num[0]);
-
-		int max = 0;
-		for (int i = 0; i < w; i++) {
-			max = Math.max(max, dp[t][i]);
+		dp = new int[w + 1][t + 1];
+		for (int i = 1; i <= t; i++) {
+			dp[0][i] = dp[0][i - 1];
+			if(num[i - 1] == 1) dp[0][i]++;
 		}
 
-		return max;
+		int cur = 0;
+		for (int i = 1; i <= w; i++) {
+			if(i % 2 == 0) cur = 1;
+			else cur = 2;
+			for (int j = 1; j <= t; j++) {
+				if (num[j - 1] == cur) {
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+				}
+			}
+		}
+
+		return dp[w][t];
 	}
 
-	public static int dfs(int t, int w, int[] num, int time, int move, int cur) {
-		if (dp[time][move] != 0) {
-			return dp[time][move];
-		}
-
-		if (time >= t || move >= w) {
-//			return dp[time][move];
-			return 1;
-		}
-
-		int next = 0;
-		if(cur == 1) next = 2;
-		else next = 1;
-
-		return dp[time][move] += Math.max(dfs(t, w, num, time + 1, move, cur), dfs(t, w, num, time + 1, move + 1, next)) + 1;
-
-	}
+//	public static int solution(int t, int w, int[] num) {
+//		dp = new int[t + 1][w + 2][3];
+//
+//		for (int i = 1; i <= t; i++) {
+//			for (int j = 1; j <= w + 1; j++) {
+//				if (num[i - 1] == 1) {
+//					dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][2]) + 1;
+//					dp[i][j][2] = Math.max(dp[i - 1][j][2], dp[i - 1][j - 1][1]);
+//				} else {
+//					if (i == 1 && j == 1) continue;
+//					dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][2]);
+//					dp[i][j][2] = Math.max(dp[i - 1][j][2], dp[i - 1][j - 1][1]) + 1;
+//				}
+//			}
+//		}
+//
+//
+//		int max = 0;
+//		for (int i = 1; i <= w + 1 ; i++) {
+//			max = Math.max(max, dp[t][i][1]);
+//			max = Math.max(max, dp[t][i][2]);
+//		}
+//
+//		return max;
+//	}
 
 	@Test
 	public void testCase() {
@@ -66,6 +85,5 @@ public class BJ_2240_dynamicProgramming {
 				6
 		);
 	}
-
 
 }
