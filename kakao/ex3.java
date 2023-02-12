@@ -14,7 +14,7 @@ public class ex3 {
 //		Collections.sort(box);
 //		long left = box.get(0);
 		long left = 1;
-		int sum = 0;
+		long sum = 0;
 		for(int i : box) sum += i;
 		long right = sum;
 		long ret = 0;
@@ -25,13 +25,13 @@ public class ex3 {
 //			long max = maxNum(box);
 //			if (mid > max) key = mid;
 //			else {
-			List<Integer> temp = new ArrayList<>();
-			for(int i : box) temp.add(i);
+			List<Long> temp = new ArrayList<>();
+			for(long i : box) temp.add(i);
 			for (int i = temp.size() - 1; i >= 1; i--) {
-				int num = temp.get(i);
+				long num = temp.get(i);
 				if (num > mid) {
-					temp.set(i, (int) mid);
-					temp.set(i - 1, temp.get(i - 1) + (num - (int) mid));
+					temp.set(i, mid);
+					temp.set(i - 1, temp.get(i - 1) + (num - mid));
 				}
 			}
 			key = maxNum(temp);
@@ -53,9 +53,9 @@ public class ex3 {
 	}
 
 
-	public static int maxNum (List <Integer> list) {
-		int max = Integer.MIN_VALUE;
-		for (int n : list) max = Math.max(max, n);
+	public static long maxNum (List <Long> list) {
+		long max = Long.MIN_VALUE;
+		for (long n : list) max = Math.max(max, n);
 		return max;
 	}
 
@@ -93,6 +93,20 @@ public class ex3 {
 		Assertions.assertThat(solution(
 				Arrays.asList(3,5,110,7)
 		)).isEqualTo(40);
+	}
+
+	@Test
+	public void testCase6() {
+		Assertions.assertThat(solution(
+				Arrays.asList(100000000,200000000,300000000,400000000)
+		)).isEqualTo(250000000);
+	}
+
+	@Test
+	public void testCase7() {
+		Assertions.assertThat(solution(
+				Arrays.asList(1000000000,1000000000,1000000000,1000000000)
+		)).isEqualTo(1000000000);
 	}
 
 

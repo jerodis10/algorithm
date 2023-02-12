@@ -14,10 +14,10 @@ public class ex {
 			if (z < (x - y)) {
 				ret = -1;
 			} else {
-				if (z == (x - y) || z <= 2 * (x - y)) {
+				if (z == (x - y)) {
 					ret = x;
 				} else {
-					ret = x + (z - 2 * (x - y)) / 2;
+					ret = x + (z - (x - y)) / 2;
 				}
 			}
 		} else {
@@ -54,6 +54,13 @@ public class ex {
 		Assertions.assertThat(solution(
 				4,4,6
 		)).isEqualTo(7);
+	}
+
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				5,1,6
+		)).isEqualTo(6);
 	}
 
 
