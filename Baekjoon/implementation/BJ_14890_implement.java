@@ -59,14 +59,31 @@ public class BJ_14890_implement {
 							break;
 						} else {
 							if (prev - map[i][j] == 1) {
-								count++;
+								if (j + l - 1 < n) {
+									boolean f_flag = true;
+									for (int t = j; t < j + l; t++) {
+										if(map[i][t] != map[i][j]) {
+											f_flag = false;
+											break;
+										}
+									}
+									if(!f_flag) {
+										flag = false;
+										break;
+									}
+
+									prev = map[i][j];
+									j = j + l - 1;
+								} else {
+									break;
+								}
 							} else {
 								if (count < l) {
 									flag = false;
 									break;
 								} else {
 									prev = map[i][j];
-									count = 0;
+									count = 1;
 								}
 							}
 						}
@@ -81,9 +98,11 @@ public class BJ_14890_implement {
 			int prev = 0;
 			int count = 0;
 			boolean flag = true;
+			boolean flagDir = true; // true: down,  false: up
 			for (int j = 0; j < n; j++) {
 				if (j == 0) {
 					prev = map[j][i];
+					count++;
 				} else {
 					if (prev == map[j][i]) {
 						count++;
@@ -92,12 +111,33 @@ public class BJ_14890_implement {
 							flag = false;
 							break;
 						} else {
-							if (count < l) {
-								flag = false;
-								break;
+							if (prev - map[j][i] == 1) {
+								if (i + l - 1 < n) {
+									boolean f_flag = true;
+									for (int t = i; t < i + l; t++) {
+										if(map[t][j] != map[i][j]) {
+											f_flag = false;
+											break;
+										}
+									}
+									if(!f_flag) {
+										flag = false;
+										break;
+									}
+
+									prev = map[i][j];
+									i = i + l - 1;
+								} else {
+									break;
+								}
 							} else {
-								prev = map[j][i];
-								count = 0;
+								if (count < l) {
+									flag = false;
+									break;
+								} else {
+									prev = map[j][i];
+									count = 1;
+								}
 							}
 						}
 					}
@@ -118,19 +158,29 @@ public class BJ_14890_implement {
 						{1, 1, 1, 2, 2, 2},{1, 1, 1, 3, 3, 1},{1, 1, 2, 3, 3, 2}}
 		)).isEqualTo(3);
 	}
-//	@Test
-//	public void testCase2() {
-//		Assertions.assertThat(solution(
-//				2,40,50,
-//				new int[][]{{50,30},{20,40}}
-//		)).isEqualTo(0);
-//	}
-//	@Test
-//	public void testCase3() {
-//		Assertions.assertThat(solution(
-//				2,20,50,
-//				new int[][]{{50,30},{30,40}}
-//		)).isEqualTo(1);
-//	}
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				6,2,
+				new int[][]{{3, 2, 1, 1, 2, 3},{3, 2, 2, 1, 2, 3},{3, 2, 2, 2, 3, 3},
+						{3, 3, 3, 3, 3, 3},{3, 3, 3, 3, 2, 2},{3, 3, 3, 3, 2, 2}}
+		)).isEqualTo(7);
+	}
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				6,3,
+				new int[][]{{3, 2, 1, 1, 2, 3},{3, 2, 2, 1, 2, 3},{3, 2, 2, 2, 3, 3},
+						{3, 3, 3, 3, 3, 3},{3, 3, 3, 3, 2, 2},{3, 3, 3, 3, 2, 2}}
+		)).isEqualTo(3);
+	}
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				6,1,
+				new int[][]{{3, 2, 1, 1, 2, 3},{3, 2, 2, 1, 2, 3},{3, 2, 2, 2, 3, 3},
+						{3, 3, 3, 3, 3, 3},{3, 3, 3, 3, 2, 2},{3, 3, 3, 3, 2, 2}}
+		)).isEqualTo(11);
+	}
 
 }
