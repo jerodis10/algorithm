@@ -40,113 +40,54 @@ public class BJ_14890_implement {
 		l = b;
 		map = arr.clone();
 		ret = 0;
-		
-		// 가로
-		for (int i = 0; i < n; i++) {
-			int prev = 0;
-			int count = 0;
-			boolean flag = true;
-			boolean flagDir = true; // true: down,  false: up
-			for (int j = 0; j < n; j++) {
-				if (j == 0) {
-					prev = map[i][j];
-				} else {
-					if (prev == map[i][j]) {
-						count++;
-					} else {
-						if (Math.abs(prev - map[i][j]) > 1) {
-							flag = false;
-							break;
-						} else {
-							if (prev - map[i][j] == 1) {
-								if (j + l - 1 < n) {
-									boolean f_flag = true;
-									for (int t = j; t < j + l; t++) {
-										if(map[i][t] != map[i][j]) {
-											f_flag = false;
-											break;
-										}
-									}
-									if(!f_flag) {
-										flag = false;
-										break;
-									}
 
-									prev = map[i][j];
-									j = j + l - 1;
-								} else {
-									break;
-								}
-							} else {
-								if (count < l) {
-									flag = false;
-									break;
-								} else {
-									prev = map[i][j];
-									count = 1;
-								}
-							}
-						}
-					}
-				}
-			}
-			if(flag) ret++;
-		}
+		for (int i=0; i<n; i++) {
+			if (canGo(i, 0, 0))
+				ret++;
 
-		// 세로
-		for (int i = 0; i < n; i++) {
-			int prev = 0;
-			int count = 0;
-			boolean flag = true;
-			boolean flagDir = true; // true: down,  false: up
-			for (int j = 0; j < n; j++) {
-				if (j == 0) {
-					prev = map[j][i];
-					count++;
-				} else {
-					if (prev == map[j][i]) {
-						count++;
-					} else {
-						if (Math.abs(prev - map[j][i]) > 1) {
-							flag = false;
-							break;
-						} else {
-							if (prev - map[j][i] == 1) {
-								if (i + l - 1 < n) {
-									boolean f_flag = true;
-									for (int t = i; t < i + l; t++) {
-										if(map[t][j] != map[i][j]) {
-											f_flag = false;
-											break;
-										}
-									}
-									if(!f_flag) {
-										flag = false;
-										break;
-									}
-
-									prev = map[i][j];
-									i = i + l - 1;
-								} else {
-									break;
-								}
-							} else {
-								if (count < l) {
-									flag = false;
-									break;
-								} else {
-									prev = map[j][i];
-									count = 1;
-								}
-							}
-						}
-					}
-				}
-			}
-			if(flag) ret++;
+			if (canGo(0, i, 1))
+				ret++;
 		}
 
 		return ret;
+	}
+
+	private static boolean canGo(int x, int y, int d) {
+		int[] height = new int[n];
+		boolean[] visited = new boolean[n];
+
+		for (int i=0; i<n; i++) {
+			height[i] = (d == 0) ? map[x][y+i] : map[x+i][y];
+		}
+
+		for (int i=0; i<n-1; i++) {
+			if (height[i] == height[i+1]) {
+				continue;
+			}
+
+			if (Math.abs(height[i] - height[i+1]) > 1) {
+				return false;
+			}
+
+			if (height[i] - 1 == height[i+1]) {
+				for (int j=i+1; j<=i+l; j++) {
+					if (j >= n || height[i+1] != height[j] || visited[j] == true) {
+						return false;
+					}
+					visited[j] = true;
+				}
+			}
+			else if (height[i] + 1 == height[i+1]) {
+				for (int j=i; j>i-l; j--) {
+					if (j < 0 || height[i] != height[j] || visited[j] == true) {
+						return false;
+					}
+					visited[j] = true;
+				}
+			}
+		}
+
+		return true;
 	}
 
 
