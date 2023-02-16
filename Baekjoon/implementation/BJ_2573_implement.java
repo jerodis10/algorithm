@@ -14,8 +14,9 @@ public class BJ_2573_implement {
 	static int m;
 	static int[][] map;
 	static boolean[][] visited;
+	static int[][] list;
 	static int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
-	static int cheeseCnt;
+	static int ret;
 
 	public static void main(String[] args) throws IOException {
 
@@ -32,19 +33,58 @@ public class BJ_2573_implement {
 			}
 		}
 
-		int[] result = solution(n, m, map);
-		System.out.println(result[0]);
-		System.out.println(result[1]);
+		System.out.println(solution(n, m, map));
 	}
 
-	public static int[] solution(int a, int b, int[][] arr){
+	public static int solution(int a, int b, int[][] arr){
 		n = a;
 		m = b;
 		map = arr.clone();
+		visited = new boolean[n][m];
+		list = new int[n][m];
 
+		while (isCheck()) {
+			visited = new boolean[n][m];
+			list = new int[n][m];
+			int cnt = 0;
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					if (!visited[i][j] && map[i][j] != 0) {
+						if(cnt > 1) break;
+						visited[i][j] = true;
+						dfs(i, j);
+						cnt++;
+					}
+				}
+				if(cnt > 1) break;
+			}
 
-		dfs(0, 0);
+			if(cnt > 1) break;
+			if(cnt == 1) ret++;
+		}
 
+		return ret;
+	}
+
+	private static boolean isCheck() {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (list[i][j] > 0) {
+					map[i][j] -= list[i][j];
+					if(map[i][j] < 0) map[i][j] = 0;
+				}
+			}
+		}
+
+		boolean flag = false;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if(map[i][j] > 0) return true;
+			}
+		}
+
+		return false;
 	}
 
 	private static void dfs(int y, int x) {
@@ -53,39 +93,50 @@ public class BJ_2573_implement {
 			int nx = x + dir[i][1];
 			if(ny >= n || ny < 0 || nx >= m || nx < 0) continue;
 
-			if (!visited[ny][nx]) {
+			if(map[ny][nx] == 0) list[y][x]++;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			int ny = y + dir[i][0];
+			int nx = x + dir[i][1];
+			if(ny >= n || ny < 0 || nx >= m || nx < 0) continue;
+
+			if (!visited[ny][nx] && map[ny][nx] > 0) {
 				visited[ny][nx] = true;
-				if (map[ny][nx] == 1) {
-					map[ny][nx] = 2;
-					cheeseCnt++;
-				} else {
-					dfs(ny, nx);
-				}
+				dfs(ny, nx);
 			}
 		}
 	}
 
-
-
-
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				13,12,
-				new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-						{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-						{0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
-						{0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0},
-						{0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
-						{0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0},
-						{0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0},
-						{0, 0, 1, 1, 0, 0, 0 ,1 ,1 ,0 ,0, 0},
-						{0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
-						{0, 0, 1, 1, 1, 1, 1, 1, 1 ,0 ,0, 0},
-						{0, 0, 1, 1, 1 ,1 ,1 ,1 ,1, 0, 0, 0},
-						{0, 0, 1, 1, 1, 1, 1, 1 ,1 ,0 ,0 ,0},
-						{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
-		)).isEqualTo(new int[]{3,5});
+				5,7,
+				new int[][]{{0, 0, 0, 0, 0, 0, 0},
+						{0, 2, 4, 5, 3, 0, 0},
+						{0, 3, 0, 2, 5, 2, 0},
+						{0, 7, 6, 2, 4, 0, 0},
+						{0, 0, 0, 0, 0, 0, 0}}
+		)).isEqualTo(2);
+	}
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				5,5,
+				new int[][]{{0, 0, 0, 0, 0, 0, 0},
+						{0, 0, 10, 10, 0},
+						{0, 10, 0, 10, 0},
+						{0, 0, 10, 10, 0},
+						{0, 0, 0, 0, 0, 0, 0}}
+		)).isEqualTo(0);
+	}
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				2,2,
+				new int[][]{{99,100},
+						{100,99}}
+		)).isEqualTo(0);
 	}
 
 }
