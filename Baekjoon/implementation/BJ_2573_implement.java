@@ -41,60 +41,45 @@ public class BJ_2573_implement {
 		m = b;
 		map = arr.clone();
 		visited = new boolean[n][m];
-		list = new int[n][m];
+		int count = 0;
 
-		while (isCheck()) {
-			visited = new boolean[n][m];
-			list = new int[n][m];
-			int cnt = 0;
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < m; j++) {
-					if (!visited[i][j] && map[i][j] != 0) {
-						if(cnt > 1) break;
-						visited[i][j] = true;
-						if(dfs(i, j)) cnt++;
-					}
-				}
-				if(cnt > 1) break;
+		while ((count = isCheck()) < 2) {
+			if (count == 0) {
+				return 0;
 			}
 
-			if(cnt > 1 || cnt == 0) break;
-			if(cnt == 1) ret++;
+
+
 		}
 
 		return ret;
 	}
 
-	private static boolean isCheck() {
+	private static int isCheck() {
+		visited = new boolean[n][m];
+		int cnt = 0;
+
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				if (list[i][j] > 0) {
-					map[i][j] -= list[i][j];
-					if(map[i][j] < 0) map[i][j] = 0;
+				if (map[i][j] != 0 && !visited[i][j]) {
+					dfs(i, j);
+					cnt++;
 				}
 			}
 		}
 
-		boolean flag = false;
-
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if(map[i][j] > 0) return true;
-			}
-		}
-
-		return false;
+		return cnt;
 	}
 
-	private static boolean dfs(int y, int x) {
-		boolean flag = false;
+	private static void dfs(int y, int x) {
+		visited[y][x] = true;
+
 		for (int i = 0; i < 4; i++) {
 			int ny = y + dir[i][0];
 			int nx = x + dir[i][1];
 			if(ny >= n || ny < 0 || nx >= m || nx < 0) continue;
 
 			if(map[ny][nx] == 0){
-				flag = true;
 				list[y][x]++;
 			}
 		}
@@ -104,13 +89,10 @@ public class BJ_2573_implement {
 			int nx = x + dir[i][1];
 			if(ny >= n || ny < 0 || nx >= m || nx < 0) continue;
 
-			if (!visited[ny][nx] && map[ny][nx] > 0) {
-				visited[ny][nx] = true;
+			if (!visited[ny][nx] && map[ny][nx] != 0) {
 				dfs(ny, nx);
 			}
 		}
-
-		return flag;
 	}
 
 	@Test
@@ -141,6 +123,16 @@ public class BJ_2573_implement {
 				2,2,
 				new int[][]{{99,100},
 						{100,99}}
+		)).isEqualTo(0);
+	}
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				4,4,
+				new int[][]{{0, 0, 0, 0},
+						{0, 1, 1, 0},
+						{0, 1, 1, 0},
+						{0, 0, 0, 0}}
 		)).isEqualTo(0);
 	}
 
