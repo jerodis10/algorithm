@@ -69,35 +69,28 @@ public class BJ_16235_implement {
 
 			// 봄
 			Iterator<int[]> iter = list.iterator();
-			int index = 0;
+			List<int[]> dead = new ArrayList<>();
 			while(iter.hasNext()) {
-				int y = iter.next()[0];
-				int x = iter.next()[1];
-				int old = iter.next()[2];
+				int[] cur = iter.next();
+				int y = cur[0];
+				int x = cur[1];
+				int old = cur[2];
 				if (map[y][x] >= old) {
 					map[y][x] -= old;
-					list.set(index, new int[]{y, x, old + 1});
+					cur[2]++;
+//					list.set(index, new int[]{y, x, old + 1});
 				} else {
-					//여름
-					map[y][x] += old / 2;
+//					map[y][x] += old / 2;
+					dead.add(cur);
 					iter.remove();
 				}
-				index++;
 			}
 
-//			for(int i = 0; i < list.size(); i++) {
-//				int y = list.get(i)[0];
-//				int x = list.get(i)[1];
-//				int old = list.get(i)[2];
-//				if (map[y][x] >= old) {
-//					map[y][x] -= old;
-//					list.set(i, new int[]{y, x, old + 1});
-//				} else {
-//					//여름
-//					map[y][x] += old / 2;
-//					list.remove(i);
-//				}
-//			}
+			// 여름
+			while (!dead.isEmpty()) {
+				int[] cur = dead.remove(0);
+				map[cur[0]][cur[1]] += cur[2] / 2;
+			}
 
 			// 가을
 			for(int i = 0; i < list.size(); i++) {
@@ -216,7 +209,6 @@ public class BJ_16235_implement {
 				new int[][]{{2, 1, 3},{3, 2, 3}}
 		)).isEqualTo(85);
 	}
-
 
 }
 
