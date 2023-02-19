@@ -42,7 +42,6 @@ public class BJ_16235_implement {
 			tree[i][2] = Integer.parseInt(st.nextToken());
 		}
 
-
 		System.out.println(solution(n, m, k, map, tree));
 	}
 
@@ -50,38 +49,55 @@ public class BJ_16235_implement {
 		n = a;
 		m = b;
 		k = c;
-		map = arr.clone();
+		map = new int[n + 1][n + 1];
+		int[][] original = new int[n + 1][n + 1];
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				map[i][j] = 5;
+				original[i][j] = arr[i - 1][j - 1];
+			}
+		}
 		tree = arr2.clone();
 
-		ret = 0;
-		int[][] original = arr.clone();
 		List<int[]> list = new ArrayList<>();
 		for (int[] t : tree) {
 			list.add(t);
-		}
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				map[i][j] = 5;
-			}
 		}
 
 		while(k-- > 0) {
 			Collections.sort(list, (o1, o2) -> o1[2] - o2[2]);
 
 			// 봄
-			for(int i = 0; i < list.size(); i++) {
-				int y = list.get(i)[0];
-				int x = list.get(i)[1];
-				int old = list.get(i)[2];
+			Iterator<int[]> iter = list.iterator();
+			int index = 0;
+			while(iter.hasNext()) {
+				int y = iter.next()[0];
+				int x = iter.next()[1];
+				int old = iter.next()[2];
 				if (map[y][x] >= old) {
 					map[y][x] -= old;
-					list.set(i, new int[]{y, x, old + 1});
+					list.set(index, new int[]{y, x, old + 1});
 				} else {
 					//여름
 					map[y][x] += old / 2;
-					list.remove(i);
+					iter.remove();
 				}
+				index++;
 			}
+
+//			for(int i = 0; i < list.size(); i++) {
+//				int y = list.get(i)[0];
+//				int x = list.get(i)[1];
+//				int old = list.get(i)[2];
+//				if (map[y][x] >= old) {
+//					map[y][x] -= old;
+//					list.set(i, new int[]{y, x, old + 1});
+//				} else {
+//					//여름
+//					map[y][x] += old / 2;
+//					list.remove(i);
+//				}
+//			}
 
 			// 가을
 			for(int i = 0; i < list.size(); i++) {
@@ -100,8 +116,8 @@ public class BJ_16235_implement {
 			}
 
 			// 겨울
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
+			for (int i = 1; i <= n; i++) {
+				for (int j = 1; j <= n; j++) {
 					map[i][j] += original[i][j];
 				}
 			}
