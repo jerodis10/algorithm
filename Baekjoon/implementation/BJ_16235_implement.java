@@ -16,7 +16,6 @@ public class BJ_16235_implement {
 	static int[][] map;
 	static int[][] tree;
 	static int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}, {-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
-	static int ret;
 
 	public static void main(String[] args) throws IOException {
 
@@ -35,8 +34,8 @@ public class BJ_16235_implement {
 		}
 
 		tree = new int[m][3];
-		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
 			tree[i][0] = Integer.parseInt(st.nextToken());
 			tree[i][1] = Integer.parseInt(st.nextToken());
 			tree[i][2] = Integer.parseInt(st.nextToken());
@@ -53,59 +52,58 @@ public class BJ_16235_implement {
 		int[][] original = new int[n + 1][n + 1];
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
-				map[i][j] = 5;
 				original[i][j] = arr[i - 1][j - 1];
+				map[i][j] = 5;
 			}
 		}
 		tree = arr2.clone();
 
-		List<int[]> list = new ArrayList<>();
+		Deque<int[]> treeList = new LinkedList<>();
 		for (int[] t : tree) {
-			list.add(t);
+			treeList.add(t);
 		}
 
 		while(k-- > 0) {
-			Collections.sort(list, (o1, o2) -> o1[2] - o2[2]);
+			Queue<int[]> deadList = new LinkedList<>();
 
 			// 봄
-			Iterator<int[]> iter = list.iterator();
-			List<int[]> dead = new ArrayList<>();
-			while(iter.hasNext()) {
-				int[] cur = iter.next();
-				int y = cur[0];
-				int x = cur[1];
-				int old = cur[2];
-				if (map[y][x] >= old) {
-					map[y][x] -= old;
+			for(int i = 0; i < treeList.size();) {
+				int[] cur = treeList.poll();
+				if (map[cur[0]][cur[1]] >= cur[2]) {
+					map[cur[0]][cur[1]] -= cur[2];
 					cur[2]++;
-//					list.set(index, new int[]{y, x, old + 1});
+					i++;
+					treeList.add(cur);
 				} else {
-//					map[y][x] += old / 2;
-					dead.add(cur);
-					iter.remove();
+					deadList.add(cur);
 				}
 			}
 
 			// 여름
-			while (!dead.isEmpty()) {
-				int[] cur = dead.remove(0);
+			while (!deadList.isEmpty()) {
+				int[] cur = deadList.poll();
 				map[cur[0]][cur[1]] += cur[2] / 2;
 			}
 
 			// 가을
-			for(int i = 0; i < list.size(); i++) {
-				int y = list.get(i)[0];
-				int x = list.get(i)[1];
-				int old = list.get(i)[2];
+			List<int[]> childTrees = new ArrayList<>();
+			for (int[] tree : treeList) {
+				int y = tree[0];
+				int x = tree[1];
+				int old = tree[2];
 				if(old % 5 == 0) {
 					for (int j = 0; j < 8; j++) {
 						int ny = y + dir[j][0];
 						int nx = x + dir[j][1];
 						if (ny > n || ny < 1 || nx > n || nx < 1) continue;
 
-						list.add(new int[]{ny, nx, 1});
+						childTrees.add(new int[]{ny, nx, 1});
 					}
 				}
+			}
+
+			for (int[] child : childTrees) {
+				treeList.addFirst(child);
 			}
 
 			// 겨울
@@ -116,7 +114,7 @@ public class BJ_16235_implement {
 			}
 		}
 
-		return list.size();
+		return treeList.size();
 	}
 
 
