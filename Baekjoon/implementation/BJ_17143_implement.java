@@ -10,180 +10,130 @@ import java.util.*;
 
 public class BJ_17143_implement {
 
-	static int n;
-	static int m;
-	static int k;
-	static int[][] sharks;
-	static int[][] map;
-	static int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
-	static int ret;
-	static final int UP = 1;
-	static final int DOWN = 2;
-	static final int RIGHT = 3;
-	static final int LEFT = 4;
+	static class Shark {
+		int speed, direction, size;
+	}
+
+	static int R, C, M;
+	static int answerSumOfSize = 0;
+	static Shark[][] sharks;
 
 	public static void main(String[] args) throws IOException {
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
-		k = Integer.parseInt(st.nextToken());
+		StringTokenizer st;
 
-		sharks = new int[k][5];
-		for (int i = 0; i < k; i++) {
+		// 격자판의 크기 R, C, 상어의 수 M
+		st = new StringTokenizer(br.readLine());
+		R = Integer.parseInt(st.nextToken());
+		C = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		sharks = new Shark[R][C];
+
+		// M 개의 줄에 상어의 정보
+		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < 5; j++) {
-				sharks[i][j] = Integer.parseInt(st.nextToken());
-			}
+
+			Shark shark = new Shark();
+			int r = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
+			shark.speed = Integer.parseInt(st.nextToken());
+			shark.direction = Integer.parseInt(st.nextToken());
+			shark.size = Integer.parseInt(st.nextToken());
+			sharks[r - 1][c - 1] = shark;
 		}
-		// https://bcp0109.tistory.com/214
-		System.out.println(solution(n, m, k, sharks));
+
+		solution();
+		System.out.println(answerSumOfSize);
 	}
 
-	public static int solution(int a, int b, int c, int[][] arr){
-		n = a;
-		m = b;
-		k = c;
-		sharks = arr.clone();
-		Shark[][] sharkMap = new Shark[n + 1][m + 1];
-		List<Shark> SharkList = new ArrayList<>();
-		for (int[] s : sharks) {
-			sharkMap[s[0]][s[1]] = new Shark(s[0], s[1], s[2], s[3], s[4]);
-//			SharkList.add(new Shark(s[0], s[1], s[2], s[3], s[4]));
+	// 낚시왕이 오른쪽으로 한칸 이동하는건 반복문의 index 로 표현
+	// 현재 상어의 위치 중 제일 가까운 상어를 잡고 상어 이동 반복
+	private static void solution() {
+		for (int i = 0; i < C; i++) {
+			fishing(i);
+			moveAllSharks();
 		}
-		ret = 0;
+	}
 
-		for (int i = 1; i <= m; i++) {
-			// catch
-			for (int j = 1; j <= n; j++) {
-				if(sharkMap[j][i] == null) continue;
-				else {
-					ret += sharkMap[j][i].size;
-					sharkMap[j][i] = null;
-					break;
-				}
+	// 현재 위치에서 가장 가까이에 있는 상어를 잡는다.
+	private static void fishing(int col) {
+		for (int i = 0; i < R; i++) {
+			if (sharks[i][col] != null) {
+				answerSumOfSize += sharks[i][col].size;
+				sharks[i][col] = null;
+				return;
 			}
+		}
+	}
 
-			// move
-			for (int t = 1; t <= n; t++) {
-				for (int k = 1; k <= m; k++) {
-					Shark sh = sharkMap[t][k];
-					if(sh == null) continue;
+	private static void moveAllSharks() {
+		Shark[][] nextSharks = new Shark[R][C];
 
-					if (LEFT == sh.direction) {
-						int diff = sh.x - sh.speed + 1;
-						if (diff >= 0) {
-							sh.x -= sh.speed;
-						} else {
-							sh.x = 1 + Math.abs(diff);
-							sh.direction = RIGHT;
-						}
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				moveShark(nextSharks, i, j);
+			}
+		}
 
-						if (sharkMap[t][sh.x] == null) {
-							sharkMap[t][sh.x] = sh;
-						} else if(sharkMap[t][sh.x].size < sh.size) {
-							sharkMap[t][sh.x] = sh;
-						}
-					} else if(RIGHT == sh.direction) {
-						int diff = sh.x + sh.speed - m;
-						if (diff <= 0) {
-							sh.x += sh.speed;
-						} else {
-							sh.x = m - Math.abs(diff);
-							sh.direction = LEFT;
-						}
+		// 이동 완료한 배열로 덮어 씌우기
+		for (int i = 0; i < R; i++) {
+			sharks[i] = Arrays.copyOf(nextSharks[i], C);
+		}
+	}
 
-						if (sharkMap[t][sh.x] == null) {
-							sharkMap[t][sh.x] = sh;
-						} else if(sharkMap[t][sh.x].size < sh.size) {
-							sharkMap[t][sh.x] = sh;
-						}
-					} else if(UP == sh.direction) {
-						int diff = sh.y - sh.speed;
-						if (diff >= 1) {
-							sh.y -= sh.speed;
-						} else {
-							sh.y = 1 + Math.abs(diff);
-							sh.direction = DOWN;
-						}
+	private static void moveShark(Shark[][] nextSharks, int i, int j) {
+		Shark shark = sharks[i][j];
 
-						if (sharkMap[sh.y][k] == null) {
-							sharkMap[sh.y][k] = sh;
-						} else if(sharkMap[t][sh.x].size < sh.size) {
-							sharkMap[sh.y][k] = sh;
-						}
-					} else {
-						int diff = sh.y + sh.speed - n;
-						if (diff <= 0) {
-							sh.y += sh.speed;
-						} else {
-							sh.y = n - Math.abs(diff);
-							sh.direction = UP;
-						}
+		if (shark == null) {
+			return;
+		}
 
-						if (sharkMap[sh.y][k] == null) {
-							sharkMap[sh.y][k] = sh;
-						} else if(sharkMap[t][sh.x].size < sh.size) {
-							sharkMap[sh.y][k] = sh;
-						}
-					}
+		// direction 1인 경우는 위, 2인 경우는 아래, 3인 경우는 오른쪽, 4인 경우는 왼쪽
+		// 위아래는 R, 좌우는 C 가 X 라고 할 때 (X - 1) * 2 만큼 이동하면 동일한 위치, 방향으로 돌아온다.
+		// 그러므로 상어의 속도에서 (X - 1) * 2 을 나눈 나머지만큼만 이동하면 된다.
+		// 총 이동해야 할 거리 = shark.speed % ((X - 1) * 2)
+		int X = shark.direction < 3 ? R : C;
+		int moveDistance = shark.speed % ((X - 1) * 2);
+		int row = i;
+		int col = j;
+
+		// 움직이는 거리를 구한 후에는 직접 이동시킴
+		// (최종 위치를 구했을 때 방향까지 계산하기 귀찮아서.. 직접 이동)
+		for (int k = 0; k < moveDistance; k++) {
+			if (shark.direction == 1) {
+				row--;
+				if (row < 0) {
+					shark.direction = 2;
+					row = 1;
+				}
+			} else if (shark.direction == 2) {
+				row++;
+				if (row > R - 1) {
+					shark.direction = 1;
+					row = R - 2;
+				}
+			} else if (shark.direction == 3) {
+				col++;
+				if (col > C - 1) {
+					shark.direction = 4;
+					col = C - 2;
+				}
+			} else {
+				col--;
+				if (col < 0) {
+					shark.direction = 3;
+					col = 1;
 				}
 			}
 		}
 
-		return ret;
-	}
-
-	private static class Shark {
-		int y;
-		int x;
-		int speed;
-		int direction;
-		int size;
-
-		public Shark(int y, int x, int speed, int direction, int size) {
-			this.y = y;
-			this.x = x;
-			this.speed = speed;
-			this.direction = direction;
-			this.size = size;
+		// 만약 이미 상어가 있으면 크기를 비교해서 사이즈 큰 놈을 남긴다
+		if (nextSharks[row][col] != null && nextSharks[row][col].size > shark.size) {
+			return;
 		}
-	}
 
-	@Test
-	public void testCase() {
-		Assertions.assertThat(solution(
-				4,6,8,
-				new int[][]{{4, 1, 3, 3, 8},
-						{1, 3, 5, 2, 9},
-						{2, 4, 8, 4, 1},
-						{4, 5, 0, 1, 4},
-						{3, 3, 1, 2, 7},
-						{1, 5, 8, 4, 3},
-						{3, 6, 2, 1, 2},
-						{2, 2, 2, 3, 5}}
-		)).isEqualTo(22);
+		nextSharks[row][col] = shark;
 	}
-//	@Test
-//	public void testCase2() {
-//		Assertions.assertThat(solution(
-//				5,5,
-//				new int[][]{{0, 0, 0, 0, 0, 0, 0},
-//						{0, 0, 10, 10, 0},
-//						{0, 10, 0, 10, 0},
-//						{0, 0, 10, 10, 0},
-//						{0, 0, 0, 0, 0, 0, 0}}
-//		)).isEqualTo(0);
-//	}
-//	@Test
-//	public void testCase3() {
-//		Assertions.assertThat(solution(
-//				2,2,
-//				new int[][]{{99,100},
-//						{100,99}}
-//		)).isEqualTo(0);
-//	}
 
 }
 
