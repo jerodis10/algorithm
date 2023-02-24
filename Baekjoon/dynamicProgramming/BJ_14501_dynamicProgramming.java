@@ -1,5 +1,8 @@
 package Baekjoon.dynamicProgramming;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,11 +30,22 @@ public class BJ_14501_dynamicProgramming {
 		for (int i = 0; i < n; i++) {
 			if (i + num[i][0] <= n) {
 				dp[i + num[i][0]] = Math.max(dp[i + num[i][0]], dp[i] + num[i][1]);
+			} else {
+				dp[i + 1] = Math.max(dp[i + 1], dp[i]);
 			}
-			dp[i + 1] = Math.max(dp[i + 1], dp[i]);
 		}
 
 		return dp[n];
+	}
+
+	@Test
+	public void testCase() {
+		Assertions.assertThat(solution(
+				7
+				, new int[][]{{3,10},{5,20},{1,10},{1,20},{2,15},{4,40},{2,200}}
+		)).isEqualTo(
+				45
+		);
 	}
 
 }

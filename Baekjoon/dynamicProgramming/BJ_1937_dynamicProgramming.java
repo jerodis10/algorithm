@@ -1,5 +1,8 @@
 package Baekjoon.dynamicProgramming;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +22,6 @@ public class BJ_1937_dynamicProgramming {
 		StringTokenizer st;
 		n = Integer.parseInt(br.readLine());
 		map = new int[n][n];
-		dp = new int[n][n];
 
 		for (int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -28,10 +30,13 @@ public class BJ_1937_dynamicProgramming {
 			}
 		}
 
-		System.out.println(solution());
+		System.out.println(solution(n, map));
 	}
 
-	public static int solution() {
+	public static int solution(int a, int[][] arr) {
+		n = a;
+		map = arr.clone();
+		dp = new int[n][n];
 		max = Integer.MIN_VALUE;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -60,6 +65,19 @@ public class BJ_1937_dynamicProgramming {
 		}
 
 		return dp[y][x];
+	}
+
+	@Test
+	public void testCase() {
+		Assertions.assertThat(solution(
+				4
+				, new int[][]{{14, 9, 12, 10},
+						{1, 11, 5, 4},
+						{7, 15, 2, 13},
+						{6, 3, 16, 8}}
+		)).isEqualTo(
+				4
+		);
 	}
 	
 }
