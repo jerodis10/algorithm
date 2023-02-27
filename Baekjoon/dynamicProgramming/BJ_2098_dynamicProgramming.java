@@ -1,5 +1,8 @@
 package Baekjoon.dynamicProgramming;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +21,7 @@ public class BJ_2098_dynamicProgramming {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
 		map = new int[n][n];
-		dp = new int[n][(1 << n)];
+
 		for (int i = 0; i < n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < n; j++) {
@@ -27,12 +30,20 @@ public class BJ_2098_dynamicProgramming {
 			Arrays.fill(dp[i], notVisit);
 		}
 
-		System.out.println(solution());
+		System.out.println(solution(n, map));
 	}
 
-	public static int solution() {
+	public static int solution(int a, int[][] arr) {
+		n = a;
+		map = arr.clone();
+		dp = new int[n][(1 << n)];
+		for (int i = 0; i < n; i++) {
+			Arrays.fill(dp[i], notVisit);
+		}
 		dp[0][0] = 0;
-		return dfs(0, 0);
+
+		int ret = dfs(0, 0);
+		return ret;
 	}
 
 	public static int dfs(int city, int visited) {
@@ -56,6 +67,31 @@ public class BJ_2098_dynamicProgramming {
 		}
 
 		return dp[city][visited];
+	}
+
+	@Test
+	public void testCase() {
+		Assertions.assertThat(solution(
+				16
+				, new int[][]{{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+							  {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+							  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0}}
+		)).isEqualTo(
+				new int[]{20,10,30,40,50,60,70}
+		);
 	}
 
 }
