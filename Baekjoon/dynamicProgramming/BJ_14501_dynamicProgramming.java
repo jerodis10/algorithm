@@ -47,5 +47,32 @@ public class BJ_14501_dynamicProgramming {
 				45
 		);
 	}
+	@Test
+	public void testCase2() {
+		Assertions.assertThat(solution(
+				10
+				, new int[][]{{1,1},{1,2},{1,3},{1,4},{1,5},{1,6},{1,7},{1,8},{1,9},{1,10}}
+		)).isEqualTo(
+				55
+		);
+	}
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				10
+				, new int[][]{{5,10},{5,9},{5,8},{5,7},{5,6},{5,10},{5,9},{5,8},{5,7},{5,6}}
+		)).isEqualTo(
+				20
+		);
+	}
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				10
+				, new int[][]{{5,50},{4,40},{3,30},{2,20},{1,10},{1,10},{2,20},{3,30},{4,40},{5,50}}
+		)).isEqualTo(
+				90
+		);
+	}
 
 }
