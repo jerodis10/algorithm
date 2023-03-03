@@ -46,7 +46,7 @@ public class BJ_11053_dynamicProgramming11 {
 			dp[N] = 1;	// 1로 초기화 
 			
 			// N-1 부터 0까지중 N보다 작은 값들을 찾으면서 재귀호출. 
-			for(int i = N - 1; i >= 0; i--) {
+			for(int i = 0; i < N; i++) {
 				if(seq[i] < seq[N]) {
 					dp[N] = Math.max(dp[N], LIS(i) + 1);
 				}
