@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// https://st-lab.tistory.com/141
+
 public class BJ_12865_dynamicProgramming2_KnapsackProblem {
 	
 	public static void main(String [] args) throws IOException {
@@ -40,3 +42,4 @@ public class BJ_12865_dynamicProgramming2_KnapsackProblem {
 		System.out.println(dp[K]);
 	}
 }
+
