@@ -7,6 +7,8 @@ import java.util.*;
 
 public class BJ_2011_dynamicProgramming {
 
+	// https://leeeehhjj.tistory.com/41?category=934387
+
 	static final int MOD = 1_000_000;
 	
 	public static void main(String[] args) throws IOException {
