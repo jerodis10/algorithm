@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="x-windows-949">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/Baekjoon/TwoPointer/BJ_1644_TwoPointer4.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/backTracking/BJ_9663_backTracking5.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/baekjoon_solution_list.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/binarySearch/BJ_10816_binarySearch2.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/binarySearch/BJ_12015_binarySearch7.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/binarySearch/BJ_1300_binarySearch6.java" charset="UTF-8" />
@@ -106,8 +108,30 @@
     <file url="file://$PROJECT_DIR$/Baekjoon/implementation/BJ_16235_implement.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/implementation/BJ_17143_implement.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_1010_num9.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_11050_num7.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_11051_num8.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_1934_num4.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_2004_num12.java" charset="UTF-8" />
-    <file url="PROJECT" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_2609_num3.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_2981_num5.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_3036_num6.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/num/BJ_9375_num10.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/priorityQueue/BJ_11279_priorityQueue1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/priorityQueue/BJ_11286_priorityQueue3.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/priorityQueue/BJ_1927_priorityQueue2.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_1021_queue_deque6.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_10866_queue_deque5.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_11866_queue_deque3.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_18258_queue_deque1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_1966_queue_deque4.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_2164_queue_deque2.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/queue_deque/BJ_5430_queue_deque7.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/shortest_path/BJ_11657_shortest_path4.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/shortest_path/BJ_1956_shortest_path7.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/stack/BJ_17298_stack6.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/stack/BJ_1874_stack5.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/stack/BJ_4949_stack4.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Baekjoon/stack/BJ_9012_stack3.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
