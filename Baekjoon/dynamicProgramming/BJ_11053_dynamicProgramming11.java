@@ -25,13 +25,13 @@ public class BJ_11053_dynamicProgramming11 {
 			seq[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		// 0 ~ N-1 ±îÁö Å½»ö 
+		// 0 ~ N-1 ê¹Œì§€ íƒìƒ‰ 
 		for(int i = 0; i < N; i++) {
 			LIS(i);
 		}
 		
 		int max = dp[0];
-		// ÃÖ´ñ°ª Ã£±â 
+		// ìµœëŒ“ê°’ ì°¾ê¸° 
 		for(int i = 1; i < N; i++) {
 			max = Math.max(max, dp[i]);
 		}
@@ -41,11 +41,11 @@ public class BJ_11053_dynamicProgramming11 {
 	
 	static int LIS(int N) {
 		
-		// ¸¸¾à Å½»öÇÏÁö ¾Ê´ø À§Ä¡ÀÇ °æ¿ì 
+		// ë§Œì•½ íƒìƒ‰í•˜ì§€ ì•Šë˜ ìœ„ì¹˜ì˜ ê²½ìš° 
 		if(dp[N] == null) {
-			dp[N] = 1;	// 1·Î ÃÊ±âÈ­ 
+			dp[N] = 1;	// 1ë¡œ ì´ˆê¸°í™” 
 			
-			// N-1 ºÎÅÍ 0±îÁöÁß Nº¸´Ù ÀÛÀº °ªµéÀ» Ã£À¸¸é¼­ Àç±ÍÈ£Ãâ. 
+			// N-1 ë¶€í„° 0ê¹Œì§€ì¤‘ Në³´ë‹¤ ì‘ì€ ê°’ë“¤ì„ ì°¾ìœ¼ë©´ì„œ ì¬ê·€í˜¸ì¶œ. 
 			for(int i = 0; i < N; i++) {
 				if(seq[i] < seq[N]) {
 					dp[N] = Math.max(dp[N], LIS(i) + 1);

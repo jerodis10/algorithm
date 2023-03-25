@@ -29,28 +29,28 @@ public class BJ_1992_divide_conquer2 {
 	
 	public static void QuadTree(int x, int y, int size) {
 		
-		// ¾ĞÃàÀÌ °¡´ÉÇÒ °æ¿ì ÇÏ³ªÀÇ »ö»óÀ¸·Î ¾ĞÃàÇØÁØ´Ù.
+		// ì••ì¶•ì´ ê°€ëŠ¥í•  ê²½ìš° í•˜ë‚˜ì˜ ìƒ‰ìƒìœ¼ë¡œ ì••ì¶•í•´ì¤€ë‹¤.
 		if(isPossible(x, y, size)) {
 			sb.append(img[x][y]);
 			return;
 		}
 		
-		int newSize = size / 2;	// ¾ĞÃàÀÌ ºÒ°¡´É ÇÒ °æ¿ì »çÀÌÁî¸¦ Àı¹İÀ¸·Î ³ª´©¾î¾ß ÇÑ´Ù.
+		int newSize = size / 2;	// ì••ì¶•ì´ ë¶ˆê°€ëŠ¥ í•  ê²½ìš° ì‚¬ì´ì¦ˆë¥¼ ì ˆë°˜ìœ¼ë¡œ ë‚˜ëˆ„ì–´ì•¼ í•œë‹¤.
 		
-		sb.append('(');	// °¢ ·¹º§(depth)¿¡¼­ ¿©´Â°ıÈ£·Î ½ÃÀÛÇØ¾ßÇÑ´Ù. 
+		sb.append('(');	// ê° ë ˆë²¨(depth)ì—ì„œ ì—¬ëŠ”ê´„í˜¸ë¡œ ì‹œì‘í•´ì•¼í•œë‹¤. 
 		
-		QuadTree(x, y, newSize);						// ¿ŞÂÊ À§
-		QuadTree(x, y + newSize, newSize);				// ¿À¸¥ÂÊ À§
-		QuadTree(x + newSize, y, newSize);				// ¿ŞÂÊ ¾Æ·¡
-		QuadTree(x + newSize, y + newSize, newSize);	// ¿À¸¥ÂÊ ¾Æ·¡
+		QuadTree(x, y, newSize);						// ì™¼ìª½ ìœ„
+		QuadTree(x, y + newSize, newSize);				// ì˜¤ë¥¸ìª½ ìœ„
+		QuadTree(x + newSize, y, newSize);				// ì™¼ìª½ ì•„ë˜
+		QuadTree(x + newSize, y + newSize, newSize);	// ì˜¤ë¥¸ìª½ ì•„ë˜
 		
-		sb.append(')');	// ÇØ´ç ·¹º§ÀÌ ³¡³ª¸é ´İ´Â°ıÈ£µµ ´İ¾ÆÁØ´Ù.
+		sb.append(')');	// í•´ë‹¹ ë ˆë²¨ì´ ëë‚˜ë©´ ë‹«ëŠ”ê´„í˜¸ë„ ë‹«ì•„ì¤€ë‹¤.
 			
 		
 	}
 	
 	
-	// ¾ĞÃàÀÌ °¡´ÉÇÑÁö ÇØ´ç °ø°£À» Ã¼Å©ÇØÁÖ´Â ÇÔ¼ö
+	// ì••ì¶•ì´ ê°€ëŠ¥í•œì§€ í•´ë‹¹ ê³µê°„ì„ ì²´í¬í•´ì£¼ëŠ” í•¨ìˆ˜
 	public static boolean isPossible(int x, int y, int size) {
 		int value = img[x][y];
 		

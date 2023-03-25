@@ -16,17 +16,17 @@ public class BJ_3036_num6 {
  
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
  
-		// Ã¹ ¹øÂ° ¸µ
+		// ì²« ë²ˆì§¸ ë§
 		int firstRing = Integer.parseInt(st.nextToken());
  
 		for (int i = 1; i < N; i++) {
 			
 			int otherRing = Integer.parseInt(st.nextToken());
 			
-			// ±â¾àºĞ¼ö·Î ¸¸µé±â À§ÇÑ ÃÖ´ë°ø¾à¼ö Ã£±â
+			// ê¸°ì•½ë¶„ìˆ˜ë¡œ ë§Œë“¤ê¸° ìœ„í•œ ìµœëŒ€ê³µì•½ìˆ˜ ì°¾ê¸°
 			int gcd = gcd(firstRing, otherRing);
  
-			// ºĞ¸ğ¿Í ºĞÀÚ¸¦ ÃÖ´ë°ø¾à¼ö·Î ³ª´²ÁÖ±â 
+			// ë¶„ëª¨ì™€ ë¶„ìë¥¼ ìµœëŒ€ê³µì•½ìˆ˜ë¡œ ë‚˜ëˆ ì£¼ê¸° 
 			sb.append(firstRing / gcd).append('/').append(otherRing / gcd).append('\n');
 		}
 		
@@ -34,7 +34,7 @@ public class BJ_3036_num6 {
  
 	}
  
-	// ÃÖ´ë°ø¾à¼ö ¸Ş¼Òµå
+	// ìµœëŒ€ê³µì•½ìˆ˜ ë©”ì†Œë“œ
 	static int gcd(int a, int b) {
 		int r;
  

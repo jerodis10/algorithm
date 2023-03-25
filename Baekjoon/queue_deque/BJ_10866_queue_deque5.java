@@ -20,7 +20,7 @@ public class BJ_10866_queue_deque5 {
  
 			String[] s = br.readLine().split(" ");
  
-			// Ã¹ ¹øÂ° ´Ü¾î¿¡ ´ëÇÑ switch-case 
+			// ì²« ë²ˆì§¸ ë‹¨ì–´ì— ëŒ€í•œ switch-case 
 			switch (s[0]) {
  
 				case "push_front": {

@@ -22,7 +22,7 @@ public class BJ_1010_dynamicProgramming {
 
 			st = new StringTokenizer(br.readLine(), " ");
 
-			// M°³Áß N°³¸¦ »Ì´Â °æ¿ìÀÌ¹Ç·Î nCr ¿¡¼­ n = M, r = NÀÌ´Ù.
+			// Mê°œì¤‘ Nê°œë¥¼ ë½‘ëŠ” ê²½ìš°ì´ë¯€ë¡œ nCr ì—ì„œ n = M, r = Nì´ë‹¤.
 			int N = Integer.parseInt(st.nextToken());	// N = r
 			int M = Integer.parseInt(st.nextToken());	// M = n
 
@@ -36,17 +36,17 @@ public class BJ_1010_dynamicProgramming {
 
 	static int combi(int n, int r) {
 
-		// ÀÌ¹Ì Ç®¸° °æ¿ì ¹Ù·Î ¹ÝÈ¯
+		// ì´ë¯¸ í’€ë¦° ê²½ìš° ë°”ë¡œ ë°˜í™˜
 		if(dp[n][r] > 0) {
 			return dp[n][r];
 		}
 
-		// 2¹ø ¼ºÁú
+		// 2ë²ˆ ì„±ì§ˆ
 		if(n == r || r == 0) {
 			return dp[n][r] = 1;
 		}
 
-		// 1¹ø ¼ºÁú
+		// 1ë²ˆ ì„±ì§ˆ
 		return dp[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
 	}
 }

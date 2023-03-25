@@ -8,7 +8,7 @@ import java.util.*;
 public class BJ_12852_dynamicProgramming {
 
 	private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	// ¹«ÇÑ´ëÀÇ °ª
+	// ë¬´í•œëŒ€ì˜ ê°’
 	private static final int INF = 1_000_000;
 	static StringBuilder sb = new StringBuilder();
 
@@ -17,11 +17,11 @@ public class BJ_12852_dynamicProgramming {
 		int dp[] = new int[n + 1];
 
 		Arrays.fill(dp, INF);
-		//nÀ» ¸¸µé±â À§ÇØ °É¸®´Â ÃÖ¼Ò ½Ã°£ = 0
+		//nì„ ë§Œë“¤ê¸° ìœ„í•´ ê±¸ë¦¬ëŠ” ìµœì†Œ ì‹œê°„ = 0
 		dp[n] = 0;
 
 		for(int i = n; i >= 1; i--){
-			// ÇöÀç iÀ§Ä¡¿¡¼­ °¡´Â ÃÖ¼Ú°ª
+			// í˜„ì¬ iìœ„ì¹˜ì—ì„œ ê°€ëŠ” ìµœì†Ÿê°’
 			int minValue = dp[i] + 1;
 
 			if(i % 3 == 0) dp[i / 3] = Math.min(dp[i / 3], minValue);
@@ -30,7 +30,7 @@ public class BJ_12852_dynamicProgramming {
 
 
 		}
-		// 1±îÁö °¡´Â ÃÖ¼Ò È½¼ö
+		// 1ê¹Œì§€ ê°€ëŠ” ìµœì†Œ íšŸìˆ˜
 		sb.append(dp[1] + "\n");
 
 		int minValue = dp[1];
@@ -40,11 +40,11 @@ public class BJ_12852_dynamicProgramming {
 			if(minValue == dp[i]){
 				stack.push(i);
 
-				// 3¹èÀÇ ¼öÀÇ dp°ªÀÌ dp[i] - 1°ú °°Àº °æ¿ì
+				// 3ë°°ì˜ ìˆ˜ì˜ dpê°’ì´ dp[i] - 1ê³¼ ê°™ì€ ê²½ìš°
 				if(i * 3 <= n && dp[i * 3] == minValue - 1)
-					// i°ªÀº 3¹èÀÎ ¼ö·Î º¯°æ
+					// iê°’ì€ 3ë°°ì¸ ìˆ˜ë¡œ ë³€ê²½
 					i = i * 3 - 1;
-					// 2¹èÀÇ ¼öÀÇ dp°ªÀÌ dp[i] - 1°ú °°Àº °æ¿ì
+					// 2ë°°ì˜ ìˆ˜ì˜ dpê°’ì´ dp[i] - 1ê³¼ ê°™ì€ ê²½ìš°
 				else if(i * 2 <= n && dp[i * 2] == minValue - 1){
 					i = i * 2 - 1;
 				}else if(i + 1 <= n && dp[i + 1] == minValue - 1){
@@ -55,7 +55,7 @@ public class BJ_12852_dynamicProgramming {
 			}
 		}
 
-		// ¿ªÃßÀûÇÑ °á°ú Ãâ·Â
+		// ì—­ì¶”ì í•œ ê²°ê³¼ ì¶œë ¥
 		while (!stack.isEmpty()){
 			sb.append(stack.pop() + " ");
 		}

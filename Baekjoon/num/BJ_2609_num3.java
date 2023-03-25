@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class BJ_2609_num3 {
 	
-	static int num[]; //ÀÔ·Â¹ŞÀº °ª
+	static int num[]; //ì…ë ¥ë°›ì€ ê°’
 	static int num2[]; 
 	static int num3[]; 
 	
@@ -27,13 +27,13 @@ public class BJ_2609_num3 {
  
 	}
  
-	// ÃÖ´ë°ø¾à¼ö ¹İº¹¹® ¹æ½Ä
+	// ìµœëŒ€ê³µì•½ìˆ˜ ë°˜ë³µë¬¸ ë°©ì‹
 	public static int gcd(int a, int b) {
  
 		while (b != 0) {
-			int r = a % b; // ³ª¸ÓÁö¸¦ ±¸ÇØÁØ´Ù.
+			int r = a % b; // ë‚˜ë¨¸ì§€ë¥¼ êµ¬í•´ì¤€ë‹¤.
  
-			// GCD(a, b) = GCD(b, r)ÀÌ¹Ç·Î º¯È¯ÇÑ´Ù.
+			// GCD(a, b) = GCD(b, r)ì´ë¯€ë¡œ ë³€í™˜í•œë‹¤.
 			a = b;
 			b = r;
 		}

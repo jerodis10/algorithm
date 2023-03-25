@@ -20,7 +20,7 @@ public class BJ_1654_binarySearch3 {
 		
 		long max = 0;
 		
-		// ÀÔ·Â°ú µ¿½Ã¿¡ ÇØ´ç ·£¼±ÀÇ ±æÀÌ°¡ ÃÖ´ñ°ªÀÎÁö¸¦ È®ÀÎÇÏ°í max¸¦ °»½Å
+		// ìž…ë ¥ê³¼ ë™ì‹œì— í•´ë‹¹ ëžœì„ ì˜ ê¸¸ì´ê°€ ìµœëŒ“ê°’ì¸ì§€ë¥¼ í™•ì¸í•˜ê³  maxë¥¼ ê°±ì‹ 
 		for (int i = 0; i < K; i++) {
 			arr[i] = Integer.parseInt(br.readLine());
 			if(max < arr[i]) {
@@ -29,7 +29,7 @@ public class BJ_1654_binarySearch3 {
 		}
 		
  
-		// ¹Ýµå½Ã max¿¡¼­ +1 °ªÀÌ¾î¾ß ÇÑ´Ù.
+		// ë°˜ë“œì‹œ maxì—ì„œ +1 ê°’ì´ì–´ì•¼ í•œë‹¤.
 		max++; 
  
 		long min = 0; 
@@ -37,24 +37,24 @@ public class BJ_1654_binarySearch3 {
  
 		while (min < max) { 
 			
-			// ¹üÀ§ ³»¿¡¼­ Áß°£ ±æÀÌ¸¦ ±¸ÇÑ´Ù.
+			// ë²”ìœ„ ë‚´ì—ì„œ ì¤‘ê°„ ê¸¸ì´ë¥¼ êµ¬í•œë‹¤.
 			mid = (max + min) / 2;
 			
  
 			long count = 0;
 			
-			// ±¸ÇØÁø Áß°£ ±æÀÌ·Î Àß¶ó¼­ ÃÑ ¸î °³°¡ ¸¸µé¾îÁö´ÂÁö¸¦ ±¸ÇÑ´Ù.
+			// êµ¬í•´ì§„ ì¤‘ê°„ ê¸¸ì´ë¡œ ìž˜ë¼ì„œ ì´ ëª‡ ê°œê°€ ë§Œë“¤ì–´ì§€ëŠ”ì§€ë¥¼ êµ¬í•œë‹¤.
  
 			for (int i = 0; i < arr.length; i++) {
 				count += (arr[i] / mid);
 			}
 			
 			/*
-			 *  [upper bound Çü½Ä]
+			 *  [upper bound í˜•ì‹]
 			 *  
-			 *  mid±æÀÌ·Î Àß¶úÀ» ¶§ÀÇ °³¼ö°¡ ¸¸µé°íÀÚ ÇÏ´Â ·£¼±ÀÇ °³¼öº¸´Ù ÀÛ´Ù¸é
-			 *  ÀÚ¸£°íÀÚ ÇÏ´Â ±æÀÌ¸¦ ÁÙÀÌ±â À§ÇØ ÃÖ´ë ±æÀÌ¸¦ ÁÙÀÎ´Ù.
-			 *  ±× ¿Ü¿¡´Â ÀÚ¸£°íÀÚ ÇÏ´Â ±æÀÌ¸¦ ´Ã·Á¾ß ÇÏ¹Ç·Î ÃÖ¼Ò ±æÀÌ¸¦ ´Ã¸°´Ù.
+			 *  midê¸¸ì´ë¡œ ìž˜ëžì„ ë•Œì˜ ê°œìˆ˜ê°€ ë§Œë“¤ê³ ìž í•˜ëŠ” ëžœì„ ì˜ ê°œìˆ˜ë³´ë‹¤ ìž‘ë‹¤ë©´
+			 *  ìžë¥´ê³ ìž í•˜ëŠ” ê¸¸ì´ë¥¼ ì¤„ì´ê¸° ìœ„í•´ ìµœëŒ€ ê¸¸ì´ë¥¼ ì¤„ì¸ë‹¤.
+			 *  ê·¸ ì™¸ì—ëŠ” ìžë¥´ê³ ìž í•˜ëŠ” ê¸¸ì´ë¥¼ ëŠ˜ë ¤ì•¼ í•˜ë¯€ë¡œ ìµœì†Œ ê¸¸ì´ë¥¼ ëŠ˜ë¦°ë‹¤.
 			 */
 			if(count < N) {
 				max = mid;
@@ -66,7 +66,7 @@ public class BJ_1654_binarySearch3 {
  
 		}
 		
-		// UpperBound·Î ¾ò¾îÁø °ª(min)¿¡ -1ÀÌ ÃÖ´ë ±æÀÌ°¡ µÈ´Ù.
+		// UpperBoundë¡œ ì–»ì–´ì§„ ê°’(min)ì— -1ì´ ìµœëŒ€ ê¸¸ì´ê°€ ëœë‹¤.
 		System.out.println(min - 1);
 	}
 

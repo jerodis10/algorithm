@@ -21,12 +21,12 @@ public class BJ_2981_num5 {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
  
-		Arrays.sort(arr);	// Á¤·Ä
+		Arrays.sort(arr);	// ì •ë ¬
  
-		int gcdVal = arr[1] - arr[0];	// À½¼ö°¡ µÇÁö ¾Êµµ·Ï Å« ¼ö¿¡¼­ ÀÛÀº ¼ö·Î »©ÁØ´Ù.
+		int gcdVal = arr[1] - arr[0];	// ìŒìˆ˜ê°€ ë˜ì§€ ì•Šë„ë¡ í° ìˆ˜ì—ì„œ ì‘ì€ ìˆ˜ë¡œ ë¹¼ì¤€ë‹¤.
  
 		for(int i = 2; i < N; i++) {
-			// Á÷ÀüÀÇ ÃÖ´ë °ø¾à¼ö¿Í ´ÙÀ½ ¼ö(arr[i] - arr[i - 1])ÀÇ ÃÖ´ë°ø¾à¼ö¸¦ °»½Å 
+			// ì§ì „ì˜ ìµœëŒ€ ê³µì•½ìˆ˜ì™€ ë‹¤ìŒ ìˆ˜(arr[i] - arr[i - 1])ì˜ ìµœëŒ€ê³µì•½ìˆ˜ë¥¼ ê°±ì‹  
 			gcdVal = gcd(gcdVal, arr[i] - arr[i - 1]);
 		}
  
@@ -34,33 +34,33 @@ public class BJ_2981_num5 {
 		
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
-		// ÃÖ´ë°ø¾à¼öÀÇ ¾à¼öµé Ã£±â (Á¦°ö±Ù±îÁö¸¸ Å½»ö)
+		// ìµœëŒ€ê³µì•½ìˆ˜ì˜ ì•½ìˆ˜ë“¤ ì°¾ê¸° (ì œê³±ê·¼ê¹Œì§€ë§Œ íƒìƒ‰)
 		for(int i = 2; i <= Math.sqrt(gcdVal); i++) {
 	    
-			// Á¦°ö±ÙÀÌ gcdValÀÇ ¾à¼ö¶ó¸é Áßº¹Ãß°¡¸¦ ¹æÁöÇÏ±â À§ÇØ ÇÑ ¹ø¸¸ Ãß°¡
+			// ì œê³±ê·¼ì´ gcdValì˜ ì•½ìˆ˜ë¼ë©´ ì¤‘ë³µì¶”ê°€ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ í•œ ë²ˆë§Œ ì¶”ê°€
 			if(i * i == gcdVal) {
 				list.add(i);
 			}
-			// i°¡ ÃÖ´ë°ø¾à¼öÀÇ ¾à¼ö¶ó¸é i¿Í ³ª´« ¸ò Ãß°¡ 
+			// iê°€ ìµœëŒ€ê³µì•½ìˆ˜ì˜ ì•½ìˆ˜ë¼ë©´ iì™€ ë‚˜ëˆˆ ëª« ì¶”ê°€ 
 			else if(gcdVal % i == 0) {
 				list.add(i);
 				list.add(gcdVal / i);
 			}
 		}
  
-		// Á¤·Ä 
+		// ì •ë ¬ 
 		Collections.sort(list);
 		
 		for(int val : list) {
 			sb.append(val).append(' ');
 		}
-		// ¸¶Áö¸· ÃÖ´ë°ø¾à¼ö ²À Ãâ·ÂÇØ¾ßÇÔ
+		// ë§ˆì§€ë§‰ ìµœëŒ€ê³µì•½ìˆ˜ ê¼­ ì¶œë ¥í•´ì•¼í•¨
 		sb.append(gcdVal);
 		System.out.println(sb);
 		
 	}
 	
-	// ÃÖ´ë°ø¾à¼ö ÇÔ¼ö
+	// ìµœëŒ€ê³µì•½ìˆ˜ í•¨ìˆ˜
 	static int gcd(int a, int b) {
 		while(b != 0) {
 			int r = a % b;

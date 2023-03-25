@@ -17,7 +17,7 @@ public class BJ_1644_TwoPointer4 {
         ArrayList<Integer> prime_num = new ArrayList<>();
         prime[0] = prime[1] = true;
         
-        // 1. ¼Ò¼ö ±¸ÇÏ±â
+        // 1. ì†Œìˆ˜ êµ¬í•˜ê¸°
         for(int i=2;i*i<=n;i++) 
         	if(!prime[i])
         		for(int j=i*i;j<=n;j+=i)
@@ -27,7 +27,7 @@ public class BJ_1644_TwoPointer4 {
         	if(!prime[i]) prime_num.add(i);
         
         
-        // 2. ¿¬¼ÓÇÕÀ¸·Î ÁÖ¾îÁø Á¤¼ö ±¸ÇÒ ¼ö ÀÖ´ÂÁö ÆÇº°
+        // 2. ì—°ì†í•©ìœ¼ë¡œ ì£¼ì–´ì§„ ì •ìˆ˜ êµ¬í•  ìˆ˜ ìžˆëŠ”ì§€ íŒë³„
         int left = 0, right = 0, sum = 0, ret = 0;
         while(true) {
         	if(sum >= n) sum -= prime_num.get(left++);

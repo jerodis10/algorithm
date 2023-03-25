@@ -26,17 +26,17 @@ public class BJ_11050_num7 {
  
 	static int BC(int n, int k) {
  
-		// ÀÌ¹Ì Ç®¾ú´ø sub¹®Á¦ÀÏ °æ¿ì °ªÀ» ÀçÈ°¿ë
+		// ì´ë¯¸ í’€ì—ˆë˜ subë¬¸ì œì¼ ê²½ìš° ê°’ì„ ìž¬í™œìš©
 		if (dp[n][k] > 0) {
 			return dp[n][k];
 		}
  
-		// 2¹ø ¼ºÁú
+		// 2ë²ˆ ì„±ì§ˆ
 		if (k == 0 || n == k) {
 			return dp[n][k] = 1;
 		}
  
-		// 1¹ø ¼ºÁú
+		// 1ë²ˆ ì„±ì§ˆ
 		return dp[n][k] = BC(n - 1, k - 1) + BC(n - 1, k);
 	}
 		

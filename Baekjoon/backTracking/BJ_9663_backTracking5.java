@@ -22,7 +22,7 @@ public class BJ_9663_backTracking5 {
     }
 
     public static void nQueen(int depth) {
-    	// ¿­À» ´Ù Ã¼¿ì¸é Ä«¿îÆ®¸¦ 1 Áõ°¡½ÃÅ°°í ¸®ÅÏ½ÃÅ²´Ù.
+    	// ì—´ì„ ë‹¤ ì²´ìš°ë©´ ì¹´ìš´íŠ¸ë¥¼ 1 ì¦ê°€ì‹œí‚¤ê³  ë¦¬í„´ì‹œí‚¨ë‹¤.
         if (depth == N) {
             count++;
             return;
@@ -30,7 +30,7 @@ public class BJ_9663_backTracking5 {
 
         for (int i = 0; i < N; i++) {
             arr[depth] = i;
-            // Possibility() ÇØ´ç ¿­¿¡¼­ i ¹øÂ° Çà¿¡ ³õÀ» ¼ö ÀÖ´ÂÁö¸¦ °Ë»çÇÏ´Â ÇÔ¼ö
+            // Possibility() í•´ë‹¹ ì—´ì—ì„œ i ë²ˆì§¸ í–‰ì— ë†“ì„ ìˆ˜ ìˆëŠ”ì§€ë¥¼ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜
             if (Possibility(depth)) {
                 nQueen(depth + 1);
             }
@@ -41,14 +41,14 @@ public class BJ_9663_backTracking5 {
     public static boolean Possibility(int col) {
 
         for (int i = 0; i < col; i++) {
-            // ÇØ´ç ¿­ÀÇ Çà°ú i¿­ÀÇ ÇàÀÌ ÀÏÄ¡ÇÒ°æ¿ì (°°Àº Çà¿¡ Á¸ÀçÇÒ °æ¿ì) 
+            // í•´ë‹¹ ì—´ì˜ í–‰ê³¼ iì—´ì˜ í–‰ì´ ì¼ì¹˜í• ê²½ìš° (ê°™ì€ í–‰ì— ì¡´ì¬í•  ê²½ìš°) 
             if (arr[col] == arr[i]) {
                 return false;
             }
 
             /*
-    		 * ´ë°¢¼±»ó¿¡ ³õ¿©ÀÖ´Â °æ¿ì
-    		 * (¿­ÀÇ Â÷¿Í ÇàÀÇ Â÷°¡ °°À» °æ¿ì°¡ ´ë°¢¼±¿¡ ³õ¿©ÀÖ´Â °æ¿ì´Ù)
+    		 * ëŒ€ê°ì„ ìƒì— ë†“ì—¬ìˆëŠ” ê²½ìš°
+    		 * (ì—´ì˜ ì°¨ì™€ í–‰ì˜ ì°¨ê°€ ê°™ì„ ê²½ìš°ê°€ ëŒ€ê°ì„ ì— ë†“ì—¬ìˆëŠ” ê²½ìš°ë‹¤)
     		 */
             else if (Math.abs(col - i) == Math.abs(arr[col] - arr[i])) {
                 return false;

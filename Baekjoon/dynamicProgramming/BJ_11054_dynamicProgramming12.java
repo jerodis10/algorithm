@@ -42,13 +42,13 @@ public class BJ_11054_dynamicProgramming12 {
  
 	static int LIS(int N) {
  
-		// ¸¸¾à Å½»öÇÏÁö ¾Ê´ø À§Ä¡ÀÇ °æ¿ì
+		// ë§Œì•½ íƒìƒ‰í•˜ì§€ ì•Šë˜ ìœ„ì¹˜ì˜ ê²½ìš°
 		if (r_dp[N] == null) {
-			r_dp[N] = 1; // 1·Î ÃÊ±âÈ­
+			r_dp[N] = 1; // 1ë¡œ ì´ˆê¸°í™”
  
-			// N ÀÌÀüÀÇ ³ëµåµéÀ» Å½»ö
+			// N ì´ì „ì˜ ë…¸ë“œë“¤ì„ íƒìƒ‰
 			for (int i = N - 1; i >= 0; i--) {
-				// ÀÌÀüÀÇ ³ëµå Áß seq[N]ÀÇ °ªº¸´Ù ÀÛÀº °É ¹ß°ßÇßÀ» °æ¿ì
+				// ì´ì „ì˜ ë…¸ë“œ ì¤‘ seq[N]ì˜ ê°’ë³´ë‹¤ ìž‘ì€ ê±¸ ë°œê²¬í–ˆì„ ê²½ìš°
 				if (seq[i] < seq[N]) {
 					r_dp[N] = Math.max(r_dp[N], LIS(i) + 1);
 				}
@@ -59,13 +59,13 @@ public class BJ_11054_dynamicProgramming12 {
  
 	static int LDS(int N) {
 		
-		// ¸¸¾à Å½»öÇÏÁö ¾Ê´ø À§Ä¡ÀÇ °æ¿ì
+		// ë§Œì•½ íƒìƒ‰í•˜ì§€ ì•Šë˜ ìœ„ì¹˜ì˜ ê²½ìš°
 		if (l_dp[N] == null) {
-			l_dp[N] = 1; // 1·Î ÃÊ±âÈ­
+			l_dp[N] = 1; // 1ë¡œ ì´ˆê¸°í™”
  
-			// N ÀÌÈÄÀÇ ³ëµåµéÀ» Å½»ö
+			// N ì´í›„ì˜ ë…¸ë“œë“¤ì„ íƒìƒ‰
 			for (int i = N + 1; i < l_dp.length; i++) {
-				// ÀÌÈÄÀÇ ³ëµå Áß seq[N]ÀÇ °ªº¸´Ù ÀÛÀº °É ¹ß°ßÇßÀ» °æ¿ì
+				// ì´í›„ì˜ ë…¸ë“œ ì¤‘ seq[N]ì˜ ê°’ë³´ë‹¤ ìž‘ì€ ê±¸ ë°œê²¬í–ˆì„ ê²½ìš°
 				if (seq[i] < seq[N]) {
 					l_dp[N] = Math.max(l_dp[N], LDS(i) + 1);
 				}

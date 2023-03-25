@@ -32,7 +32,7 @@ public class BJ_1149_dynamicProgramming5 {
 			Cost[i][Blue] = Integer.parseInt(st.nextToken());
 		}
 		
-		// DPÀÇ Ã¹¹øÂ° °ª(Áı)Àº °¢ »ö»óºñ¿ëÀÇ Ã¹¹øÂ° °ªÀ¸·Î ÃÊ±âÈ­
+		// DPì˜ ì²«ë²ˆì§¸ ê°’(ì§‘)ì€ ê° ìƒ‰ìƒë¹„ìš©ì˜ ì²«ë²ˆì§¸ ê°’ìœ¼ë¡œ ì´ˆê¸°í™”
 		DP[0][Red] = Cost[0][Red];
 		DP[0][Green] = Cost[0][Green];
 		DP[0][Blue] = Cost[0][Blue];
@@ -43,10 +43,10 @@ public class BJ_1149_dynamicProgramming5 {
 	
 	static int Paint_cost(int N, int color) {
 		
-		// ¸¸¾à Å½»öÇÏÁö ¾ÊÀº ¹è¿­ÀÌ¶ó¸é
+		// ë§Œì•½ íƒìƒ‰í•˜ì§€ ì•Šì€ ë°°ì—´ì´ë¼ë©´
 		if(DP[N][color] == 0) {
 			
-			// colorÀÇ »ö¿¡ µû¶ó ÀÌÀü ÁıÀÇ ¼­·Î ´Ù¸¥ »öÀ» Àç±ÍÈ£ÃâÇÏ¿© ÃÖ¼Ú°ª°ú ÇöÀç ÁıÀÇ ºñ¿ëÀ» ´õÇØ¼­ DP¿¡ ÀúÀåÇÑ´Ù
+			// colorì˜ ìƒ‰ì— ë”°ë¼ ì´ì „ ì§‘ì˜ ì„œë¡œ ë‹¤ë¥¸ ìƒ‰ì„ ì¬ê·€í˜¸ì¶œí•˜ì—¬ ìµœì†Ÿê°’ê³¼ í˜„ì¬ ì§‘ì˜ ë¹„ìš©ì„ ë”í•´ì„œ DPì— ì €ì¥í•œë‹¤
 			if(color == Red) {
 				DP[N][Red] = Math.min(Paint_cost(N - 1, Green), Paint_cost(N - 1, Blue)) + Cost[N][Red];
 			}

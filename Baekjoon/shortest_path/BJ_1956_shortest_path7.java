@@ -38,8 +38,8 @@ public class BJ_1956_shortest_path7 {
 			dist[s][e] = Math.min(dist[s][e], d);
 		}
 
-		//ÇÃ·ÎÀÌµå ¿ö¼È
-		// k = °æÀ¯Áö
+		//í”Œë¡œì´ë“œ ì›Œì…œ
+		// k = ê²½ìœ ì§€
 		for(int i=1;i<=V;i++) {
 			for(int j=1;j<=V;j++) {
 				for(int k=1;k<=V;k++) {

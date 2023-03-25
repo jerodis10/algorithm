@@ -66,7 +66,7 @@ public class BJ_16235_implement {
 		while(k-- > 0) {
 			Queue<int[]> deadList = new LinkedList<>();
 
-			// ∫Ω
+			// Î¥Ñ
 			for(int i = 0; i < treeList.size();) {
 				int[] cur = treeList.poll();
 				if (map[cur[0]][cur[1]] >= cur[2]) {
@@ -79,13 +79,13 @@ public class BJ_16235_implement {
 				}
 			}
 
-			// ø©∏ß
+			// Ïó¨Î¶Ñ
 			while (!deadList.isEmpty()) {
 				int[] cur = deadList.poll();
 				map[cur[0]][cur[1]] += cur[2] / 2;
 			}
 
-			// ∞°¿ª
+			// Í∞ÄÏùÑ
 			List<int[]> childTrees = new ArrayList<>();
 			for (int[] tree : treeList) {
 				int y = tree[0];
@@ -106,7 +106,7 @@ public class BJ_16235_implement {
 				treeList.addFirst(child);
 			}
 
-			// ∞‹øÔ
+			// Í≤®Ïö∏
 			for (int i = 1; i <= n; i++) {
 				for (int j = 1; j <= n; j++) {
 					map[i][j] += original[i][j];

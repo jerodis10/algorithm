@@ -27,15 +27,15 @@ public static void main(String[] args) throws IOException {
 			tree[i] = Integer.parseInt(st.nextToken());
 			
 			/*
-			 * ³ª¹«µé Áß ÃÖ´ñ°ªÀ» ±¸ÇÏ±â À§ÇØ ¸Å ÀÔ·Â ¶§¸¶´Ù max º¯¼ö¿Í ºñ±³ÇÏ¿©
-			 * ÀÔ·Â ¹ÞÀº ³ª¹«°¡ maxº¸´Ù Å¬ °æ¿ì max °ªÀ» ÇØ´ç ³ª¹«ÀÇ ³ôÀÌ·Î °»½ÅÇØÁØ´Ù. 
+			 * ë‚˜ë¬´ë“¤ ì¤‘ ìµœëŒ“ê°’ì„ êµ¬í•˜ê¸° ìœ„í•´ ë§¤ ìž…ë ¥ ë•Œë§ˆë‹¤ max ë³€ìˆ˜ì™€ ë¹„êµí•˜ì—¬
+			 * ìž…ë ¥ ë°›ì€ ë‚˜ë¬´ê°€ maxë³´ë‹¤ í´ ê²½ìš° max ê°’ì„ í•´ë‹¹ ë‚˜ë¬´ì˜ ë†’ì´ë¡œ ê°±ì‹ í•´ì¤€ë‹¤. 
 			 */
 			if(max < tree[i]) {
 				max = tree[i];
 			}
 		}
 		
-		// ÀÌºÐ Å½»ö (upper bound)
+		// ì´ë¶„ íƒìƒ‰ (upper bound)
 		while(min < max) {
 			
 			int mid = (min + max) / 2;
@@ -43,10 +43,10 @@ public static void main(String[] args) throws IOException {
 			for(int treeHeight : tree) {
 				
 				/*
-				 *  treeÀÇ Àß¸° ±æÀÌ = treeÀÇ ³ôÀÌ - ÀÚ¸£´Â À§Ä¡(mid)
-				 *  treeÀÇ Àß¸° ±æÀÇÀÇ ÇÕÀ» ±¸ÇÑ´Ù.
-				 *  ÀÌ ¶§ ÀÚ¸£´Â À§Ä¡°¡ ÁÖ¾îÁø ³ª¹«ÀÇ ³ôÀÌº¸´Ù Å¬ ¼ö ÀÖ±â ¶§¹®¿¡
-				 *  0 ÀÌÇÏÀÎ °æ¿ì(=À½¼ö)¿¡´Â ÇÕ»êÀ» ÇÏÁö ¾Ê°í ¾ç¼ö¸¸ ÇÕ»êÇÏµµ·Ï ÇØ¾ßÇÑ´Ù.
+				 *  treeì˜ ìž˜ë¦° ê¸¸ì´ = treeì˜ ë†’ì´ - ìžë¥´ëŠ” ìœ„ì¹˜(mid)
+				 *  treeì˜ ìž˜ë¦° ê¸¸ì˜ì˜ í•©ì„ êµ¬í•œë‹¤.
+				 *  ì´ ë•Œ ìžë¥´ëŠ” ìœ„ì¹˜ê°€ ì£¼ì–´ì§„ ë‚˜ë¬´ì˜ ë†’ì´ë³´ë‹¤ í´ ìˆ˜ ìžˆê¸° ë•Œë¬¸ì—
+				 *  0 ì´í•˜ì¸ ê²½ìš°(=ìŒìˆ˜)ì—ëŠ” í•©ì‚°ì„ í•˜ì§€ ì•Šê³  ì–‘ìˆ˜ë§Œ í•©ì‚°í•˜ë„ë¡ í•´ì•¼í•œë‹¤.
 				 */
 				if(treeHeight - mid > 0) { 
 					sum += (treeHeight - mid);
@@ -55,19 +55,19 @@ public static void main(String[] args) throws IOException {
 			
  
 			/*
-			 * ÀÚ¸¥ ³ª¹« ±æÀÇÀÇ ÇÕÀÌ Mº¸´Ù ÀÛ´Ù´Â °ÍÀº
-			 * ÀÚ¸£´Â À§Ä¡(³ôÀÌ)°¡ ³ô´Ù´Â ÀÇ¹ÌÀÌ¹Ç·Î ³ôÀÌ¸¦ ³·Ãç¾ß ÇÑ´Ù.
-			 * Áï, »óÇÑ(max)¸¦ ÁÙ¿©¾ß ÇÑ´Ù.
+			 * ìžë¥¸ ë‚˜ë¬´ ê¸¸ì˜ì˜ í•©ì´ Më³´ë‹¤ ìž‘ë‹¤ëŠ” ê²ƒì€
+			 * ìžë¥´ëŠ” ìœ„ì¹˜(ë†’ì´)ê°€ ë†’ë‹¤ëŠ” ì˜ë¯¸ì´ë¯€ë¡œ ë†’ì´ë¥¼ ë‚®ì¶°ì•¼ í•œë‹¤.
+			 * ì¦‰, ìƒí•œ(max)ë¥¼ ì¤„ì—¬ì•¼ í•œë‹¤.
 			 */
 			if(sum < M) {
 				max = mid;
 			}
 			
 			/*
-			 * ÀÚ¸¥ ³ª¹« ±æÀÌÀÇ ÇÕÀÌ Mº¸´Ù Å©´Ù´Â °ÍÀº
-			 * ÀÚ¸£´Â À§Ä¡(³ôÀÌ)°¡ ³·´Ù´Â ÀÇ¹ÌÀÌ¹Ç·Î ³ôÀÌ¸¦ ³ô¿©¾ß ÇÑ´Ù.
-			 * ¶ÇÇÑ, °°À» °æ¿ì¿¡´Â ÃÖ´ëÇÑ Àû°Ô ÀÚ¸£±â À§ÇØ ÀÚ¸£´Â ³ôÀÌ¸¦
-			 * ³ô¿©¾ß ÇÏ¹Ç·Î ÇÏÇÑ(min)À» ¿Ã·Á¾ß ÇÑ´Ù.
+			 * ìžë¥¸ ë‚˜ë¬´ ê¸¸ì´ì˜ í•©ì´ Më³´ë‹¤ í¬ë‹¤ëŠ” ê²ƒì€
+			 * ìžë¥´ëŠ” ìœ„ì¹˜(ë†’ì´)ê°€ ë‚®ë‹¤ëŠ” ì˜ë¯¸ì´ë¯€ë¡œ ë†’ì´ë¥¼ ë†’ì—¬ì•¼ í•œë‹¤.
+			 * ë˜í•œ, ê°™ì„ ê²½ìš°ì—ëŠ” ìµœëŒ€í•œ ì ê²Œ ìžë¥´ê¸° ìœ„í•´ ìžë¥´ëŠ” ë†’ì´ë¥¼
+			 * ë†’ì—¬ì•¼ í•˜ë¯€ë¡œ í•˜í•œ(min)ì„ ì˜¬ë ¤ì•¼ í•œë‹¤.
 			 */
 			else {
 				min = mid + 1;

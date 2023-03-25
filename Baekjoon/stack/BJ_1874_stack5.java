@@ -10,7 +10,7 @@ public class BJ_1874_stack5 {
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();	// Ãâ·ÂÇÒ °á°ú¹° ÀúÀå
+		StringBuilder sb = new StringBuilder();	// ì¶œë ¥í•  ê²°ê³¼ë¬¼ ì €ì¥
 		
 		Stack<Integer> stack = new Stack<>();
 		
@@ -18,24 +18,24 @@ public class BJ_1874_stack5 {
 		
 		int start = 0;
 		
-		// N ¹ø ¹İº¹
+		// N ë²ˆ ë°˜ë³µ
 		while(N -- > 0) {
 			
 			int value = Integer.parseInt(br.readLine());
 			
 			if(value > start) {
-				// start + 1ºÎÅÍ ÀÔ·Â¹ŞÀº value ±îÁö push¸¦ ÇÑ´Ù.
+				// start + 1ë¶€í„° ì…ë ¥ë°›ì€ value ê¹Œì§€ pushë¥¼ í•œë‹¤.
 				for(int i = start + 1; i <= value; i++) {
 					stack.push(i);
-					sb.append('+').append('\n');	// + ¸¦ ÀúÀåÇÑ´Ù. 
+					sb.append('+').append('\n');	// + ë¥¼ ì €ì¥í•œë‹¤. 
 				}
-				start = value; 	// ´ÙÀ½ push ÇÒ ¶§ÀÇ ¿À¸§Â÷¼øÀ» À¯ÁöÇÏ±â À§ÇÑ º¯¼ö ÃÊ±âÈ­ 
+				start = value; 	// ë‹¤ìŒ push í•  ë•Œì˜ ì˜¤ë¦„ì°¨ìˆœì„ ìœ ì§€í•˜ê¸° ìœ„í•œ ë³€ìˆ˜ ì´ˆê¸°í™” 
 			}
 			
-			// top¿¡ ÀÖ´Â ¿ø¼Ò°¡ ÀÔ·Â¹ŞÀº °ª°ú °°ÀÌ ¾ÊÀº °æ¿ì  
+			// topì— ìˆëŠ” ì›ì†Œê°€ ì…ë ¥ë°›ì€ ê°’ê³¼ ê°™ì´ ì•Šì€ ê²½ìš°  
 			else if(stack.peek() != value) {
 				System.out.println("NO");
-				return;		// ¶Ç´Â System.exit(0); À¸·Î ´ëÃ¼ÇØµµ µÊ. 
+				return;		// ë˜ëŠ” System.exit(0); ìœ¼ë¡œ ëŒ€ì²´í•´ë„ ë¨. 
 			}
 			
 			stack.pop();

@@ -14,10 +14,10 @@ public class BJ_1932_dynamicProgramming6 {
 	static int[][] dir = {{1,0},{1,1}};
 	
 	public static int dfs(int depth, int idx) {
-		// ¸¶Áö¸· ÇàÀÏ °æ¿ì ÇöÀç À§Ä¡ÀÇ dp°ª ¹İÈ¯
+		// ë§ˆì§€ë§‰ í–‰ì¼ ê²½ìš° í˜„ì¬ ìœ„ì¹˜ì˜ dpê°’ ë°˜í™˜
 		if(depth == N - 1) return dp[depth][idx];
 		
-		// Å½»öÇÏÁö ¾Ê¾Ò´ø °ªÀÏ °æ¿ì ´ÙÀ½ ÇàÀÇ ¾çÂÊ °ª ºñ±³
+		// íƒìƒ‰í•˜ì§€ ì•Šì•˜ë˜ ê°’ì¼ ê²½ìš° ë‹¤ìŒ í–‰ì˜ ì–‘ìª½ ê°’ ë¹„êµ
 		if (dp[depth][idx] == 0) {
 			dp[depth][idx] = Math.max(dfs(depth + 1, idx), dfs(depth + 1, idx + 1)) + num[depth][idx];
 		}

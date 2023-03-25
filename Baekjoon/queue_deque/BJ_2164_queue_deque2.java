@@ -22,11 +22,11 @@ public class BJ_2164_queue_deque2 {
 		
 		
 		while(q.size() > 1) {
-			q.poll();	// ¸Ç ¾ÕÀÇ ¿ø¼Ò ¹ö¸² 
-			q.offer(q.poll());	// ¸Ç ¾ÕÀÇ ¿ø¼Ò¸¦ ¹ö¸²°ú µ¿½Ã¿¡ ¹ö·ÁÁø ¿ø¼Ò¸¦ ¸Ç µÚ¿¡ »ðÀÔ 
+			q.poll();	// ë§¨ ì•žì˜ ì›ì†Œ ë²„ë¦¼ 
+			q.offer(q.poll());	// ë§¨ ì•žì˜ ì›ì†Œë¥¼ ë²„ë¦¼ê³¼ ë™ì‹œì— ë²„ë ¤ì§„ ì›ì†Œë¥¼ ë§¨ ë’¤ì— ì‚½ìž… 
 		}
 		
-		System.out.println(q.poll());	// ¸¶Áö¸·À¸·Î ³²Àº ¿ø¼Ò Ãâ·Â 
+		System.out.println(q.poll());	// ë§ˆì§€ë§‰ìœ¼ë¡œ ë‚¨ì€ ì›ì†Œ ì¶œë ¥ 
 	}
 		
 }

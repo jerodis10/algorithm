@@ -22,14 +22,14 @@ public class BJ_17143_implement {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
-		// °İÀÚÆÇÀÇ Å©±â R, C, »ó¾îÀÇ ¼ö M
+		// ê²©ìíŒì˜ í¬ê¸° R, C, ìƒì–´ì˜ ìˆ˜ M
 		st = new StringTokenizer(br.readLine());
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		sharks = new Shark[R][C];
 
-		// M °³ÀÇ ÁÙ¿¡ »ó¾îÀÇ Á¤º¸
+		// M ê°œì˜ ì¤„ì— ìƒì–´ì˜ ì •ë³´
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
 
@@ -46,8 +46,8 @@ public class BJ_17143_implement {
 		System.out.println(answerSumOfSize);
 	}
 
-	// ³¬½Ã¿ÕÀÌ ¿À¸¥ÂÊÀ¸·Î ÇÑÄ­ ÀÌµ¿ÇÏ´Â°Ç ¹İº¹¹®ÀÇ index ·Î Ç¥Çö
-	// ÇöÀç »ó¾îÀÇ À§Ä¡ Áß Á¦ÀÏ °¡±î¿î »ó¾î¸¦ Àâ°í »ó¾î ÀÌµ¿ ¹İº¹
+	// ë‚šì‹œì™•ì´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œì¹¸ ì´ë™í•˜ëŠ”ê±´ ë°˜ë³µë¬¸ì˜ index ë¡œ í‘œí˜„
+	// í˜„ì¬ ìƒì–´ì˜ ìœ„ì¹˜ ì¤‘ ì œì¼ ê°€ê¹Œìš´ ìƒì–´ë¥¼ ì¡ê³  ìƒì–´ ì´ë™ ë°˜ë³µ
 	private static void solution() {
 		for (int i = 0; i < C; i++) {
 			fishing(i);
@@ -55,7 +55,7 @@ public class BJ_17143_implement {
 		}
 	}
 
-	// ÇöÀç À§Ä¡¿¡¼­ °¡Àå °¡±îÀÌ¿¡ ÀÖ´Â »ó¾î¸¦ Àâ´Â´Ù.
+	// í˜„ì¬ ìœ„ì¹˜ì—ì„œ ê°€ì¥ ê°€ê¹Œì´ì— ìˆëŠ” ìƒì–´ë¥¼ ì¡ëŠ”ë‹¤.
 	private static void fishing(int col) {
 		for (int i = 0; i < R; i++) {
 			if (sharks[i][col] != null) {
@@ -75,7 +75,7 @@ public class BJ_17143_implement {
 			}
 		}
 
-		// ÀÌµ¿ ¿Ï·áÇÑ ¹è¿­·Î µ¤¾î ¾º¿ì±â
+		// ì´ë™ ì™„ë£Œí•œ ë°°ì—´ë¡œ ë®ì–´ ì”Œìš°ê¸°
 		for (int i = 0; i < R; i++) {
 			sharks[i] = Arrays.copyOf(nextSharks[i], C);
 		}
@@ -88,17 +88,17 @@ public class BJ_17143_implement {
 			return;
 		}
 
-		// direction 1ÀÎ °æ¿ì´Â À§, 2ÀÎ °æ¿ì´Â ¾Æ·¡, 3ÀÎ °æ¿ì´Â ¿À¸¥ÂÊ, 4ÀÎ °æ¿ì´Â ¿ŞÂÊ
-		// À§¾Æ·¡´Â R, ÁÂ¿ì´Â C °¡ X ¶ó°í ÇÒ ¶§ (X - 1) * 2 ¸¸Å­ ÀÌµ¿ÇÏ¸é µ¿ÀÏÇÑ À§Ä¡, ¹æÇâÀ¸·Î µ¹¾Æ¿Â´Ù.
-		// ±×·¯¹Ç·Î »ó¾îÀÇ ¼Óµµ¿¡¼­ (X - 1) * 2 À» ³ª´« ³ª¸ÓÁö¸¸Å­¸¸ ÀÌµ¿ÇÏ¸é µÈ´Ù.
-		// ÃÑ ÀÌµ¿ÇØ¾ß ÇÒ °Å¸® = shark.speed % ((X - 1) * 2)
+		// direction 1ì¸ ê²½ìš°ëŠ” ìœ„, 2ì¸ ê²½ìš°ëŠ” ì•„ë˜, 3ì¸ ê²½ìš°ëŠ” ì˜¤ë¥¸ìª½, 4ì¸ ê²½ìš°ëŠ” ì™¼ìª½
+		// ìœ„ì•„ë˜ëŠ” R, ì¢Œìš°ëŠ” C ê°€ X ë¼ê³  í•  ë•Œ (X - 1) * 2 ë§Œí¼ ì´ë™í•˜ë©´ ë™ì¼í•œ ìœ„ì¹˜, ë°©í–¥ìœ¼ë¡œ ëŒì•„ì˜¨ë‹¤.
+		// ê·¸ëŸ¬ë¯€ë¡œ ìƒì–´ì˜ ì†ë„ì—ì„œ (X - 1) * 2 ì„ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë§Œí¼ë§Œ ì´ë™í•˜ë©´ ëœë‹¤.
+		// ì´ ì´ë™í•´ì•¼ í•  ê±°ë¦¬ = shark.speed % ((X - 1) * 2)
 		int X = shark.direction < 3 ? R : C;
 		int moveDistance = shark.speed % ((X - 1) * 2);
 		int row = i;
 		int col = j;
 
-		// ¿òÁ÷ÀÌ´Â °Å¸®¸¦ ±¸ÇÑ ÈÄ¿¡´Â Á÷Á¢ ÀÌµ¿½ÃÅ´
-		// (ÃÖÁ¾ À§Ä¡¸¦ ±¸ÇßÀ» ¶§ ¹æÇâ±îÁö °è»êÇÏ±â ±ÍÂú¾Æ¼­.. Á÷Á¢ ÀÌµ¿)
+		// ì›€ì§ì´ëŠ” ê±°ë¦¬ë¥¼ êµ¬í•œ í›„ì—ëŠ” ì§ì ‘ ì´ë™ì‹œí‚´
+		// (ìµœì¢… ìœ„ì¹˜ë¥¼ êµ¬í–ˆì„ ë•Œ ë°©í–¥ê¹Œì§€ ê³„ì‚°í•˜ê¸° ê·€ì°®ì•„ì„œ.. ì§ì ‘ ì´ë™)
 		for (int k = 0; k < moveDistance; k++) {
 			if (shark.direction == 1) {
 				row--;
@@ -127,7 +127,7 @@ public class BJ_17143_implement {
 			}
 		}
 
-		// ¸¸¾à ÀÌ¹Ì »ó¾î°¡ ÀÖÀ¸¸é Å©±â¸¦ ºñ±³ÇØ¼­ »çÀÌÁî Å« ³ğÀ» ³²±ä´Ù
+		// ë§Œì•½ ì´ë¯¸ ìƒì–´ê°€ ìˆìœ¼ë©´ í¬ê¸°ë¥¼ ë¹„êµí•´ì„œ ì‚¬ì´ì¦ˆ í° ë†ˆì„ ë‚¨ê¸´ë‹¤
 		if (nextSharks[row][col] != null && nextSharks[row][col].size > shark.size) {
 			return;
 		}

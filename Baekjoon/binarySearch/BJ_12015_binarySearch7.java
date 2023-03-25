@@ -19,13 +19,13 @@ public class BJ_12015_binarySearch7 {
         }
         
         ArrayList<Integer> rs = new ArrayList<>(); 
-        rs.add(arr[0]); //ArrayList¸¦ empty·Î ¸¸µéÁö ¾Ê´Â´Ù.
+        rs.add(arr[0]); //ArrayListë¥¼ emptyë¡œ ë§Œë“¤ì§€ ì•ŠëŠ”ë‹¤.
         
         for (int i =1 ; i < arr.length; i++) { 
         	int lower = lowerBound(rs, 0, rs.size(), arr[i]); 
-        	//»ðÀÔÇÒ À§Ä¡°¡ ¸Ç µÚÀÏ ¶§ 
+        	//ì‚½ìž…í•  ìœ„ì¹˜ê°€ ë§¨ ë’¤ì¼ ë•Œ 
         	if(rs.size() <= lower) rs.add(arr[i]); 
-        	//»ðÀÔÇÒ À§Ä¡¿¡ ÀÌ¹Ì ¼ýÀÚ°¡ Á¸ÀçÇÏ¸é ¹Ù²Û´Ù. 
+        	//ì‚½ìž…í•  ìœ„ì¹˜ì— ì´ë¯¸ ìˆ«ìžê°€ ì¡´ìž¬í•˜ë©´ ë°”ê¾¼ë‹¤. 
         	else rs.set(lower, arr[i]);  
         }
 	
@@ -33,7 +33,7 @@ public class BJ_12015_binarySearch7 {
 
 	}
 	
-	// BasicÇÑ Lower Bound ÄÚµå 
+	// Basicí•œ Lower Bound ì½”ë“œ 
 	public static int lowerBound(ArrayList<Integer> arr, int left, int right, int key) {
 		int mid = 0; 
 		while (left < right) { 

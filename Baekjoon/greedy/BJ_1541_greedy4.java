@@ -15,21 +15,21 @@ public class BJ_1541_greedy4 {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		 
-		int sum = Integer.MAX_VALUE;	// ÃÊ±â »óÅÂ ¿©ºÎ È®ÀÎÀ» À§ÇÑ °ªÀ¸·Î ¼³Á¤ 
+		int sum = Integer.MAX_VALUE;	// ì´ˆê¸° ìƒíƒœ ì—¬ë¶€ í™•ì¸ì„ ìœ„í•œ ê°’ìœ¼ë¡œ ì„¤ì • 
 		StringTokenizer subtraction = new StringTokenizer(br.readLine(), "-");
  
 		while (subtraction.hasMoreTokens()) {
 			int temp = 0;
  
-			// »¬¼ÀÀ¸·Î ³ª´¶ ÅäÅ«À» µ¡¼ÀÀ¸·Î ºĞ¸®ÇÏ¿© ÇØ´ç ÅäÅ«µéÀ» ´õÇÑ´Ù.
+			// ëº„ì…ˆìœ¼ë¡œ ë‚˜ë‰œ í† í°ì„ ë§ì…ˆìœ¼ë¡œ ë¶„ë¦¬í•˜ì—¬ í•´ë‹¹ í† í°ë“¤ì„ ë”í•œë‹¤.
 			StringTokenizer addition = new StringTokenizer(subtraction.nextToken(), "+");
 			
-			// µ¡¼ÀÀ¸·Î ³ª´¶ ÅäÅ«µéÀ» ¸ğµÎ ´õÇÑ´Ù. 
+			// ë§ì…ˆìœ¼ë¡œ ë‚˜ë‰œ í† í°ë“¤ì„ ëª¨ë‘ ë”í•œë‹¤. 
 			while (addition.hasMoreTokens()) {
 				temp += Integer.parseInt(addition.nextToken());
 			}
 			
-			// Ã¹ ¹øÂ°ÅäÅ«ÀÎ °æ¿ì temp°ªÀÌ Ã¹ ¹øÂ° ¼ö°¡ µÊ
+			// ì²« ë²ˆì§¸í† í°ì¸ ê²½ìš° tempê°’ì´ ì²« ë²ˆì§¸ ìˆ˜ê°€ ë¨
 			if (sum == Integer.MAX_VALUE) {
 				sum = temp;
 			} else {

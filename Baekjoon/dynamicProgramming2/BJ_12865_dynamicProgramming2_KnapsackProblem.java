@@ -23,22 +23,22 @@ public class BJ_12865_dynamicProgramming2_KnapsackProblem {
 			items[i][1] = Integer.parseInt(st.nextToken());
 		}
 		
-		// 1¹øÂ° ¹°°ÇºÎÅÍ N¹øÂ° ¹°°Ç±îÁö ¸ðµÎ °í·ÁÇÑ´Ù.
+		// 1ë²ˆì§¸ ë¬¼ê±´ë¶€í„° Në²ˆì§¸ ë¬¼ê±´ê¹Œì§€ ëª¨ë‘ ê³ ë ¤í•œë‹¤.
 		for (int i = 1; i <= N; i++) {
-			// ¹«°Ô°¡ KÀÎ °æ¿ìºÎÅÍ ¹«°Ô°¡ items[i][0]ÀÎ °æ¿ì±îÁö ¸ðµÎ °í·ÁÇÑ´Ù.
+			// ë¬´ê²Œê°€ Kì¸ ê²½ìš°ë¶€í„° ë¬´ê²Œê°€ items[i][0]ì¸ ê²½ìš°ê¹Œì§€ ëª¨ë‘ ê³ ë ¤í•œë‹¤.
 			for (int j = K; j >= items[i][0]; j--) {
-				// ÇØ´ç À§Ä¡¿¡ ¹°°ÇÀ» ³ÖÀ» ¼ö ¾ø´Â °æ¿ì, 1Â÷¿ø Å×ÀÌºíÀÌ µüÈ÷ °»½ÅÀÌ µÇÁö ¾Ê´Â´Ù.
-				// µû¶ó¼­ 2Â÷¿ø dp Å×ÀÌºíÀ» »ç¿ëÇÏ´Â °æ¿ì¿Í ´Þ¸® ºÐ±â¹®ÀÌ »ç¶óÁø´Ù.
+				// í•´ë‹¹ ìœ„ì¹˜ì— ë¬¼ê±´ì„ ë„£ì„ ìˆ˜ ì—†ëŠ” ê²½ìš°, 1ì°¨ì› í…Œì´ë¸”ì´ ë”±ížˆ ê°±ì‹ ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤.
+				// ë”°ë¼ì„œ 2ì°¨ì› dp í…Œì´ë¸”ì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ì™€ ë‹¬ë¦¬ ë¶„ê¸°ë¬¸ì´ ì‚¬ë¼ì§„ë‹¤.
 				
-				// ÇØ´ç À§Ä¡¿¡ ¹°°ÇÀ» ³ÖÀ» ¼ö ÀÖ´Â °æ¿ì.
-				// i - 1¹øÂ° ¹°°Ç±îÁö °í·ÁÇßÀ»¶§ ¹«°Ô j¿¡¼­ÀÇ ÃÖ´ë °¡Ä¡(ÃÖÀûÇØ)¿Í,
-				// i - 1¹øÂ° ¹°°Ç±îÁö °í·ÁÇßÀ»¶§ ¹«°Ô j - items[i][0](ÇöÀç ¹«°Ô)ÀÇ ÃÖ´ë °¡Ä¡(ÃÖÀûÇØ) + items[i][1](ÇöÀç °¡Ä¡) Áß¿¡¼­
-				// ´õ Å« °ªÀ» ¼±ÅÃÇÑ´Ù!
+				// í•´ë‹¹ ìœ„ì¹˜ì— ë¬¼ê±´ì„ ë„£ì„ ìˆ˜ ìžˆëŠ” ê²½ìš°.
+				// i - 1ë²ˆì§¸ ë¬¼ê±´ê¹Œì§€ ê³ ë ¤í–ˆì„ë•Œ ë¬´ê²Œ jì—ì„œì˜ ìµœëŒ€ ê°€ì¹˜(ìµœì í•´)ì™€,
+				// i - 1ë²ˆì§¸ ë¬¼ê±´ê¹Œì§€ ê³ ë ¤í–ˆì„ë•Œ ë¬´ê²Œ j - items[i][0](í˜„ìž¬ ë¬´ê²Œ)ì˜ ìµœëŒ€ ê°€ì¹˜(ìµœì í•´) + items[i][1](í˜„ìž¬ ê°€ì¹˜) ì¤‘ì—ì„œ
+				// ë” í° ê°’ì„ ì„ íƒí•œë‹¤!
 				dp[j] = Math.max(dp[j], dp[j - items[i][0]] + items[i][1]);
 			}
 		}
 		
-		// dp[N][K]¸¦ Ãâ·ÂÇÑ´Ù(dpÅ×ÀÌºíÀÇ Á¤ÀÇ¿¡ µû¸£¸é N°¡Áö ¹°°ÇÀ» ¸ðµÎ °í·ÁÇßÀ»¶§ K¹«°Ô¿¡¼­ÀÇ ÃÖ´ë °¡Ä¡¸¦ Ãâ·ÂÇÏ´Â °Í!).
+		// dp[N][K]ë¥¼ ì¶œë ¥í•œë‹¤(dpí…Œì´ë¸”ì˜ ì •ì˜ì— ë”°ë¥´ë©´ Nê°€ì§€ ë¬¼ê±´ì„ ëª¨ë‘ ê³ ë ¤í–ˆì„ë•Œ Kë¬´ê²Œì—ì„œì˜ ìµœëŒ€ ê°€ì¹˜ë¥¼ ì¶œë ¥í•˜ëŠ” ê²ƒ!).
 		System.out.println(dp[K]);
 	}
 }

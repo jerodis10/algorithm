@@ -11,7 +11,7 @@ public class BJ_1927_priorityQueue2 {
 			
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	    int N = Integer.parseInt(br.readLine());
-	    //ÃÖ´ëÈü
+	    //ìµœëŒ€íž™
 //	    PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> o1 - o2);
 	    PriorityQueue<Integer> queue = new PriorityQueue<>();
 	    for (int i = 0; i < N; i++) {

@@ -14,18 +14,18 @@ public static void main(String[] args) throws IOException {
 		
 		LinkedList<Integer> deque = new LinkedList<Integer>();
 		
-		int count = 0;	// 2, 3¹ø ¿¬»ê È½¼ö ´©Àû ÇÕ º¯¼ö
+		int count = 0;	// 2, 3ë²ˆ ì—°ì‚° íšŸìˆ˜ ëˆ„ì  í•© ë³€ìˆ˜
 		
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int N = Integer.parseInt(st.nextToken());	// Å¥ÀÇ Å©±â(1 ~ N)
-		int M = Integer.parseInt(st.nextToken());	// »ÌÀ¸·Á´Â ¼ıÀÚÀÇ °³¼ö
+		int N = Integer.parseInt(st.nextToken());	// íì˜ í¬ê¸°(1 ~ N)
+		int M = Integer.parseInt(st.nextToken());	// ë½‘ìœ¼ë ¤ëŠ” ìˆ«ìì˜ ê°œìˆ˜
 		
-		// 1ºÎÅÍ N±îÁö µ¦¿¡ ´ã¾ÆµĞ´Ù.
+		// 1ë¶€í„° Nê¹Œì§€ ë±ì— ë‹´ì•„ë‘”ë‹¤.
 		for(int i = 1; i <= N; i++) {
 			deque.offer(i);
 		}
 		
-		int[] seq = new int[M];	// »Ì°íÀÚ ÇÏ´Â ¼ö¸¦ ´ãÀº ¹è¿­
+		int[] seq = new int[M];	// ë½‘ê³ ì í•˜ëŠ” ìˆ˜ë¥¼ ë‹´ì€ ë°°ì—´
 		
 		st = new StringTokenizer(br.readLine(), " ");
 		for(int i = 0; i < M; i++) {
@@ -36,15 +36,15 @@ public static void main(String[] args) throws IOException {
 		for(int i = 0; i < M; i++) {
 			
 			
-			// µ¦¿¡¼­ »Ì°íÀÚ ÇÏ´Â ¼ıÀÚÀÇ À§Ä¡(index) Ã£±â 
+			// ë±ì—ì„œ ë½‘ê³ ì í•˜ëŠ” ìˆ«ìì˜ ìœ„ì¹˜(index) ì°¾ê¸° 
 			int target_idx = deque.indexOf(seq[i]);
 			int half_idx;
 			/*
-			 *  ¸¸¾à ÇöÀç µ¦ÀÇ ¿ø¼Ò°¡ Â¦¼ö °³¶ó¸é Áß°£ ÁöÁ¡À» 
-			 *  ÇöÀç µ¦ÀÇ Àı¹İ Å©±â¿¡¼­ -1 °¨¼Ò½ÃÅ²´Ù. 
+			 *  ë§Œì•½ í˜„ì¬ ë±ì˜ ì›ì†Œê°€ ì§ìˆ˜ ê°œë¼ë©´ ì¤‘ê°„ ì§€ì ì„ 
+			 *  í˜„ì¬ ë±ì˜ ì ˆë°˜ í¬ê¸°ì—ì„œ -1 ê°ì†Œì‹œí‚¨ë‹¤. 
 			 *  
-			 *  {1, 2, 3, 4} ÀÏ ¶§, 2¸¦ Áß°£ÁöÁ¡À¸·Î ÇÏ¸é
-			 *  ÀÎµ¦½º´Â 1ÀÌ±â ¶§¹®
+			 *  {1, 2, 3, 4} ì¼ ë•Œ, 2ë¥¼ ì¤‘ê°„ì§€ì ìœ¼ë¡œ í•˜ë©´
+			 *  ì¸ë±ìŠ¤ëŠ” 1ì´ê¸° ë•Œë¬¸
 			 */
 			if(deque.size() % 2 == 0) {
 				half_idx = deque.size() / 2 - 1;
@@ -54,17 +54,17 @@ public static void main(String[] args) throws IOException {
 			}
 			
 			
-			// Áß°£ ÁöÁ¡ ¶Ç´Â Áß°£ ÁöÁ¡º¸´Ù ¿ø¼ÒÀÇ À§Ä¡°¡ ¾Õ¿¡ ÀÖÀ» °æ¿ì
+			// ì¤‘ê°„ ì§€ì  ë˜ëŠ” ì¤‘ê°„ ì§€ì ë³´ë‹¤ ì›ì†Œì˜ ìœ„ì¹˜ê°€ ì•ì— ìˆì„ ê²½ìš°
 			if(target_idx <= half_idx) {
-				// idx º¸´Ù ¾Õ¿¡ ÀÖ´Â ¿ø¼ÒµéÀ» ¸ğµÎ µÚ·Î º¸³½´Ù. (2¹ø ¿¬»ê)
+				// idx ë³´ë‹¤ ì•ì— ìˆëŠ” ì›ì†Œë“¤ì„ ëª¨ë‘ ë’¤ë¡œ ë³´ë‚¸ë‹¤. (2ë²ˆ ì—°ì‚°)
 				for(int j = 0; j < target_idx; j++) {
 					int temp = deque.pollFirst();
 					deque.offerLast(temp);
 					count++;
 				}
 			}
-			else {	// Áß°£ ÁöÁ¡º¸´Ù ¿ø¼ÒÀÇ À§Ä¡°¡ µÚ¿¡ ÀÖ´Â °æ¿ì 
-				// idx¸¦ Æ÷ÇÔÇÑ µÚ¿¡ ÀÖ´Â ¿ø¼ÒµéÀ» ¸ğµÎ ¾ÕÀ¸·Î º¸³½´Ù. (3¹ø ¿¬»ê)
+			else {	// ì¤‘ê°„ ì§€ì ë³´ë‹¤ ì›ì†Œì˜ ìœ„ì¹˜ê°€ ë’¤ì— ìˆëŠ” ê²½ìš° 
+				// idxë¥¼ í¬í•¨í•œ ë’¤ì— ìˆëŠ” ì›ì†Œë“¤ì„ ëª¨ë‘ ì•ìœ¼ë¡œ ë³´ë‚¸ë‹¤. (3ë²ˆ ì—°ì‚°)
 				for(int j = 0; j < deque.size() - target_idx; j++) {
 					int temp = deque.pollLast();
 					deque.offerFirst(temp);
@@ -72,7 +72,7 @@ public static void main(String[] args) throws IOException {
 				}
 			
 			}
-			deque.pollFirst();	// ¿¬»êÀÌ ³¡³ª¸é ¸Ç ¾Õ ¿ø¼Ò¸¦ »èÁ¦
+			deque.pollFirst();	// ì—°ì‚°ì´ ëë‚˜ë©´ ë§¨ ì• ì›ì†Œë¥¼ ì‚­ì œ
 		}
 		
 		System.out.println(count);

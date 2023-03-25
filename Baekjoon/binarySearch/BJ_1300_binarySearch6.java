@@ -14,12 +14,12 @@ public class BJ_1300_binarySearch6 {
         long left = 1, right = K;
         long ans = 0;
         
-        // ÀÌºĞ Å½»ö ¼öÇà
+        // ì´ë¶„ íƒìƒ‰ ìˆ˜í–‰
         while (left <= right) {
-            long mid = (left + right) / 2; // ÀÓÀÇÀÇ ¼ö ÁöÁ¤
+            long mid = (left + right) / 2; // ì„ì˜ì˜ ìˆ˜ ì§€ì •
             long cnt = 0;
             
-            // midº¸´Ù ÀÛ°Å³ª °°Àº ¼ö´Â ¸î °³ÀÎÁö °è»ê.
+            // midë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ ìˆ˜ëŠ” ëª‡ ê°œì¸ì§€ ê³„ì‚°.
             for (int i = 1; i <= N; i++) {
                 cnt += Math.min(mid / i, N);
             }

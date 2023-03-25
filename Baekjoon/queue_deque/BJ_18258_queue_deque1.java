@@ -21,19 +21,19 @@ public class BJ_18258_queue_deque1 {
 		StringTokenizer command;
 		
 		while(N-- > 0) {
-			command = new StringTokenizer(br.readLine(), " ");	// ¹®ÀÚ¿­ ºĞ¸® 
+			command = new StringTokenizer(br.readLine(), " ");	// ë¬¸ìì—´ ë¶„ë¦¬ 
 			
 			switch(command.nextToken()) {	
 			
 			case "push":
-				// offer´Â Å¥ÀÇ ¸Ç µÚ¿¡ ¿ä¼Ò¸¦ Ãß°¡ÇÑ´Ù.
+				// offerëŠ” íì˜ ë§¨ ë’¤ì— ìš”ì†Œë¥¼ ì¶”ê°€í•œë‹¤.
 				q.offer(Integer.parseInt(command.nextToken()));	
 				break;
 			
 			case "pop" :
 				/*
-				 *  pollÀº °¡Àå ¾Õ¿¡ ÀÖ´Â ¿ä¼Ò¸¦ »èÁ¦ÇÏ¸ç
-				 *  »èÁ¦ÇÒ ¿ø¼Ò°¡ ¾øÀ» °æ¿ì ¿¹¿Ü¸¦ ´øÁö´Â °ÍÀÌ ¾Æ´Ñ nullÀ» ¹İÈ¯ÇÑ´Ù.
+				 *  pollì€ ê°€ì¥ ì•ì— ìˆëŠ” ìš”ì†Œë¥¼ ì‚­ì œí•˜ë©°
+				 *  ì‚­ì œí•  ì›ì†Œê°€ ì—†ì„ ê²½ìš° ì˜ˆì™¸ë¥¼ ë˜ì§€ëŠ” ê²ƒì´ ì•„ë‹Œ nullì„ ë°˜í™˜í•œë‹¤.
 				 */
 				Integer item = q.poll();	
 				if(item == null) {
@@ -58,7 +58,7 @@ public class BJ_18258_queue_deque1 {
 				break;
 				
 			case "front":
-				// peek()Àº Å¥¿¡ ²¨³¾ ¿ä¼Ò°¡ ¾øÀ» °æ¿ì nullÀ» ¹İÈ¯ÇÑ´Ù.
+				// peek()ì€ íì— êº¼ë‚¼ ìš”ì†Œê°€ ì—†ì„ ê²½ìš° nullì„ ë°˜í™˜í•œë‹¤.
 				Integer ite = q.peek();
 				if(ite == null) {
 					sb.append(-1).append('\n');
@@ -69,7 +69,7 @@ public class BJ_18258_queue_deque1 {
 				break;
 				
 			case "back":
-				// peekLast()Àº Å¥¿¡ ²¨³¾ ¿ä¼Ò°¡ ¾øÀ» °æ¿ì nullÀ» ¹İÈ¯ÇÑ´Ù.
+				// peekLast()ì€ íì— êº¼ë‚¼ ìš”ì†Œê°€ ì—†ì„ ê²½ìš° nullì„ ë°˜í™˜í•œë‹¤.
 				Integer it = q.peekLast();	 
 				if(it == null) {
 					sb.append(-1).append('\n');

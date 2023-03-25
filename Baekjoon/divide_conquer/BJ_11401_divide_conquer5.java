@@ -17,20 +17,20 @@ public class BJ_11401_divide_conquer5 {
 		long N = Long.parseLong(st.nextToken());
 		long K = Long.parseLong(st.nextToken());
 		
-		// ºĞÀÚ N!
+		// ë¶„ì N!
 		long numer = factorial(N);
 		
-		// ºĞ¸ğ (K! * (N-K)!) mod p
+		// ë¶„ëª¨ (K! * (N-K)!) mod p
 		long denom = factorial(K) * factorial(N - K) % P;	
 	
 		
-		// N! * ºĞ¸ğÀÇ ¿ª¿ø((K! * (N-K)!) 
+		// N! * ë¶„ëª¨ì˜ ì—­ì›((K! * (N-K)!) 
 		System.out.println(numer * pow(denom, P - 2) % P);
 		
 	}
 	
 	
-	// ÆÑÅä¸®¾ó ÇÔ¼ö 
+	// íŒ©í† ë¦¬ì–¼ í•¨ìˆ˜ 
 	public static long factorial(long N) {
 		long fac = 1L;
 		
@@ -43,26 +43,26 @@ public class BJ_11401_divide_conquer5 {
 	
  
 	/*
-	 * ¿ª¿ø ±¸ÇÏ´Â ÇÔ¼ö 
+	 * ì—­ì› êµ¬í•˜ëŠ” í•¨ìˆ˜ 
 	 * 
-	 * base : ¹Ø,   expo = Áö¼ö (exponent)
+	 * base : ë°‘,   expo = ì§€ìˆ˜ (exponent)
 	 * 
-	 * °Åµì Á¦°öÀ» ºĞÇÒ Á¤º¹ ¹æ½ÄÀ¸·Î Ç¬´Ù.
+	 * ê±°ë“­ ì œê³±ì„ ë¶„í•  ì •ë³µ ë°©ì‹ìœ¼ë¡œ í‘¼ë‹¤.
 	 * 
 	 */
 	public static long pow(long base, long expo) {
-		// Áö¼ö°¡ 1ÀÏ °æ¿ì base^1 ÀÌ¹Ç·Î base % P¸¦ ¸®ÅÏ
+		// ì§€ìˆ˜ê°€ 1ì¼ ê²½ìš° base^1 ì´ë¯€ë¡œ base % Pë¥¼ ë¦¬í„´
 		if(expo == 1) {
 			return base % P;
 		}
 		
-		// Áö¼öÀÇ Àı¹İ¿¡ ÇØ´çÇÏ´Â base^(expo / 2) À» ±¸ÇÑ´Ù.
+		// ì§€ìˆ˜ì˜ ì ˆë°˜ì— í•´ë‹¹í•˜ëŠ” base^(expo / 2) ì„ êµ¬í•œë‹¤.
 		long temp = pow(base, expo / 2);
 		
 		/*
-		 * ÇöÀç Áö¼ö°¡ È¦ ¼ö ¿´´Ù¸é
-		 * base^(expo / 2) * base^(expo / 2) * base ÀÌ¹Ç·Î
-		 * base¸¦ ÇÑ ¹ø ´õ °öÇØÁÖ¾î¾ß ÇÑ´Ù.
+		 * í˜„ì¬ ì§€ìˆ˜ê°€ í™€ ìˆ˜ ì˜€ë‹¤ë©´
+		 * base^(expo / 2) * base^(expo / 2) * base ì´ë¯€ë¡œ
+		 * baseë¥¼ í•œ ë²ˆ ë” ê³±í•´ì£¼ì–´ì•¼ í•œë‹¤.
 		 * 
 		 * ex) A^9 = A^4 * A^4 * A
 		 */

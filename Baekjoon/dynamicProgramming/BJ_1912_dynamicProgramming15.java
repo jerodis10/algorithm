@@ -7,9 +7,9 @@ import java.util.StringTokenizer;
 
 public class BJ_1912_dynamicProgramming15 {
 	
-	static int[] arr;		// ¹è¿­ 
-	static Integer[] dp;	// ¸Ş¸ğÀÌÁ¦ÀÌ¼Ç ÇÒ dp
-	static int max;			// ÃÖ´ñ°ª º¯¼ö 
+	static int[] arr;		// ë°°ì—´ 
+	static Integer[] dp;	// ë©”ëª¨ì´ì œì´ì…˜ í•  dp
+	static int max;			// ìµœëŒ“ê°’ ë³€ìˆ˜ 
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,14 +26,14 @@ public class BJ_1912_dynamicProgramming15 {
 		}
 		
 		/*
-		 * dp[0]Àº Ã¹ ¿ø¼Ò·Î ÀÌÀü¿¡ ´õÀÌ»ó Å½»öÇÒ °ÍÀÌ ¾ø±â ¶§¹®¿¡
-		 * arr[0] ÀÚÃ¼ °ªÀÌ µÇ¹Ç·Î arr[0]À¸·Î ÃÊ±âÈ­ ÇØÁØ´Ù.
-		 * max¶ÇÇÑ Ã¹ ¹øÂ° ¿ø¼Ò·Î ÃÊ±âÈ­ ÇØÁØ´Ù.
+		 * dp[0]ì€ ì²« ì›ì†Œë¡œ ì´ì „ì— ë”ì´ìƒ íƒìƒ‰í•  ê²ƒì´ ì—†ê¸° ë•Œë¬¸ì—
+		 * arr[0] ìì²´ ê°’ì´ ë˜ë¯€ë¡œ arr[0]ìœ¼ë¡œ ì´ˆê¸°í™” í•´ì¤€ë‹¤.
+		 * maxë˜í•œ ì²« ë²ˆì§¸ ì›ì†Œë¡œ ì´ˆê¸°í™” í•´ì¤€ë‹¤.
 		 */
 		dp[0] = arr[0];
 		max = arr[0];
 		
-		// dpÀÇ ¸¶Áö¸· index´Â N-1ÀÌ¹Ç·Î N-1ºÎÅÍ Top-Down Å½»ö 
+		// dpì˜ ë§ˆì§€ë§‰ indexëŠ” N-1ì´ë¯€ë¡œ N-1ë¶€í„° Top-Down íƒìƒ‰ 
 		recur(N - 1);
 		
 		System.out.println(max);
@@ -41,11 +41,11 @@ public class BJ_1912_dynamicProgramming15 {
 	
 	static int recur(int N) {
 		
-		// Å½»öÇÏÁö ¾ÊÀº ÀÎµ¦½º¶ó¸é
+		// íƒìƒ‰í•˜ì§€ ì•Šì€ ì¸ë±ìŠ¤ë¼ë©´
 		if(dp[N] == null) {
 			dp[N] = Math.max(recur(N - 1) + arr[N], arr[N]);
  
-			// ÇØ´ç dp[N]°ú max Áß Å« °ªÀ¸·Î max °»½Å 
+			// í•´ë‹¹ dp[N]ê³¼ max ì¤‘ í° ê°’ìœ¼ë¡œ max ê°±ì‹  
 			max = Math.max(dp[N], max);
 		}
 		

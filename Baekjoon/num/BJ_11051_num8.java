@@ -32,7 +32,7 @@ public class BJ_11051_num8 {
 	}
 
 	public static int BC(int n, int k) {
-		// ÀÌ¹Ì Ç®¾ú´ø sub¹®Á¦ÀÏ °æ¿ì °ªÀ» ÀçÈ°¿ë
+		// ì´ë¯¸ í’€ì—ˆë˜ subë¬¸ì œì¼ ê²½ìš° ê°’ì„ ì¬í™œìš©
 		if (dp[n][k] > 0) {
 			return dp[n][k];
 		}

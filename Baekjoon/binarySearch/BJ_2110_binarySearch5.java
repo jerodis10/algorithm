@@ -12,15 +12,15 @@ public class BJ_2110_binarySearch5 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());  // ÁıÀÇ °³¼ö
-        int C = Integer.parseInt(st.nextToken());  // °øÀ¯±âÀÇ °³¼ö
+        int N = Integer.parseInt(st.nextToken());  // ì§‘ì˜ ê°œìˆ˜
+        int C = Integer.parseInt(st.nextToken());  // ê³µìœ ê¸°ì˜ ê°œìˆ˜
         int[] homeList = new int[N + 1];
 
         for (int i = 1; i <= N; ++i) {
             homeList[i] = Integer.parseInt(br.readLine());
         }
 
-        Arrays.sort(homeList);   // Á¤·Ä
+        Arrays.sort(homeList);   // ì •ë ¬
 
         int left = 1;
         int right = homeList[N] - homeList[1];
@@ -30,20 +30,20 @@ public class BJ_2110_binarySearch5 {
         while (left <= right) {
             int mid = (left + right) / 2;
             int start = homeList[1];
-            int count = 1;  // °øÀ¯±â ¼³Ä¡ GAP ÀúÀå
+            int count = 1;  // ê³µìœ ê¸° ì„¤ì¹˜ GAP ì €ì¥
             for (int i = 1; i <= N; ++i) {
-                d = homeList[i] - start;  // Áı¸¶´Ù °Å¸® Ã¼Å©
-                if (d >= mid) {  // °øÀ¯±â ¼³Ä¡ °¡´ÉÇÑÁö ¿©ºÎ Ã¼Å©
+                d = homeList[i] - start;  // ì§‘ë§ˆë‹¤ ê±°ë¦¬ ì²´í¬
+                if (d >= mid) {  // ê³µìœ ê¸° ì„¤ì¹˜ ê°€ëŠ¥í•œì§€ ì—¬ë¶€ ì²´í¬
                     count++;
-                    start = homeList[i]; // ¼³Ä¡ Çß´Ù¸é ¿©±â Áı ºÎÅÍ ´Ù½Ã °Å¸® Ã¼Å©
+                    start = homeList[i]; // ì„¤ì¹˜ í–ˆë‹¤ë©´ ì—¬ê¸° ì§‘ ë¶€í„° ë‹¤ì‹œ ê±°ë¦¬ ì²´í¬
                 }
             }
 
             if (count >= C) {
                 ans = mid;
-                left = mid + 1;  // ´õ ¸¹Àº Gap¿¡¼­ °øÀ¯±â ¼³Ä¡ÇÒ ¼ö ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ
+                left = mid + 1;  // ë” ë§ì€ Gapì—ì„œ ê³µìœ ê¸° ì„¤ì¹˜í•  ìˆ˜ ìˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸
             } else {
-                right = mid - 1; // ´õ ÀûÀº Gap¿¡¼­ °øÀ¯±â ¼³Ä¡ÇÒ ¼ö ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ
+                right = mid - 1; // ë” ì ì€ Gapì—ì„œ ê³µìœ ê¸° ì„¤ì¹˜í•  ìˆ˜ ìˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸
             }
         }
 

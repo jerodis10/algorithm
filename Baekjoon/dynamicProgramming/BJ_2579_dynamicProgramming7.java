@@ -22,7 +22,7 @@ public class BJ_2579_dynamicProgramming7 {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
 		
-		dp[0] = arr[0];	// µğÆúÆ®°ªÀÌ nullÀÌ¹Ç·Î 0À¸·Î ÃÊ±âÈ­ ÇØÁÖ¾î¾ßÇÑ´Ù.
+		dp[0] = arr[0];	// ë””í´íŠ¸ê°’ì´ nullì´ë¯€ë¡œ 0ìœ¼ë¡œ ì´ˆê¸°í™” í•´ì£¼ì–´ì•¼í•œë‹¤.
 		dp[1] = arr[1];
 		
 		if(N >= 2) {
@@ -34,7 +34,7 @@ public class BJ_2579_dynamicProgramming7 {
 	}
 	
 	static int find(int N) {
-		// ¾ÆÁ÷ Å½»öÇÏÁö ¾Ê´Â N¹øÂ° °è´ÜÀÏ °æ¿ì
+		// ì•„ì§ íƒìƒ‰í•˜ì§€ ì•ŠëŠ” Në²ˆì§¸ ê³„ë‹¨ì¼ ê²½ìš°
 		if(dp[N] == null) {
 			dp[N] = Math.max(find(N - 2), find(N - 3) + arr[N - 1]) + arr[N];
 		}

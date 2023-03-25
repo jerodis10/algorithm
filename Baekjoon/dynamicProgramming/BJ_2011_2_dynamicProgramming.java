@@ -27,11 +27,11 @@ public class BJ_2011_2_dynamicProgramming {
 				dp[i] %= MOD;
 			}
 
-			if(i == 1) continue; //Ã¹¹øÂ° ±ÛÀÚÀÏ °æ¿ì
+			if(i == 1) continue; //ì²«ë²ˆì§¸ ê¸€ìì¼ ê²½ìš°
 
 			int prev = str.charAt(i-2) - '0';
 
-			if(prev == 0) continue; //0À¸·Î ½ÃÀÛÇÒ°æ¿ì Á¸Àç X
+			if(prev == 0) continue; //0ìœ¼ë¡œ ì‹œì‘í• ê²½ìš° ì¡´ì¬ X
 
 			int value = prev*10+now;
 

@@ -15,14 +15,14 @@ public class BJ_2004_num12 {
 		long N = Long.parseLong(st.nextToken());
 		long M = Long.parseLong(st.nextToken());
  
-		// °¢°¢ÀÇ ½Â¼ö¸¦ ±¸ÇØÁØ´Ù.
+		// ê°ê°ì˜ ìŠ¹ìˆ˜ë¥¼ êµ¬í•´ì¤€ë‹¤.
 		long count5 = five_power_n(N) - five_power_n(N - M) - five_power_n(M);
 		long count2 = two_power_n(N) - two_power_n(N - M) - two_power_n(M);
 		System.out.println(Math.min(count5, count2));
  
 	}
  
-	// 5ÀÇ ½Â¼ö¸¦ ±¸ÇÏ´Â ÇÔ¼ö
+	// 5ì˜ ìŠ¹ìˆ˜ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜
 	static long five_power_n(long num) {
 		int count = 0;
  
@@ -33,7 +33,7 @@ public class BJ_2004_num12 {
 		return count;
 	}
  
-	// 2ÀÇ ½Â¼ö¸¦ ±¸ÇÏ´Â ÇÔ¼ö
+	// 2ì˜ ìŠ¹ìˆ˜ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜
 	static long two_power_n(long num) {
 		int count = 0;
  

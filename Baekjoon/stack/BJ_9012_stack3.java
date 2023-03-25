@@ -29,26 +29,26 @@ public class BJ_9012_stack3 {
  
 			char c = s.charAt(i);
  
-			// ¿©´Â °ýÈ£ÀÏ °æ¿ì ½ºÅÃ¿¡ ³Ö´Â´Ù.
+			// ì—¬ëŠ” ê´„í˜¸ì¼ ê²½ìš° ìŠ¤íƒì— ë„£ëŠ”ë‹¤.
 			if (c == '(') {
 				stack.push(c);
 			}
  
-			// ¾Æ·¡´Â ¸ðµÎ ´Ý´Â °ýÈ£ ÀÏ °æ¿ìµéÀÌ´Ù.
+			// ì•„ëž˜ëŠ” ëª¨ë‘ ë‹«ëŠ” ê´„í˜¸ ì¼ ê²½ìš°ë“¤ì´ë‹¤.
  
-			// ½ºÅÃÀÌ ºñ¾îÀÖ´Â °æ¿ì. Áï, ´Ý´Â °ýÈ£¸¦ ÀÔ·Â¹Þ¾ÒÀ¸³ª popÇÒ ¿ø¼Ò°¡ ¾øÀ» °æ¿ì
+			// ìŠ¤íƒì´ ë¹„ì–´ìžˆëŠ” ê²½ìš°. ì¦‰, ë‹«ëŠ” ê´„í˜¸ë¥¼ ìž…ë ¥ë°›ì•˜ìœ¼ë‚˜ popí•  ì›ì†Œê°€ ì—†ì„ ê²½ìš°
 			else if (stack.empty()) {
 				return "NO";
 			}
-			// ±× ¿ÜÀÇ °æ¿ì stack ¿ø¼Ò¸¦ pop ÇÑ´Ù.
+			// ê·¸ ì™¸ì˜ ê²½ìš° stack ì›ì†Œë¥¼ pop í•œë‹¤.
 			else {
 				stack.pop();
 			}
 		}
  
 		/*
-		 * ¸ðµç °Ë»ç ¸¶Ä¡°í ½ºÅÃ¿¡ ÀÜ¿© ¿ä¼Ò°¡ ÀÖÀ¸¸é ¿©´Â °ýÈ£°¡ ¸¹Àº °æ¿ì´Â "NO" 
-		 * ½ºÅÃÀÌ ºñ¾îÀÖÀ¸¸é ¿ÂÀüÇÑ ¼ö½ÄÀÌ¹Ç·Î "YES" ÀÌ´Ù.
+		 * ëª¨ë“  ê²€ì‚¬ ë§ˆì¹˜ê³  ìŠ¤íƒì— ìž”ì—¬ ìš”ì†Œê°€ ìžˆìœ¼ë©´ ì—¬ëŠ” ê´„í˜¸ê°€ ë§Žì€ ê²½ìš°ëŠ” "NO" 
+		 * ìŠ¤íƒì´ ë¹„ì–´ìžˆìœ¼ë©´ ì˜¨ì „í•œ ìˆ˜ì‹ì´ë¯€ë¡œ "YES" ì´ë‹¤.
 		 */
  
 		if (stack.empty()) {

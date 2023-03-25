@@ -13,7 +13,7 @@ public class BJ_1966_queue_deque4 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
-		int T = Integer.parseInt(br.readLine());	// Å×½ºÆ® ÄÉÀÌ½º 
+		int T = Integer.parseInt(br.readLine());	// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ 
  
 		while (T-- > 0) {
 			
@@ -22,47 +22,47 @@ public class BJ_1966_queue_deque4 {
 			int N = Integer.parseInt(st.nextToken());
 			int M = Integer.parseInt(st.nextToken());
 			
-			LinkedList<int[]> q = new LinkedList<>();	// Queue·Î È°¿ë ÇÒ ¿¬°á¸®½ºÆ®
+			LinkedList<int[]> q = new LinkedList<>();	// Queueë¡œ í™œìš© í•  ì—°ê²°ë¦¬ìŠ¤íŠ¸
 			st = new StringTokenizer(br.readLine());
  
 			for (int i = 0; i < N; i++) {
-				// {ÃÊ±â À§Ä¡, Áß¿äµµ}
+				// {ì´ˆê¸° ìœ„ì¹˜, ì¤‘ìš”ë„}
 				q.offer(new int[] { i, Integer.parseInt(st.nextToken()) });
 			}
  
-			int count = 0;	// Ãâ·Â È½¼ö
+			int count = 0;	// ì¶œë ¥ íšŸìˆ˜
 			
-			while (!q.isEmpty()) {	// ÇÑ ÄÉÀÌ½º¿¡ ´ëÇÑ ¹Ýº¹¹®
+			while (!q.isEmpty()) {	// í•œ ì¼€ì´ìŠ¤ì— ëŒ€í•œ ë°˜ë³µë¬¸
 				
-				int[] front = q.poll();	// °¡Àå Ã¹ ¿ø¼Ò
-				boolean isMax = true;	// front ¿ø¼Ò°¡ °¡Àå Å« ¿ø¼ÒÀÎÁö¸¦ ÆÇ´ÜÇÏ´Â º¯¼ö
+				int[] front = q.poll();	// ê°€ìž¥ ì²« ì›ì†Œ
+				boolean isMax = true;	// front ì›ì†Œê°€ ê°€ìž¥ í° ì›ì†Œì¸ì§€ë¥¼ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜
 				
-				// Å¥¿¡ ³²¾ÆÀÖ´Â ¿ø¼Òµé°ú Áß¿äµµ¸¦ ºñ±³ 
+				// íì— ë‚¨ì•„ìžˆëŠ” ì›ì†Œë“¤ê³¼ ì¤‘ìš”ë„ë¥¼ ë¹„êµ 
 				for(int i = 0; i < q.size(); i++) {
 					
-					// Ã³À½ »ÌÀº ¿ø¼Òº¸´Ù Å¥¿¡ ÀÖ´Â i¹øÂ° ¿ø¼Ò°¡ Áß¿äµµ°¡ Å¬ °æ¿ì 
+					// ì²˜ìŒ ë½‘ì€ ì›ì†Œë³´ë‹¤ íì— ìžˆëŠ” ië²ˆì§¸ ì›ì†Œê°€ ì¤‘ìš”ë„ê°€ í´ ê²½ìš° 
 					if(front[1] < q.get(i)[1]) {
 						
-						// »ÌÀº ¿ø¼Ò ¹× i ÀÌÀüÀÇ ¿ø¼ÒµéÀ» µÚ·Î º¸³½´Ù.
+						// ë½‘ì€ ì›ì†Œ ë° i ì´ì „ì˜ ì›ì†Œë“¤ì„ ë’¤ë¡œ ë³´ë‚¸ë‹¤.
 						q.offer(front);
 						for(int j = 0; j < i; j++) {
 							q.offer(q.poll());
 						}
 						
-						// front¿ø¼Ò°¡ °¡Àå Å« ¿ø¼Ò°¡ ¾Æ´Ï¿´À¸¹Ç·Î false¸¦ ÇÏ°í Å½»öÀ» ¸¶Ä§
+						// frontì›ì†Œê°€ ê°€ìž¥ í° ì›ì†Œê°€ ì•„ë‹ˆì˜€ìœ¼ë¯€ë¡œ falseë¥¼ í•˜ê³  íƒìƒ‰ì„ ë§ˆì¹¨
 						isMax = false;
 						break;
 					}
 				}
 				
-				// front ¿ø¼Ò°¡ °¡Àå Å« ¿ø¼Ò°¡ ¾Æ´Ï¿´À¸¹Ç·Î ´ÙÀ½ ¹Ýº¹¹®À¸·Î ³Ñ¾î°¨
+				// front ì›ì†Œê°€ ê°€ìž¥ í° ì›ì†Œê°€ ì•„ë‹ˆì˜€ìœ¼ë¯€ë¡œ ë‹¤ìŒ ë°˜ë³µë¬¸ìœ¼ë¡œ ë„˜ì–´ê°
 				if(isMax == false) {
 					continue;
 				}
 				
-				// front ¿ø¼Ò°¡ °¡Àå Å« ¿ø¼Ò¿´À¸¹Ç·Î ÇØ´ç ¿ø¼Ò´Â Ãâ·ÂÇØ¾ßÇÏ´Â ¹®¼­´Ù.
+				// front ì›ì†Œê°€ ê°€ìž¥ í° ì›ì†Œì˜€ìœ¼ë¯€ë¡œ í•´ë‹¹ ì›ì†ŒëŠ” ì¶œë ¥í•´ì•¼í•˜ëŠ” ë¬¸ì„œë‹¤.
 				count++;
-				if(front[0] == M) {	// Ã£°íÀÚ ÇÏ´Â ¹®¼­¶ó¸é ÇØ´ç Å×½ºÆ®ÄÉÀÌ½º Á¾·á
+				if(front[0] == M) {	// ì°¾ê³ ìž í•˜ëŠ” ë¬¸ì„œë¼ë©´ í•´ë‹¹ í…ŒìŠ¤íŠ¸ì¼€ì´ìŠ¤ ì¢…ë£Œ
 					break;
 				}
  

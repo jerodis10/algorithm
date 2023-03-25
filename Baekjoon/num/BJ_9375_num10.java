@@ -14,32 +14,32 @@ public final static int MOD = 10007;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
  
-		int T = Integer.parseInt(br.readLine());	// Å×½ºÆ® ÄÉÀÌ½º 
+		int T = Integer.parseInt(br.readLine());	// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ 
  
 		while (T -- > 0) {
 			
 			int[] table = new int[MOD];
 			
-			int N = Integer.parseInt(br.readLine());	// ÀÔ·Â¹Ş´Â ¿ÊÀÇ °³¼ö
+			int N = Integer.parseInt(br.readLine());	// ì…ë ¥ë°›ëŠ” ì˜·ì˜ ê°œìˆ˜
 			
 			while (N-- > 0) {
 				StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 				
-				st.nextToken();	// ¿Ê ÀÌ¸§Àº ÇÊ¿ä ¾øÀ½ 
+				st.nextToken();	// ì˜· ì´ë¦„ì€ í•„ìš” ì—†ìŒ 
 				
-				table[hash(st.nextToken())]++;	// ¿Ê Á¾·ù 
+				table[hash(st.nextToken())]++;	// ì˜· ì¢…ë¥˜ 
 			}
  
 			int result = 1;
  
 			/**
-			 * ¾È ÀÔ´Â °æ¿ì¸¦ °í·ÁÇÏ¿© °¢ Á¾·ùº° ¿ÊÀÇ °³¼ö¿¡ +1 ÇØÁØ °ªÀ»
-			 * °öÇØÁÖ¾î¾ß ÇÑ´Ù.
+			 * ì•ˆ ì…ëŠ” ê²½ìš°ë¥¼ ê³ ë ¤í•˜ì—¬ ê° ì¢…ë¥˜ë³„ ì˜·ì˜ ê°œìˆ˜ì— +1 í•´ì¤€ ê°’ì„
+			 * ê³±í•´ì£¼ì–´ì•¼ í•œë‹¤.
 			 */
 			for (int val : table) {
 				result *= (val + 1);
 			}
-			result--;		// ¾Ë¸öÀÎ »óÅÂ¸¦ Á¦¿ÜÇØÁÖ¾î¾ß ÇÏ¹Ç·Î ÃÖÁ¾°ª¿¡ -1ÀÌ Á¤´ä.
+			result--;		// ì•Œëª¸ì¸ ìƒíƒœë¥¼ ì œì™¸í•´ì£¼ì–´ì•¼ í•˜ë¯€ë¡œ ìµœì¢…ê°’ì— -1ì´ ì •ë‹µ.
 			sb.append(result).append('\n');	
 			table = null;
 		}

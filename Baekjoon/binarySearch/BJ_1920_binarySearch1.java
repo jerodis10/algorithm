@@ -23,7 +23,7 @@ public class BJ_1920_binarySearch1 {
 		}
 		
 		
-		// ¹è¿­Àº ¹İµå½Ã Á¤·ÄµÇ¾îÀÖ¾î¾ßÇÑ´Ù.
+		// ë°°ì—´ì€ ë°˜ë“œì‹œ ì •ë ¬ë˜ì–´ìˆì–´ì•¼í•œë‹¤.
 		Arrays.sort(arr);
 		
 		int M = Integer.parseInt(br.readLine());
@@ -33,7 +33,7 @@ public class BJ_1920_binarySearch1 {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < M; i++) {
 			
-			// Ã£°íÀÚ ÇÏ´Â °ªÀÌ ÀÖÀ» °æ¿ì 1, ¾øÀ» °æ¿ì 0À» Ãâ·ÂÇØ¾ßÇÑ´Ù.
+			// ì°¾ê³ ì í•˜ëŠ” ê°’ì´ ìˆì„ ê²½ìš° 1, ì—†ì„ ê²½ìš° 0ì„ ì¶œë ¥í•´ì•¼í•œë‹¤.
 			if(binarySearch(Integer.parseInt(st.nextToken())) >= 0) {
 				sb.append(1).append('\n');
 			}
@@ -46,34 +46,34 @@ public class BJ_1920_binarySearch1 {
 	
 	
 	/**
-	 * @param key Ã£À¸·Á´Â °ª
-	 * @return key¿Í ÀÏÄ¡ÇÏ´Â ¹è¿­ÀÇ ÀÎµ¦½º
+	 * @param key ì°¾ìœ¼ë ¤ëŠ” ê°’
+	 * @return keyì™€ ì¼ì¹˜í•˜ëŠ” ë°°ì—´ì˜ ì¸ë±ìŠ¤
 	 */
 	public static int binarySearch(int key) {
  
-		int lo = 0;					// Å½»ö ¹üÀ§ÀÇ ¿ŞÂÊ ³¡ ÀÎµ¦½º
-		int hi = arr.length - 1;	// Å½»ö ¹üÀ§ÀÇ ¿À¸¥ÂÊ ³¡ ÀÎµ¦½º
+		int lo = 0;					// íƒìƒ‰ ë²”ìœ„ì˜ ì™¼ìª½ ë ì¸ë±ìŠ¤
+		int hi = arr.length - 1;	// íƒìƒ‰ ë²”ìœ„ì˜ ì˜¤ë¥¸ìª½ ë ì¸ë±ìŠ¤
  
-		// lo°¡ hiº¸´Ù Ä¿Áö±â Àü±îÁö ¹İº¹ÇÑ´Ù.
+		// loê°€ hië³´ë‹¤ ì»¤ì§€ê¸° ì „ê¹Œì§€ ë°˜ë³µí•œë‹¤.
 		while(lo <= hi) {
  
-			int mid = (lo + hi) / 2;	// Áß°£À§Ä¡¸¦ ±¸ÇÑ´Ù.
+			int mid = (lo + hi) / 2;	// ì¤‘ê°„ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
  
-			// key°ªÀÌ Áß°£ À§Ä¡ÀÇ °ªº¸´Ù ÀÛÀ» °æ¿ì
+			// keyê°’ì´ ì¤‘ê°„ ìœ„ì¹˜ì˜ ê°’ë³´ë‹¤ ì‘ì„ ê²½ìš°
 			if(key < arr[mid]) {
 				hi = mid - 1;
 			}
-			// key°ªÀÌ Áß°£ À§Ä¡ÀÇ °ªº¸´Ù Å¬ °æ¿ì
+			// keyê°’ì´ ì¤‘ê°„ ìœ„ì¹˜ì˜ ê°’ë³´ë‹¤ í´ ê²½ìš°
 			else if(key > arr[mid]) {
 				lo = mid + 1;
 			}
-			// key°ª°ú Áß°£ À§Ä¡ÀÇ °ªÀÌ °°À» °æ¿ì
+			// keyê°’ê³¼ ì¤‘ê°„ ìœ„ì¹˜ì˜ ê°’ì´ ê°™ì„ ê²½ìš°
 			else {
 				return mid;
 			}
 		}
  
-		// Ã£°íÀÚ ÇÏ´Â °ªÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì
+		// ì°¾ê³ ì í•˜ëŠ” ê°’ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ê²½ìš°
 		return -1;
  
 	}

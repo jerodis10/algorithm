@@ -31,7 +31,7 @@ public class BJ_10816_binarySearch2 {
 		for(int i = 0; i < M; i++) {
 			int key = Integer.parseInt(st.nextToken());
  
-			// upperBound¿Í lowerBoundÀÇ Â÷ÀÌ °ªÀ» ±¸ÇÑ´Ù.
+			// upperBoundì™€ lowerBoundì˜ ì°¨ì´ ê°’ì„ êµ¬í•œë‹¤.
 			sb.append(upperBound(arr, key) - lowerBound(arr, key)).append(' ');
 		}
 		System.out.println(sb);
@@ -41,15 +41,15 @@ public class BJ_10816_binarySearch2 {
 		int lo = 0; 
 		int hi = arr.length; 
  
-		// lo°¡ hi¶û °°¾ÆÁú ¶§ ±îÁö ¹Ýº¹
+		// loê°€ hiëž‘ ê°™ì•„ì§ˆ ë•Œ ê¹Œì§€ ë°˜ë³µ
 		while (lo < hi) {
  
-			int mid = (lo + hi) / 2; // Áß°£À§Ä¡¸¦ ±¸ÇÑ´Ù.
+			int mid = (lo + hi) / 2; // ì¤‘ê°„ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
  
 			/*
-			 *  key °ªÀÌ Áß°£ À§Ä¡ÀÇ °ªº¸´Ù ÀÛ°Å³ª °°À» °æ¿ì
+			 *  key ê°’ì´ ì¤‘ê°„ ìœ„ì¹˜ì˜ ê°’ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì„ ê²½ìš°
 			 *  
-			 *  (Áßº¹ ¿ø¼Ò¿¡ ´ëÇØ ¿ÞÂÊÀ¸·Î Å½»öÇÏµµ·Ï »ó°è¸¦ ³»¸°´Ù.)
+			 *  (ì¤‘ë³µ ì›ì†Œì— ëŒ€í•´ ì™¼ìª½ìœ¼ë¡œ íƒìƒ‰í•˜ë„ë¡ ìƒê³„ë¥¼ ë‚´ë¦°ë‹¤.)
 			 */
 			if (key <= arr[mid]) {
 				hi = mid;
@@ -68,16 +68,16 @@ public class BJ_10816_binarySearch2 {
 		int lo = 0; 
 		int hi = arr.length; 
  
-		// lo°¡ hi¶û °°¾ÆÁú ¶§ ±îÁö ¹Ýº¹
+		// loê°€ hiëž‘ ê°™ì•„ì§ˆ ë•Œ ê¹Œì§€ ë°˜ë³µ
 		while (lo < hi) {
  
-			int mid = (lo + hi) / 2; // Áß°£À§Ä¡¸¦ ±¸ÇÑ´Ù.
+			int mid = (lo + hi) / 2; // ì¤‘ê°„ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
  
-			// key°ªÀÌ Áß°£ À§Ä¡ÀÇ °ªº¸´Ù ÀÛÀ» °æ¿ì
+			// keyê°’ì´ ì¤‘ê°„ ìœ„ì¹˜ì˜ ê°’ë³´ë‹¤ ìž‘ì„ ê²½ìš°
 			if (key < arr[mid]) {
 				hi = mid;
 			}
-			// Áßº¹¿ø¼ÒÀÇ °æ¿ì else¿¡¼­ Ã³¸®µÈ´Ù.
+			// ì¤‘ë³µì›ì†Œì˜ ê²½ìš° elseì—ì„œ ì²˜ë¦¬ëœë‹¤.
 			else {
 				lo = mid + 1;
 			}
