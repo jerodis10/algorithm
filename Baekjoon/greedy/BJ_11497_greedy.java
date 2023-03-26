@@ -111,5 +111,14 @@ public class BJ_11497_greedy {
 		);
 	}
 
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				new int[]{2,6,9,5,4}
+		)).isEqualTo(
+				4
+		);
+	}
+
 	
 }
