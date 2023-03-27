@@ -6,9 +6,6 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
 public class BJ_2138_greedy {
 
@@ -35,14 +32,14 @@ public class BJ_2138_greedy {
 	}
 
 	static void dfs(int depth, int count, char[] arr, char[] target) {
-		if (depth == n - 1) {
-			if (arr[depth] == target[depth]) {
+		if (depth == n) {
+			if (arr[depth - 1] == target[depth - 1]) {
 				ret = Math.min(ret, count);
 			}
 			return;
 		}
 
-		if (arr[depth] != target[depth]) {
+		if (arr[depth - 1] != target[depth - 1]) {
 			dfs(depth + 1, count + 1, switchOn(depth, arr), target);
 		} else {
 			dfs(depth + 1, count, arr, target);
