@@ -39,7 +39,7 @@ public class largest_number {
             }
         });
         
-        //0값이 중복일경우 ex){0,0,0}
+        //0값이 중복일경우 ex.ex){0,0,0}
         //답이 000이 나오면 안되므로 첫번째값이 0이면 0을 리턴
         if (str[0].equals("0")) return "0";
         

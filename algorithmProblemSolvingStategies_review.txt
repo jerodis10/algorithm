@@ -22,7 +22,7 @@
 
         - 문제의 답이 하나가 아니라 여러 개이고, 그 중에서 어떤 기준에 따라 가장 '좋은' 답을 찾아 내는 문제들을 통칭해 최적화 문제.
             -> 완전 탐색은 최적화 문제를 풀기 위한 가장 직관적인 방법.
-            ex) n개의 원소 중 r개를 순서 없이 골라내는 방법은 딱 하나, but n개의 사과 중 r개를 골라서 무게의 합을 최대화 -> 최적화
+            ex.ex) n개의 원소 중 r개를 순서 없이 골라내는 방법은 딱 하나, but n개의 사과 중 r개를 골라서 무게의 합을 최대화 -> 최적화
 
 
     1.2 분할 정복
@@ -245,10 +245,10 @@
 
         2.1.1 비트마스크를 이용한 집합의 구현
             - 공집합과 꽉 찬 집합 구하기
-                ex) int fullPizza = (1 << 20) - 1;
+                ex.ex) int fullPizza = (1 << 20) - 1;
 
             - 원소 추가
-                ex) toppings |= (1 << p);
+                ex.ex) toppings |= (1 << p);
 
             - 원소의 포함 여부 확인
                 if(toppings & (1 << p) == 1) cout << "pepperoni is in" << endl;
@@ -256,38 +256,38 @@
                  * & 연산의 결과값이 0 또는 1<<p 라는 점에 유의.
 
             - 원소의 삭제
-                ex) toppings -= (1 << p);
+                ex.ex) toppings -= (1 << p);
                     -> 이 코드는 이미 페퍼로니가 토핑 목록에 있을 때만 사용할 수 있다.
-                ex) toppings &= ~(1 << p);
+                ex.ex) toppings &= ~(1 << p);
 
             - 원소의 토글
-                ex) toppings ^= (1 << p);
+                ex.ex) toppings ^= (1 << p);
 
             - 두 집합에 대해 연산하기
-                ex) int added = (a | b);
+                ex.ex) int added = (a | b);
                     int intersection = (a & b);
                     int removed = (a & ~b);
                     int toggled = (a ^ b);
 
             - 집합의 크기 구하기
-                ex) int bitCount(int x){
+                ex.ex) int bitCount(int x){
                         if(x == 0) return 0;
                         return x % 2 + bitCount(x / 2);
                     }
-                ex) java - Integer.bitCount(toppings);
+                ex.ex) java - Integer.bitCount(toppings);
 
             - 최소 원소 찾기
-                ex) java - Integer.numberOfTrailingZeros(toppings)
+                ex.ex) java - Integer.numberOfTrailingZeros(toppings)
                     -> 이 연산들 역시 대개 CPU 명령어로 곧장 치환돠거나, 다양한 최적화가 적용된 코드를 사용하기 때문에 굉장히 빠르다.
-                ex) int firstToppings = (toppings & -toppings);
+                ex.ex) int firstToppings = (toppings & -toppings);
 
             - 최소 원소 지우기
-                ex) toppings &= (toppings - 1);
-                ex) 최하위 비트를 지웠을 때 0이 된다면 주어진수는 2의 거듭제곱.
+                ex.ex) toppings &= (toppings - 1);
+                ex.ex) 최하위 비트를 지웠을 때 0이 된다면 주어진수는 2의 거듭제곱.
                     -> 2의 거듭제곱 값들은 이진수 표현에서 켜진 비트가 하나밖에 없다.
 
             - 모든 부분 집합 순회하기
-                ex) for(int subset = pizza; subset; subset = ((subset-1) & pizza)) { }
+                ex.ex) for(int subset = pizza; subset; subset = ((subset-1) & pizza)) { }
                     -> subset은 pizza의 부분집합.
 
 

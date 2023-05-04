@@ -64,7 +64,7 @@ public class BJ_11401_divide_conquer5 {
 		 * base^(expo / 2) * base^(expo / 2) * base 이므로
 		 * base를 한 번 더 곱해주어야 한다.
 		 * 
-		 * ex) A^9 = A^4 * A^4 * A
+		 * ex.ex) A^9 = A^4 * A^4 * A
 		 */
 		if(expo % 2 == 1) {
 			return (temp * temp % P) * base % P;
