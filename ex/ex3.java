@@ -3,30 +3,17 @@ package ex;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
-public class ex3 {
+public class ex2 {
 
 	public static void main(String[] args) throws IOException {
 
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st = new StringTokenizer(br.readLine());
-//		int n = Integer.parseInt(st.nextToken());
-//		int k = Integer.parseInt(st.nextToken());
-//		int[][] jewArr = new int[n][2];
-//		for (int i = 0; i < n; i++) {
-//			st = new StringTokenizer(br.readLine());
-//			jewArr[i][0] = Integer.parseInt(st.nextToken());
-//			jewArr[i][1] = Integer.parseInt(st.nextToken());
-//		}
-//		Integer[] packArr = new Integer[k];
-//		for (int i = 0; i < k; i++) {
-//			st = new StringTokenizer(br.readLine());
-//			packArr[i] = Integer.parseInt(st.nextToken());
-//		}
-
-//		System.out.println(solution(n, k, jewArr, packArr));
 	}
 
 	public static int solution(int[][] money) {
@@ -49,7 +36,6 @@ public class ex3 {
 			}
 		}
 
-
 		return Math.abs(p1 - p2);
 	}
 
@@ -68,6 +54,25 @@ public class ex3 {
 				new int[][]{{2500,3}, {700,5}}
 		)).isEqualTo(
 				400
+		);
+	}
+
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				new int[][]{{1,1}, {3,3}, {4,2}}
+		)).isEqualTo(
+				0
+		);
+	}
+
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				new int[][]{{5718,1}, {18736,1}, {15078,1}, {14556,1}, {125,1}, {14331,1}, {17764,1}, {14923,1},
+						{2382,1}, {16532,1}, {11526,1}, {12202,1}, {12522,1}, {19775,1}, {12200,1}, {6475,1}}
+		)).isEqualTo(
+				9
 		);
 	}
 
