@@ -3,14 +3,10 @@ package ex;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
-public class ex2 {
+public class ex3 {
 
 	public static void main(String[] args) throws IOException {
 
