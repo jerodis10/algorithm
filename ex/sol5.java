@@ -59,16 +59,12 @@ public class sol5 {
 				nextX -= dir[curDir][1];
 				break;
 			}
-
 			visited[nextY][nextX] = true;
 		}
 
-//		if (map[nextY][nextX] == 'G') {
-//			result = Math.min(result, depth);
-//			return true;
-//		}
-
 		for (int i = 0; i < 4; i++) {
+			if(i == curDir) continue;
+
 			int nextDirY = nextY + dir[i][0];
 			int nextDirX = nextX + dir[i][1];
 			if(nextDirY < 0 || nextDirY >= map.length || nextDirX < 0 || nextDirX >= map[0].length) continue;
@@ -78,6 +74,8 @@ public class sol5 {
 				visited[nextDirY][nextDirX] = true;
 				dfs(nextY, nextX, i, depth + 1);
 				visited[nextDirY][nextDirX] = false;
+			} else if(map[nextDirY][nextDirX] == 'G'){
+				dfs(nextDirY, nextDirX, i, depth + 1);
 			}
 		}
 
