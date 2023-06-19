@@ -1,3 +1,166 @@
+코딩 문제를 풀기 위한 팁 10가지
+1️⃣ 주어진 입력이 정렬된 배열 또는 리스트인 경우, Binary Search 혹은 Two Pointer를 사용합니다.
+
+2️⃣ 'N'개의 요소들 중에서 상위/최대/최소 'K' 번째 요소를 찾을 때 Heap 자료구조를 사용합니다.
+
+3️⃣ 배열에 관련된 문제일 경우, 다음 두 가지 방안이 존재합니다.
+- 시간 복잡도 O(n), 공간 복잡도 O(n): HashMap이나 Set 사용
+- 시간 복잡도 O(nlogn), 공간 복잡도 O(1): 정렬 사용
+
+4️⃣ 모든 재귀 해결법은 Stack을 이용한 방법으로 전환할 수 있습니다.
+
+5️⃣ 모든 조합(또는 순열)을 시도해야 할 경우, Backtracking 또는 BFS를 사용할 수 있습니다.
+
+6️⃣ 문제가 최적화(최대화 또는 최소화)를 요구하는 경우, DP를 사용합니다.
+
+7️⃣ 문제가 리스트와 관련 있고, 추가적인 공간을 사용할 수 없는 경우에는 Fast & Slow Pointer 접근 방식을 사용합니다.
+
+8️⃣ 대부분의 트리 또는 그래프 문제는 BFS 나 DFS로 해결할 수 있습니다.
+
+9️⃣ 문자열 집합에서 공통부분 문자열을 찾아야 하는 경우 HashMap이나 Trie를 사용합니다.
+
+🔟 문자열을 검색/조작해야 한다면 Trie가 최고의 자료구조일 것입니다.
+
+
+당신이 알아야 할 20가지 코딩 알고리즘 (1)   https://levelup.gitconnected.com/become-a-coding-interview-pro-in-2023-with-these-20-must-know-algorithmic-patterns-715643e493f5
+1️⃣ Sliding Window
+- 사용: 일정한 범위를 유지하면서 이동할 때
+- 자료구조: Array, String, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/fruit-into-baskets/]
+[https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/]
+
+2️⃣ Islands (Matrix Traversal)
+- 사용: matrix, 혹은 2D array를 순회하는 효율적인 방법을 찾을 때
+- 자료구조: Matrix, Queue
+- 예시 문제:
+[https://leetcode.com/problems/number-of-islands/]
+[https://leetcode.com/problems/flood-fill/]
+
+3️⃣ Two Pointers
+- 사용: 배열에서 각각 다른 원소를 가리키는 2개의 포인터를 조작할 때
+- 자료구조: Array, String, LinkedList
+- 예시 문제:
+[https://leetcode.com/problems/squares-of-a-sorted-array/]
+
+4️⃣ Fast & Slow Pointers
+- 사용: 입력 값을 다른 속도로 순회하고 싶을 때
+- 자료구조: Array, String, LinkedList
+- 예시 문제:
+[https://leetcode.com/problems/linked-list-cycle-ii/]
+
+5️⃣ Merge Intervals
+- 사용: 겹치는 간격을 처리할 때
+- 자료구조: Array, Heap
+- 예시 문제:
+[https://leetcode.com/problems/merge-intervals/]
+
+6️⃣ Cyclic Sort
+- 사용: 입력 데이터가 고정된 범위 내에 있을 때
+- 자료구조: Array
+- 예시 문제:
+[https://leetcode.com/problems/find-all-duplicates-in-an-array/]
+[https://leetcode.com/problems/kth-missing-positive-number/]
+
+7️⃣ In-place Reversal of a LinkedList
+- 사용: LinkedList를 효율적으로 뒤집고 싶을 때
+- 자료구조: LinkedList
+- 예시 문제:
+[https://leetcode.com/problems/rotate-list/]
+
+
+당신이 알아야 할 20가지 코딩 알고리즘 (2)
+1️⃣ Breadth First Search(BFS)
+- 사용: 너비 우선 탐색으로 그래프나 트리를 탐색할 때
+- 자료구조: Tree, Graph, Matrix, Queue
+- 예시 문제:
+[https://leetcode.com/problems/binary-tree-level-order-traversal/]
+[https://leetcode.com/problems/minimum-depth-of-binary-tree/]
+
+2️⃣ Depth First Search(DFS)
+- 사용: 깊이 우선 탐색으로 그래프나 트리를 탐색할 때
+- 자료구조: Tree, Graph, Matrix
+- 예시 문제:
+[https://leetcode.com/problems/path-sum-ii/]
+
+3️⃣ Two Heaps
+- 사용: 가장 작은 원소를 찾기 위한 최소 힙, 가장 큰 원소를 찾기 위한 최대 힙을 사용할 때
+- 자료구조: Heap, Array
+- 예시 문제:
+[https://leetcode.com/problems/find-median-from-data-stream/]
+
+4️⃣ Subsets
+- 사용: 순열 또는 조합을 처리할 때
+- 자료구조: Queue, Array, String
+- 예시 문제:
+[https://leetcode.com/problems/letter-case-permutation/]
+[https://leetcode.com/problems/generalized-abbreviation/]
+
+5️⃣ Modified Binary Search
+- 사용: 정렬된 집합을 효율적으로 검색할 때
+- 자료구조: Array
+- 예시 문제:
+[https://leetcode.com/problems/peak-index-in-a-mountain-array/]
+
+6️⃣ Bitwise XOR
+- 사용: XOR 연산자를 사용해 비트를 조작할 때
+- 자료구조: Array, Bits
+- 예시 문제:
+[https://leetcode.com/problems/single-number-ii/]
+[https://leetcode.com/problems/flipping-an-image/]
+
+7️⃣ Top 'K' Elements
+- 사용: 가장 작은/큰/자주 발생하는 'K'번째 원소를 찾을 때
+- 자료구조: Array, Heap, Queue
+- 예시 문제:
+[https://leetcode.com/problems/k-closest-points-to-origin/]
+
+
+당신이 알아야 할 20가지 코딩 알고리즘 (3)
+1️⃣ K-way Merge
+- 사용: 정렬된 배열의 리스트를 다룰 때
+- 자료구조: Array, Queue, Heap
+- 예시 문제:
+[https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/]
+
+2️⃣ 0/1 Knapsack
+- 사용: 이득을 최대화 하기 위해 중복 없이 각 아이템을 넣을까(1) 말까(0) 선택할 때
+- 자료구조: Array, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/partition-equal-subset-sum/]
+
+3️⃣ Unbounded Knapsack
+- 사용: 이득을 최대화 하기 위해 중복 제한 없이 각 아이템을 선택할 때
+- 자료구조: Array, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/coin-change/]
+
+4️⃣ Fibonacci Numbers
+- 사용: 어떤 수열의 항이, 앞의 두 항의 합과 같은 수열을 구할 때
+- 자료구조: Array, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/house-robber/]
+
+5️⃣ Palindromic Subsequence
+- 사용: 거꾸로 읽어도 똑같은 문자열을 만들 때
+- 자료구조: Array, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/longest-palindromic-subsequence/]
+
+6️⃣ Longest Common Substring
+- 사용: 최장 공통 문자열을 다룰 때
+- 자료구조: Array, HashTable
+- 예시 문제:
+[https://leetcode.com/problems/edit-distance/]
+
+7️⃣ Topological Sort
+- 사용: 순서가 정해져있는 작업을 차례대로 수행해야 할 때
+- 자료구조: Array, HashTable, Queue, Graph
+- 예시 문제:
+[https://leetcode.com/problems/task-scheduler/]
+
+
+
 1.시간복잡도를 고려한 효율적인 알고리즘
 2.공간복잡도를 고려한 효율적인 메모리 관리
 3.운영을 위한 단순하고 가독성 높은 코드 작성

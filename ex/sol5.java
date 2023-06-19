@@ -4,8 +4,6 @@ package ex;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class sol5 {
 
 	int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
@@ -36,12 +34,7 @@ public class sol5 {
 		return result == Integer.MAX_VALUE ? -1 : result;
 	}
 
-	private boolean dfs(int curY, int curX, int curDir, int depth) {
-		if (curY == target[0] && curX == target[1]) {
-			result = Math.min(result, depth);
-			return true;
-		}
-
+	private void dfs(int curY, int curX, int curDir, int depth) {
 		visited[curY][curX] = true;
 
 		int nextY = curY;
@@ -62,6 +55,11 @@ public class sol5 {
 			visited[nextY][nextX] = true;
 		}
 
+		if(map[nextY][nextX] == 'G'){
+			result = Math.min(result, depth);
+			return;
+		}
+
 		for (int i = 0; i < 4; i++) {
 			if(i == curDir) continue;
 
@@ -72,14 +70,13 @@ public class sol5 {
 
 			if (!visited[nextDirY][nextDirX]) {
 				visited[nextDirY][nextDirX] = true;
-				dfs(nextY, nextX, i, depth + 1);
+				dfs(nextDirY, nextDirX, i, depth + 1);
 				visited[nextDirY][nextDirX] = false;
-			} else if(map[nextDirY][nextDirX] == 'G'){
+			}
+			else if(map[nextDirY][nextDirX] == 'G'){
 				dfs(nextDirY, nextDirX, i, depth + 1);
 			}
 		}
-
-		return false;
 	}
 
 	private int[] search(char ch, String[] board) {
