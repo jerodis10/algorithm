@@ -1,112 +1,117 @@
 package ex;
 
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class sol5 {
 
-	int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
-	char[][] map;
-	int[] start;
-	int[] target;
-	boolean[][] visited;
-	int result;
+	boolean[] visited;
+	int[] origin;
+	int count;
+	List<String> list;
+	int max;
 
-	public int solution(String[] board) {
-		result = Integer.MAX_VALUE;
-		map = new char[board.length][board[0].length()];
-		visited = new boolean[board.length][board[0].length()];
-		start = search('R', board);
-		target = search('G', board);
+	public int[] solution(int n, int[] info) {
+		visited = new boolean[11];
+		origin = info;
+		count = n;
+		list = new ArrayList<>();
+		max = 0;
 
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length(); j++) {
-				map[i][j] = board[i].charAt(j);
+		dfs(-1, 0);
+
+		if(list.isEmpty()) return new int[] {-1};
+		else {
+			Collections.sort(list);
+			String[] s = list.get(0).split("");
+			int[] result = new int[11];
+			for (int i = 0; i < 11; i++) {
+				result[i] = Integer.parseInt(s[i]);
 			}
+			return result;
 		}
-
-		for (int i = 0; i < 4; i++) {
-			visited = new boolean[board.length][board[0].length()];
-			dfs(start[0], start[1], i, 1);
-		}
-
-		return result == Integer.MAX_VALUE ? -1 : result;
 	}
 
-	private void dfs(int curY, int curX, int curDir, int depth) {
-		visited[curY][curX] = true;
-
-		int nextY = curY;
-		int nextX = curX;
-		while (true) {
-			nextY += dir[curDir][0];
-			nextX += dir[curDir][1];
-			if(nextY < 0 || nextY >= map.length || nextX < 0 || nextX >= map[0].length) {
-				nextY -= dir[curDir][0];
-				nextX -= dir[curDir][1];
-				break;
+	private void dfs(int cur, int sum) {
+		if(sum == count) {
+			int originSum = 0;
+			int newSum = 0;
+			for (int i = 0; i < 11; i++) {
+				if (!visited[i] && origin[i] > 0) {
+					originSum += (10 - i);
+				} else if(visited[i]){
+					newSum += (10 - i);
+				}
 			}
-			if(map[nextY][nextX] == 'D') {
-				nextY -= dir[curDir][0];
-				nextX -= dir[curDir][1];
-				break;
+			if (originSum < newSum) {
+				if(max <= newSum - originSum) {
+					max = newSum - originSum;
+					String s = "";
+					for (int i = 0; i < 11; i++) {
+						if (visited[i]) {
+							s += String.valueOf(origin[i] + 1);
+						} else {
+							s += "0";
+						}
+					}
+					list.add(s);
+				}
 			}
-			visited[nextY][nextX] = true;
-		}
 
-		if(map[nextY][nextX] == 'G'){
-			result = Math.min(result, depth);
 			return;
 		}
 
-		for (int i = 0; i < 4; i++) {
-			if(i == curDir) continue;
-
-			int nextDirY = nextY + dir[i][0];
-			int nextDirX = nextX + dir[i][1];
-			if(nextDirY < 0 || nextDirY >= map.length || nextDirX < 0 || nextDirX >= map[0].length) continue;
-			if(map[nextDirY][nextDirX] == 'D') continue;
-
-			if (!visited[nextDirY][nextDirX]) {
-				visited[nextDirY][nextDirX] = true;
-				dfs(nextDirY, nextDirX, i, depth + 1);
-				visited[nextDirY][nextDirX] = false;
-			}
-			else if(map[nextDirY][nextDirX] == 'G'){
-				dfs(nextDirY, nextDirX, i, depth + 1);
+		for (int i = cur + 1; i < 11; i++) {
+			if (sum + origin[i] + 1 <= count) {
+				visited[i] = true;
+				dfs(i, sum + origin[i] + 1);
+				visited[i] = false;
 			}
 		}
-	}
-
-	private int[] search(char ch, String[] board) {
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length(); j++) {
-				if (board[i].charAt(j) == ch) {
-					return new int[]{i, j};
-				}
-			}
-		}
-
-		return new int[] {};
 	}
 
 
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				new String[]{"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."}
+				5,
+				new int[]{2,1,1,1,0,0,0,0,0,0,0}
 		)).isEqualTo(
-				7
+				new int[]{0,2,2,0,1,0,0,0,0,0,0}
 		);
 	}
 
 	@Test
 	public void testCase2() {
 		Assertions.assertThat(solution(
-				new String[]{".D.R", "....", ".G..", "...D"}
+				1,
+				new int[]{1,0,0,0,0,0,0,0,0,0,0}
 		)).isEqualTo(
-				-1
+				new int[]{-1}
+		);
+	}
+
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				9,
+				new int[]{0,0,1,2,0,1,1,1,1,1,1}
+		)).isEqualTo(
+				new int[]{1,1,2,0,1,2,2,0,0,0,0}
+		);
+	}
+
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				10,
+				new int[]{0,0,0,0,0,0,0,0,3,4,3}
+		)).isEqualTo(
+				new int[]{1,1,1,1,1,1,1,1,0,0,2}
 		);
 	}
 
