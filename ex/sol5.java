@@ -1,117 +1,67 @@
 package ex;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.junit.Test;
 
 public class sol5 {
 
-	boolean[] visited;
-	int[] origin;
-	int count;
-	List<String> list;
-	int max;
+	public long[] solution(long[] numbers) {
+		long[] answer = new long[numbers.length];
 
-	public int[] solution(int n, int[] info) {
-		visited = new boolean[11];
-		origin = info;
-		count = n;
-		list = new ArrayList<>();
-		max = 0;
+		for (int i = 0; i < numbers.length; i++) {
+			long num = numbers[i];
+			String n = Long.toBinaryString(num);
 
-		dfs(-1, 0);
-
-		if(list.isEmpty()) return new int[] {-1};
-		else {
-			Collections.sort(list);
-			String[] s = list.get(0).split("");
-			int[] result = new int[11];
-			for (int i = 0; i < 11; i++) {
-				result[i] = Integer.parseInt(s[i]);
+			while (true) {
+				num++;
+				String n2 = Long.toBinaryString(num);
+				if (check(n, n2)) {
+					break;
+				}
 			}
-			return result;
+
+			answer[i] = num;
 		}
+
+		return answer;
 	}
 
-	private void dfs(int cur, int sum) {
-		if(sum == count) {
-			int originSum = 0;
-			int newSum = 0;
-			for (int i = 0; i < 11; i++) {
-				if (!visited[i] && origin[i] > 0) {
-					originSum += (10 - i);
-				} else if(visited[i]){
-					newSum += (10 - i);
-				}
-			}
-			if (originSum < newSum) {
-				if(max <= newSum - originSum) {
-					max = newSum - originSum;
-					String s = "";
-					for (int i = 0; i < 11; i++) {
-						if (visited[i]) {
-							s += String.valueOf(origin[i] + 1);
-						} else {
-							s += "0";
-						}
-					}
-					list.add(s);
-				}
-			}
+	private boolean check(String s1, String s2) {
+		int count = 0;
 
-			return;
+		String[] sa = s1.split("");
+		String[] sa2 = s2.split("");
+
+		String s = "";
+		String[] sa1 = null;
+		if (sa.length != sa2.length) {
+			for (int i = 0; i < sa2.length - sa.length; i++) {
+				s += "0";
+			}
+			s += s1;
+			sa1 = s.split("");
+		} else {
+			sa1 = sa;
 		}
 
-		for (int i = cur + 1; i < 11; i++) {
-			if (sum + origin[i] + 1 <= count) {
-				visited[i] = true;
-				dfs(i, sum + origin[i] + 1);
-				visited[i] = false;
+
+		for (int i = 0; i < sa1.length; i++) {
+			if (!sa1[i].equals(sa2[i])) {
+				count++;
+				if(count > 2) return false;
 			}
 		}
+
+		return true;
 	}
 
 
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				5,
-				new int[]{2,1,1,1,0,0,0,0,0,0,0}
+				new long[]{2,7}
 		)).isEqualTo(
-				new int[]{0,2,2,0,1,0,0,0,0,0,0}
-		);
-	}
-
-	@Test
-	public void testCase2() {
-		Assertions.assertThat(solution(
-				1,
-				new int[]{1,0,0,0,0,0,0,0,0,0,0}
-		)).isEqualTo(
-				new int[]{-1}
-		);
-	}
-
-	@Test
-	public void testCase3() {
-		Assertions.assertThat(solution(
-				9,
-				new int[]{0,0,1,2,0,1,1,1,1,1,1}
-		)).isEqualTo(
-				new int[]{1,1,2,0,1,2,2,0,0,0,0}
-		);
-	}
-
-	@Test
-	public void testCase4() {
-		Assertions.assertThat(solution(
-				10,
-				new int[]{0,0,0,0,0,0,0,0,3,4,3}
-		)).isEqualTo(
-				new int[]{1,1,1,1,1,1,1,1,0,0,2}
+				new long[]{3,11}
 		);
 	}
 
