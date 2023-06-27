@@ -188,3 +188,13 @@ https://colorscripter.com/info#e
     수식으로 표현해본다.
     순서를 강제해본다.
     뒤에서부터 생각해본다
+
+
+
+for(int i=2; i<Math.sqrt(n); i++) {
+    if(prime[i]) continue;
+
+    for(int j=i*i; j<=n; j=j+i) {
+        prime[j] = true;
+    }
+}
