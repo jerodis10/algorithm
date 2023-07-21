@@ -101,5 +101,30 @@ public class sol25 {
 		);
 	}
 
+	@Test
+	public void testCase4() {
+		Assertions.assertThat(solution(
+				4,5,
+				new String[]{".....",
+						     "xxxxx",
+						     ".....",
+						     "....."}
+		)).isEqualTo(
+				5
+		);
+	}
+
+	@Test
+	public void testCase5() {
+		Assertions.assertThat(solution(
+				4,5,
+				new String[]{"...x.",
+							 "x....",
+							 ".....",
+							 "..x.."}
+		)).isEqualTo(
+				13
+		);
+	}
 
 }
