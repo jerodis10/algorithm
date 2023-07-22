@@ -35,7 +35,9 @@ public class sol24 {
 		ret += sb.reverse().toString();
 
 		return ret;
+
 	}
+
 
 	@Test
 	public void testCase() {
@@ -65,6 +67,24 @@ public class sol24 {
 	}
 
 	@Test
+	public void testCase33() {
+		Assertions.assertThat(solution(
+				8,4
+		)).isEqualTo(
+				"abcddcba"
+		);
+	}
+
+	@Test
+	public void testCase44() {
+		Assertions.assertThat(solution(
+				7,1
+		)).isEqualTo(
+				"aaaaaaa"
+		);
+	}
+
+	@Test
 	public void testCase4() {
 		Assertions.assertThat(solution(
 				7,2
@@ -79,6 +99,15 @@ public class sol24 {
 				7,3
 		)).isEqualTo(
 				"aabcbaa"
+		);
+	}
+
+	@Test
+	public void testCase55() {
+		Assertions.assertThat(solution(
+				7,4
+		)).isEqualTo(
+				"abcdcba"
 		);
 	}
 
@@ -133,6 +162,51 @@ public class sol24 {
 				53,26
 		)).isEqualTo(
 				"aabcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcbaa"
+		);
+	}
+
+	@Test
+	public void testCase12() {
+		Assertions.assertThat(solution(
+				5,3
+		)).isEqualTo(
+				"abcba"
+		);
+	}
+
+	@Test
+	public void testCase13() {
+		Assertions.assertThat(solution(
+				5,2
+		)).isEqualTo(
+				"aabaa"
+		);
+	}
+
+	@Test
+	public void testCase14() {
+		Assertions.assertThat(solution(
+				5,1
+		)).isEqualTo(
+				"aaaaa"
+		);
+	}
+
+	@Test
+	public void testCase15() {
+		Assertions.assertThat(solution(
+				52,25
+		)).isEqualTo(
+				"aabcdefghijklmnopqrstuvwxyyxwvutsrqponmlkjihgfedcbaa"
+		);
+	}
+
+	@Test
+	public void testCase16() {
+		Assertions.assertThat(solution(
+				53,25
+		)).isEqualTo(
+				"aaabcdefghijklmnopqrstuvwxyxwvutsrqponmlkjihgfedcbaaa"
 		);
 	}
 

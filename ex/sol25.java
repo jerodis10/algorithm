@@ -10,17 +10,17 @@ public class sol25 {
 	boolean[][][] visited;
 
 	int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-	int c, r;
+	int col, row;
 
-	public int solution(int n, int k, String[] rooms) {
-		c = n;
-		r = k;
-		map = new char[n][k];
-		visited = new boolean[n][k][4];
+	public int solution(String[] R) {
+		col = R.length;
+		row = R[0].length();
+		map = new char[col][row];
+		visited = new boolean[col][row][4];
 
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < k; j++) {
-				map[i][j] = rooms[i].charAt(j);
+		for (int i = 0; i < col; i++) {
+			for (int j = 0; j < row; j++) {
+				map[i][j] = R[i].charAt(j);
 			}
 		}
 
@@ -40,7 +40,7 @@ public class sol25 {
 		while (true) {
 			nextY += dir[direction][0];
 			nextX += dir[direction][1];
-			if(nextY < 0 || nextX < 0 || nextY >= c || nextX >= r) {
+			if(nextY < 0 || nextX < 0 || nextY >= col || nextX >= row) {
 				nextY -= dir[direction][0];
 				nextX -= dir[direction][1];
 				break;
@@ -74,7 +74,6 @@ public class sol25 {
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				3,6,
 				new String[]{"...x..","....xx","..x..."}
 		)).isEqualTo(
 				6
@@ -84,7 +83,6 @@ public class sol25 {
 	@Test
 	public void testCase2() {
 		Assertions.assertThat(solution(
-				4,7,
 				new String[]{"....x..","x......",".....x.","......."}
 		)).isEqualTo(
 				15
@@ -94,7 +92,6 @@ public class sol25 {
 	@Test
 	public void testCase3() {
 		Assertions.assertThat(solution(
-				4,5,
 				new String[]{"...x.",".x..x","x...x","..x.."}
 		)).isEqualTo(
 				9
@@ -104,7 +101,6 @@ public class sol25 {
 	@Test
 	public void testCase4() {
 		Assertions.assertThat(solution(
-				4,5,
 				new String[]{".....",
 						     "xxxxx",
 						     ".....",
@@ -117,13 +113,45 @@ public class sol25 {
 	@Test
 	public void testCase5() {
 		Assertions.assertThat(solution(
-				4,5,
 				new String[]{"...x.",
 							 "x....",
 							 ".....",
 							 "..x.."}
 		)).isEqualTo(
 				13
+		);
+	}
+
+	@Test
+	public void testCase6() {
+		Assertions.assertThat(solution(
+				new String[]{".x...",
+							 "x....",
+							 ".....",
+							 "..x.."}
+		)).isEqualTo(
+				1
+		);
+	}
+
+	@Test
+	public void testCase7() {
+		Assertions.assertThat(solution(
+				new String[]{".....",
+							 ".....",
+							 ".....",
+							 "....."}
+		)).isEqualTo(
+				14
+		);
+	}
+
+	@Test
+	public void testCase8() {
+		Assertions.assertThat(solution(
+				new String[]{"...X..", "....XX", "..X..."}
+		)).isEqualTo(
+				14
 		);
 	}
 
