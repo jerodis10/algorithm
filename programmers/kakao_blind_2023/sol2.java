@@ -6,35 +6,24 @@ import org.junit.Test;
 public class sol2 {
 
 	public long solution(int cap, int n, int[] deliveries, int[] pickups) {
-		long answer = -1;
+		long answer = 0;
+		int deliver = 0;
+		int pickup = 0;
 
-		int curCap = 0;
-		int deliveryAll = 0;
-		int pickAll = 0;
-		int deliveryCount = 0;
-		int pickCount = 0;
-
-		for (int i = 0; i < deliveries.length; i++) {
-			deliveryAll += deliveries[i];
-			pickAll += pickups[i];
-		}
-
-		int deliveryFirst = deliveries.length - 1;
-		int deliveryLast = deliveries.length - 1;
-		int pickIndex = deliveries.length - 1;
-		while (deliveryCount < deliveryAll || pickCount < pickAll) {
-			// 배달
-			for (int i = deliveryLast; i >= 0; i--) {
-				if (curCap + deliveries[i] < cap) {
-					curCap += deliveries[i];
-					deliveries[i] = 0;
-				} else {
-					curCap += cap - curCap;
-					deliveries[i] -= cap - curCap;
+		for (int i = n - 1; i >= 0; i--) {
+			if (deliveries[i] > 0 || pickups[i] > 0) {
+				int count = 0;
+				while (deliver < deliveries[i] || pickup < pickups[i]) {
+					// 인덱스 위치를 몇 번 방문할지 카운트
+					count++;
+					deliver += cap;
+					pickup += cap;
 				}
+
+				deliver -= deliveries[i]; // 남은 트럭 자리 계산
+				pickup -= pickups[i];
+				answer += (i + 1) * count * 2;
 			}
-			
-			// 수거
 		}
 
 		return answer;
@@ -65,3 +54,4 @@ public class sol2 {
 
 
 }
+
