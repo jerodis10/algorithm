@@ -3,64 +3,66 @@ package programmers.kakao_blind_2023;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class sol1 {
 
-	String todayFormatted;
-	int to;
-	String[][] termList;
-	String[][] privacieList;
-	List<Integer> resultList;
-
+	/**
+	 * 개인정보 수집 유효기간
+	 * @param today 오늘 날짜 YYYY.MM.DD
+	 * @param terms 약관의 유효기간 (약관종류 유효기간) : 공백으로 구분, 유효기간은 개월수
+	 * @param privacies 수집된 개인정보 (날짜 약관정보) : 공백으로 구분
+	 * @return 파기해야할 개인정보의 번호 오름차순
+	 */
 	public int[] solution(String today, String[] terms, String[] privacies) {
-		todayFormatted = today.replace(".", "");
-		to = Integer.parseInt(todayFormatted);
-
-		termList = new String[terms.length][2];
-		for (int i = 0; i < terms.length; i++) {
-			termList[i] = terms[i].split(" ");
+		int[] answer = {};
+		Map<String, String> termsMap = new HashMap<>(); // key : 종류, value : 기간
+		for (String term : terms) {
+			String[] termSplit = term.split(" ");
+			termsMap.put(termSplit[0], termSplit[1]);
 		}
 
-		privacieList = new String[privacies.length][4];
-		for (int i = 0; i < privacies.length; i++) {
-			String s = privacies[i].replace(".", " ");
-			privacieList[i] = s.split(" ");
-		}
+		Integer number = 1; // privacies 의 번호
+		List<Integer> result = new ArrayList<>();
+		// 현재 총 날짜 수
+		Integer todayTotalDate = getTotalDate(today, 0);
+		for (String p : privacies) {
+			String[] privateSplit = p.split(" ");
+			// 개인별 날짜
+			String privateDate = privateSplit[0];
+			// 개인별 약관 정보
+			String privateTerm = privateSplit[1];
+			// 약관 개월수
+			Integer termsMonth = Integer.valueOf(termsMap.get(privateTerm));
 
-		for (int i = 0; i < privacieList.length; i++) {
-			String privacie = "";
-			for (int j = 0; j < termList.length; j++) {
-				if (privacieList[i][3].equals(termList[j][0])) {
-					int yy = Integer.parseInt(privacieList[i][0]);
-					int mm = Integer.parseInt(privacieList[i][1]) + Integer.parseInt(termList[j][1]);
-
-					if (mm > 12) {
-						yy += mm / 12;
-						mm = mm % 12;
-					}
-
-					privacie += yy;
-
-					if(mm < 10) privacie += "0" + mm;
-					else privacie += mm;
-
-					if(Integer.parseInt(privacieList[i][2]) < 11) privacie += "0" + Integer.valueOf(Integer.parseInt(privacieList[i][2]) - 1);
-					else privacie += Integer.valueOf(Integer.parseInt(privacieList[i][2]) - 1);
-				}
+			// 기간 경과 후 총 날짜 수
+			Integer privateTotalDate = getTotalDate(privateDate, termsMonth) - 1; // 기간이므로 -1
+			// 기간경과후 날짜가 현재 날짜보다 과거이면 폐기대상이다.
+			if (privateTotalDate < todayTotalDate) { // 현재 당일은 아직 폐기대상 아님
+				// 유효기간 경과하여 폐기대상인 번호를 추가
+				result.add(number);
 			}
-
-			if (to > Integer.parseInt(privacie)) {
-				resultList.add(i + 1);
-			}
+			// privacies 의 번호 +1
+			number++;
 		}
+		answer = result.stream().mapToInt(Integer::intValue).toArray();
+		return answer;
+	}
 
-		Collections.sort(resultList);
-		int[] result = resultList.stream().mapToInt(i -> i).toArray();
+	/**
+	 * (YYYY.MM.DD)을 총 날짜 수로 환산
+	 * @param strDate YYYY.MM.DD
+	 * @param termsMonth 약관 개월 수
+	 * @return 날짜로 환산한 총 날짜 수
+	 */
+	private Integer getTotalDate(String strDate, Integer termsMonth) {
+		// 날짜 정보
+		String[] dateSplit = strDate.split("\\.");
+		Integer year = Integer.valueOf(dateSplit[0]);
+		Integer month = Integer.valueOf(dateSplit[1]) + termsMonth;
+		Integer day = Integer.valueOf(dateSplit[2]);
 
-		return result;
+		return (year * 12 * 28) + (month * 28) + day;
 	}
 
 
@@ -79,10 +81,21 @@ public class sol1 {
 	public void testCase2() {
 		Assertions.assertThat(solution(
 				"2020.01.01",
-				new String[]{"2019.01.01 D", "2019.11.15 Z", "2019.08.02 D", "2019.07.01 D", "2018.12.28 Z"},
-				new String[]{"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"}
+				new String[]{"Z 3", "D 5"},
+				new String[]{"2019.01.01 D", "2019.11.15 Z", "2019.08.02 D", "2019.07.01 D", "2018.12.28 Z"}
 		)).isEqualTo(
 				new int[]{1,4,5}
+		);
+	}
+
+	@Test
+	public void testCase3() {
+		Assertions.assertThat(solution(
+				"2020.12.17",
+				new String[]{"A 12"},
+				new String[]{"2010.01.01 A", "2019.12.17 A"}
+		)).isEqualTo(
+				new int[]{1,2}
 		);
 	}
 
