@@ -45,7 +45,7 @@ public class sol25 {
 				nextX -= dir[direction][1];
 				break;
 			}
-			if(map[nextY][nextX] == 'x') {
+			if(map[nextY][nextX] == 'X') {
 				nextY -= dir[direction][0];
 				nextX -= dir[direction][1];
 				break;
@@ -74,7 +74,7 @@ public class sol25 {
 	@Test
 	public void testCase() {
 		Assertions.assertThat(solution(
-				new String[]{"...x..","....xx","..x..."}
+				new String[]{"...X..","....XX","..X..."}
 		)).isEqualTo(
 				6
 		);
@@ -83,7 +83,7 @@ public class sol25 {
 	@Test
 	public void testCase2() {
 		Assertions.assertThat(solution(
-				new String[]{"....x..","x......",".....x.","......."}
+				new String[]{"....X..","X......",".....X.","......."}
 		)).isEqualTo(
 				15
 		);
@@ -92,7 +92,7 @@ public class sol25 {
 	@Test
 	public void testCase3() {
 		Assertions.assertThat(solution(
-				new String[]{"...x.",".x..x","x...x","..x.."}
+				new String[]{"...X.",".X..X","X...X","..X.."}
 		)).isEqualTo(
 				9
 		);
@@ -102,7 +102,7 @@ public class sol25 {
 	public void testCase4() {
 		Assertions.assertThat(solution(
 				new String[]{".....",
-						     "xxxxx",
+						     "XXXXX",
 						     ".....",
 						     "....."}
 		)).isEqualTo(
@@ -113,10 +113,10 @@ public class sol25 {
 	@Test
 	public void testCase5() {
 		Assertions.assertThat(solution(
-				new String[]{"...x.",
-							 "x....",
+				new String[]{"...X.",
+							 "X....",
 							 ".....",
-							 "..x.."}
+							 "..X.."}
 		)).isEqualTo(
 				13
 		);
