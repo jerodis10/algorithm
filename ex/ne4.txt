@@ -1,0 +1,26 @@
+/*
+Enter your query below.
+Please append a semicolon ";" at the end of the query
+*/
+
+select
+		'customer' category,
+		a.id,
+		customer_name name
+		from customer a
+		where not EXISTS (
+		select 1
+		from invoice b
+		where a.id = b.customer_id
+		)
+		union
+		select
+		'product' product,
+		a.id,
+		product_name name
+		from product a
+		where not EXISTS (
+		select 1
+		from invoice_item b
+		where a.id = b.product_id
+		)
